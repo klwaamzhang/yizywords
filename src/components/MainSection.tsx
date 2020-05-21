@@ -27,33 +27,31 @@ import {
   ExpandMore,
 } from "@material-ui/icons";
 import { useStyles } from "../styles/global";
+import { AppContext } from "../context";
 
 export default function MainSection() {
   const classes = useStyles();
+  const { state } = React.useContext(AppContext);
+
   return (
     <Grid item xs={12} sm={8} className={classes.mainContent}>
       <div className={classes.toolbar} />
       <List>
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) => {
-          const labelId = `checkbox-list-label-${value}`;
+        {state.dummyData.map((item, index) => {
+          const labelId = `checkbox-list-label-${index}`;
           return (
-            <>
-              <ListItem key={value} role={undefined} button>
-                <ListItemText
-                  id={labelId}
-                  primary={`Line item ${value + 1}`}
-                  secondary={`this is the rjeio fje wajf eioafi ewjafio e fjeiwjafioejw aiofjeiow jaifoejpwa iofjeiwoa jfeiow afeiow jwiafopej safejw secondary text: ${
-                    value + 3213
-                  }`}
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="menu">
-                    <MoreVert />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-              <Divider />
-            </>
+            <ListItem key={index} role={undefined} button>
+              <ListItemText
+                id={labelId}
+                primary={item.text}
+                secondary={item.notes}
+              />
+              <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="menu">
+                  <MoreVert />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
           );
         })}
       </List>

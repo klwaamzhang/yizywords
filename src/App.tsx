@@ -36,32 +36,30 @@ import Topbar from "./components/Topbar";
 import { useStyles } from "./styles/global";
 import MainSection from "./components/MainSection";
 import SideMenu from "./components/SideMenu";
+import { AppContextProvider } from "./context";
 
 const App: React.FC = () => {
   const classes = useStyles();
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  // function handleDrawerToggle() {
-  //   setMobileOpen(!mobileOpen);
-  // }
 
   return (
-    <div className={classes.root}>
-      <Topbar />
-      <Container
-        className={classes.noLeftRightPadding + " " + classes.displayColumn}
-        maxWidth="md"
-      >
-        <Grid
-          container
-          spacing={0}
-          style={{ height: "100%", backgroundColor: "#eee" }}
+    <AppContextProvider>
+      <div className={classes.root}>
+        <Topbar />
+        <Container
+          className={classes.noLeftRightPadding + " " + classes.displayColumn}
+          maxWidth="md"
         >
-          <SideMenu />
-          <MainSection />
-        </Grid>
-      </Container>
-    </div>
+          <Grid
+            container
+            spacing={0}
+            style={{ height: "100%", backgroundColor: "#eee" }}
+          >
+            <SideMenu />
+            <MainSection />
+          </Grid>
+        </Container>
+      </div>
+    </AppContextProvider>
   );
 };
 
