@@ -24,6 +24,7 @@ import {
   Avatar,
   ListItemSecondaryAction,
   Checkbox,
+  Collapse,
 } from "@material-ui/core";
 import {
   Mail,
@@ -31,6 +32,8 @@ import {
   MoveToInbox,
   MoreVert,
   ExpandMore,
+  StarBorder,
+  ExpandLess,
 } from "@material-ui/icons";
 import { useStyles } from "../styles/global";
 import { AppContext } from "../context";
@@ -43,6 +46,11 @@ export default function SideMenu() {
   const { state } = React.useContext(AppContext);
   const { toggleSideManu } = useAppActions();
 
+  const [open, setOpen] = React.useState(true);
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
   const drawer = (
     <React.Fragment>
       <div className={classes.toolbar} />
@@ -54,14 +62,32 @@ export default function SideMenu() {
           </ListItemIcon>
           <ListItemText primary="Inbox" />
         </ListItem>
-        {["Categories"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <MoveToInbox /> : <Mail />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+
+        <ListItem button onClick={handleClick}>
+          <ListItemIcon>
+            <MoveToInbox />
+          </ListItemIcon>
+          <ListItemText primary="Categories" />
+          {open ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem button className={classes.nested}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              <ListItemText primary="Starred" />
+            </ListItem>
+            {state.categories.map((text, index) => (
+              <ListItem button key={text} className={classes.nested}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <MoveToInbox /> : <Mail />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Collapse>
       </List>
       <div style={{ alignSelf: "end" }}>
         <Divider />

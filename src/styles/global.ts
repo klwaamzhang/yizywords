@@ -49,5 +49,8 @@ export const useStyles = makeStyles((theme: Theme) =>
     avatar: {
       backgroundColor: "red",
     },
+    nested: {
+      paddingLeft: theme.spacing(4),
+    },
   })
 );

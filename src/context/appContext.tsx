@@ -7,6 +7,7 @@ import { dummyData } from "../sampleData/data";
 // app state type
 export type AppState = {
   isSideMenuOpen: boolean;
+  categories: string[];
   dummyData: Array<{ text: string; notes: string; categories: string[] }>;
 };
 
@@ -24,7 +25,20 @@ export const AppActionType: actionType = {
 export type AppAction = { type: TOGGLE_SIDE_MANU };
 
 // app context
-const initialState: AppState = { isSideMenuOpen: false, dummyData: dummyData };
+const categories: string[] = dummyData
+  .flatMap((item) => item.categories)
+  .reduce((acc, cur) => {
+    if (cur !== "Inbox" && acc.indexOf(cur) === -1) {
+      acc.push(cur);
+    }
+    return acc;
+  }, new Array<string>());
+
+const initialState: AppState = {
+  isSideMenuOpen: false,
+  categories: categories,
+  dummyData: dummyData,
+};
 
 export const [AppContext, AppCtxProvider] = createCtx<AppState, AppAction>(
   appReducer,
