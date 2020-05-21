@@ -1,11 +1,13 @@
 import React from "react";
 import { createCtx } from "../utilities/createCtx";
 import { appReducer } from "../reducers/appReducer";
+import { dummyData } from "../sampleData/data";
 // import { State, Action } from "../@types/app";
 
 // app state type
 export type AppState = {
   isSideMenuOpen: boolean;
+  dummyData: Array<{ text: string; notes: string; categories: string[] }>;
 };
 
 // app action type
@@ -22,7 +24,7 @@ export const AppActionType: actionType = {
 export type AppAction = { type: TOGGLE_SIDE_MANU };
 
 // app context
-const initialState: AppState = { isSideMenuOpen: false };
+const initialState: AppState = { isSideMenuOpen: false, dummyData: dummyData };
 
 export const [AppContext, AppCtxProvider] = createCtx<AppState, AppAction>(
   appReducer,

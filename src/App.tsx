@@ -40,11 +40,6 @@ import { AppContextProvider } from "./context";
 
 const App: React.FC = () => {
   const classes = useStyles();
-  // const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  // function handleDrawerToggle() {
-  //   setMobileOpen(!mobileOpen);
-  // }
 
   return (
     <AppContextProvider>
