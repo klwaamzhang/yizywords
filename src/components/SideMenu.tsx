@@ -33,10 +33,16 @@ import {
   ExpandMore,
 } from "@material-ui/icons";
 import { useStyles } from "../styles/global";
+import { AppContext } from "../context";
+import { useAppActions } from "../actions";
 
 export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
+
+  const { state } = React.useContext(AppContext);
+  const { toggleSideManu } = useAppActions();
+
   const drawer = (
     <React.Fragment>
       <div className={classes.toolbar} />
@@ -76,8 +82,8 @@ export default function SideMenu() {
         <Drawer
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
-          //   open={mobileOpen}
-          //   onClose={handleDrawerToggle}
+          open={state.isSideMenuOpen}
+          onClose={toggleSideManu}
           classes={{
             paper: classes.drawerPaper,
           }}

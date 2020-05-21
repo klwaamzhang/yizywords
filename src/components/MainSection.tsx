@@ -40,21 +40,18 @@ export default function MainSection() {
         {state.dummyData.map((item, index) => {
           const labelId = `checkbox-list-label-${index}`;
           return (
-            <>
-              <ListItem key={index} role={undefined} button>
-                <ListItemText
-                  id={labelId}
-                  primary={item.text}
-                  secondary={item.notes}
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="menu">
-                    <MoreVert />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-              <Divider />
-            </>
+            <ListItem key={index} role={undefined} button>
+              <ListItemText
+                id={labelId}
+                primary={item.text}
+                secondary={item.notes}
+              />
+              <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="menu">
+                  <MoreVert />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
           );
         })}
       </List>
