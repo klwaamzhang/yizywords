@@ -54,17 +54,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface FilmOptionType {
+interface CateOptionType {
   inputValue?: string;
   title: string;
 }
-
-interface ChipData {
-  key: number;
-  label: string;
-}
-
-const filter = createFilterOptions<FilmOptionType>();
 
 export default function NewWordDialog() {
   const classes = useStyles();
@@ -74,7 +67,7 @@ export default function NewWordDialog() {
 
   const handleSubmit = async (e: any) => {};
 
-  const categoriesForCmp: FilmOptionType[] = state.categories.map((item) => {
+  const categoriesForCmp: CateOptionType[] = state.categories.map((item) => {
     return { title: item };
   });
 
@@ -140,7 +133,7 @@ export default function NewWordDialog() {
                     {...params}
                     variant="outlined"
                     label="Add a category"
-                    placeholder="Favorites"
+                    placeholder="New"
                     required
                   />
                 )}
