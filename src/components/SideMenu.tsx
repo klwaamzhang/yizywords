@@ -1,15 +1,6 @@
 import React from "react";
+import { useTheme } from "@material-ui/core/styles";
 import {
-  makeStyles,
-  createStyles,
-  Theme,
-  useTheme,
-} from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Container,
   Grid,
   List,
   ListItem,
@@ -18,19 +9,11 @@ import {
   Divider,
   Hidden,
   Drawer,
-  Card,
-  CardContent,
-  CardHeader,
-  Avatar,
-  ListItemSecondaryAction,
-  Checkbox,
   Collapse,
 } from "@material-ui/core";
 import {
   Mail,
-  Menu,
   MoveToInbox,
-  MoreVert,
   ExpandMore,
   StarBorder,
   ExpandLess,

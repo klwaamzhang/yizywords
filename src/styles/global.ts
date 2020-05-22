@@ -52,5 +52,8 @@ export const useStyles = makeStyles((theme: Theme) =>
     nested: {
       paddingLeft: theme.spacing(4),
     },
+    topbarTitle: {
+      flexGrow: 1,
+    },
   })
 );

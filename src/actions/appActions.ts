@@ -8,5 +8,9 @@ export function useAppActions() {
     return dispatch({ type: AppActionType.TOGGLE_SIDE_MANU });
   }
 
-  return { toggleSideManu };
+  function openNewWordDialog() {
+    return dispatch({ type: AppActionType.OPEN_NEW_WORD_DIALOG });
+  }
+
+  return { toggleSideManu, openNewWordDialog };
 }

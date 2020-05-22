@@ -1,31 +1,13 @@
 import React from "react";
 import {
-  AppBar,
-  Toolbar,
   IconButton,
-  Container,
   Grid,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
-  Divider,
-  Hidden,
-  Drawer,
-  Card,
-  CardContent,
-  CardHeader,
-  Avatar,
   ListItemSecondaryAction,
-  Checkbox,
 } from "@material-ui/core";
-import {
-  Mail,
-  Menu,
-  MoveToInbox,
-  MoreVert,
-  ExpandMore,
-} from "@material-ui/icons";
+import { MoreVert } from "@material-ui/icons";
 import { useStyles } from "../styles/global";
 import { AppContext } from "../context";
 
