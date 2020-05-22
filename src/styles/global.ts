@@ -54,6 +54,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     topbarTitle: {
       flexGrow: 1,
+      alignSelf: "center",
     },
   })
 );

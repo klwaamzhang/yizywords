@@ -16,10 +16,13 @@ import {
 } from "@material-ui/core";
 import { Bookmarks } from "@material-ui/icons";
 import TagFacesIcon from "@material-ui/icons/TagFaces";
+import Autocomplete, {
+  createFilterOptions,
+} from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -46,12 +49,22 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0.5),
     margin: 0,
   },
+  autocmp: {
+    marginTop: theme.spacing(2),
+  },
 }));
+
+interface FilmOptionType {
+  inputValue?: string;
+  title: string;
+}
 
 interface ChipData {
   key: number;
   label: string;
 }
+
+const filter = createFilterOptions<FilmOptionType>();
 
 export default function NewWordDialog() {
   const classes = useStyles();
@@ -61,19 +74,9 @@ export default function NewWordDialog() {
 
   const handleSubmit = async (e: any) => {};
 
-  const [chipData, setChipData] = React.useState<ChipData[]>([
-    { key: 0, label: "Inbox" },
-    { key: 1, label: "Starred" },
-    { key: 2, label: "New Words" },
-    { key: 3, label: "Verbs" },
-    { key: 4, label: "Cool Adjectives" },
-  ]);
-
-  const handleDelete = (chipToDelete: ChipData) => () => {
-    setChipData((chips) =>
-      chips.filter((chip) => chip.key !== chipToDelete.key)
-    );
-  };
+  const categoriesForCmp: FilmOptionType[] = state.categories.map((item) => {
+    return { title: item };
+  });
 
   return (
     <Dialog
@@ -115,41 +118,33 @@ export default function NewWordDialog() {
                 id="notes"
                 autoComplete="notes"
               />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                fullWidth
-                id="category"
-                label="Add a Category"
-                name="category"
-                autoComplete="category"
+              <Autocomplete
+                className={classes.autocmp}
+                multiple
+                id="tags-filled"
+                options={categoriesForCmp.map((option) => option.title)}
+                defaultValue={["Inbox"]}
+                freeSolo
+                renderTags={(value: string[], getTagProps) =>
+                  value.map((option: string, index: number) => (
+                    <Chip
+                      variant="outlined"
+                      color="primary"
+                      label={option}
+                      {...getTagProps({ index })}
+                    />
+                  ))
+                }
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    label="Add a category"
+                    placeholder="Favorites"
+                    required
+                  />
+                )}
               />
-              <Paper elevation={0} component="ul" className={classes.root}>
-                {chipData.map((data) => {
-                  let icon;
-
-                  if (data.label === "Inbox") {
-                    icon = <TagFacesIcon />;
-                  }
-
-                  return (
-                    <li key={data.key}>
-                      <Chip
-                        icon={icon}
-                        label={data.label}
-                        onDelete={
-                          data.label === "Inbox"
-                            ? undefined
-                            : handleDelete(data)
-                        }
-                        className={classes.chip}
-                        color="primary"
-                        variant="outlined"
-                      />
-                    </li>
-                  );
-                })}
-              </Paper>
               <Button
                 type="submit"
                 fullWidth
