@@ -11,13 +11,7 @@ import {
   Drawer,
   Collapse,
 } from "@material-ui/core";
-import {
-  Mail,
-  MoveToInbox,
-  ExpandMore,
-  StarBorder,
-  ExpandLess,
-} from "@material-ui/icons";
+import { Mail, MoveToInbox, ExpandMore, ExpandLess } from "@material-ui/icons";
 import { useStyles } from "../styles/global";
 import { AppContext } from "../context";
 import { useAppActions } from "../actions";
@@ -27,11 +21,13 @@ export default function SideMenu() {
   const theme = useTheme();
 
   const { state } = React.useContext(AppContext);
-  const { toggleSideManu } = useAppActions();
+  const { toggleSideManu, updateCategories } = useAppActions();
 
   useEffect(() => {
     // TODO: create update-categries
-    // populateCategories([state.dummyData)
+    // populateCategories(state.dummyData);
+    updateCategories(state.dummyData);
+    console.log("triggered");
   }, [state.dummyData]);
 
   const [open, setOpen] = React.useState(true);

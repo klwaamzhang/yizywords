@@ -22,37 +22,43 @@ export type AppState = {
 type TOGGLE_SIDE_MANU = "TOGGLE_SIDE_MANU";
 type TOGGLE_NEW_WORD_DIALOG = "TOGGLE_NEW_WORD_DIALOG";
 type CREATE_NEW_WORD = "CREATE_NEW_WORD";
+type UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 
 type actionType = {
   TOGGLE_SIDE_MANU: TOGGLE_SIDE_MANU;
   TOGGLE_NEW_WORD_DIALOG: TOGGLE_NEW_WORD_DIALOG;
   CREATE_NEW_WORD: CREATE_NEW_WORD;
+  UPDATE_CATEGORIES: UPDATE_CATEGORIES;
 };
 
 export const AppActionType: actionType = {
   TOGGLE_SIDE_MANU: "TOGGLE_SIDE_MANU",
   TOGGLE_NEW_WORD_DIALOG: "TOGGLE_NEW_WORD_DIALOG",
   CREATE_NEW_WORD: "CREATE_NEW_WORD",
+  UPDATE_CATEGORIES: "UPDATE_CATEGORIES",
 };
 
 export type AppAction =
   | { type: TOGGLE_SIDE_MANU }
   | { type: TOGGLE_NEW_WORD_DIALOG }
-  | { type: CREATE_NEW_WORD; payload: DummyDataType };
+  | { type: CREATE_NEW_WORD; payload: DummyDataType }
+  | { type: UPDATE_CATEGORIES; payload: DummyDataType[] };
 
 // app context
-const categories: string[] = dummyData
-  .flatMap((item) => item.categories)
-  .reduce((acc, cur) => {
-    if (cur !== "Inbox" && acc.indexOf(cur) === -1) {
-      acc.push(cur);
-    }
-    return acc;
-  }, new Array<string>());
+export const populateCategories = (data: DummyDataType[]) => {
+  return data
+    .flatMap((item) => item.categories)
+    .reduce((acc, cur) => {
+      if (cur !== "Inbox" && acc.indexOf(cur) === -1) {
+        acc.push(cur);
+      }
+      return acc;
+    }, new Array<string>());
+};
 
 const initialState: AppState = {
   isSideMenuOpen: false,
-  categories: categories,
+  categories: populateCategories(dummyData),
   dummyData: dummyData,
   isNewWordDialogOpened: false,
 };

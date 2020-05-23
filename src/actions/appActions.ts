@@ -16,5 +16,17 @@ export function useAppActions() {
     return dispatch({ type: AppActionType.CREATE_NEW_WORD, payload: formData });
   }
 
-  return { toggleSideManu, toggleNewWordDialog, createNewWord };
+  function updateCategories(dummyData: DummyDataType[]) {
+    return dispatch({
+      type: AppActionType.UPDATE_CATEGORIES,
+      payload: dummyData,
+    });
+  }
+
+  return {
+    toggleSideManu,
+    toggleNewWordDialog,
+    createNewWord,
+    updateCategories,
+  };
 }

@@ -1,4 +1,9 @@
-import { AppState, AppAction, AppActionType } from "../context";
+import {
+  AppState,
+  AppAction,
+  AppActionType,
+  populateCategories,
+} from "../context";
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
@@ -8,6 +13,8 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, isNewWordDialogOpened: !state.isNewWordDialogOpened };
     case AppActionType.CREATE_NEW_WORD:
       return { ...state, dummyData: [...state.dummyData, action.payload] };
+    case AppActionType.UPDATE_CATEGORIES:
+      return { ...state, categories: populateCategories(state.dummyData) };
     default:
       throw new Error("error: AppContext reducer error!");
   }
