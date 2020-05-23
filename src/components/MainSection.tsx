@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  IconButton,
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-} from "@material-ui/core";
-import { MoreVert } from "@material-ui/icons";
+import { Grid, List } from "@material-ui/core";
 import { useStyles } from "../styles/global";
 import { AppContext } from "../context";
+import WordListItem from "./WordListItem";
 
 export default function MainSection() {
   const classes = useStyles();
@@ -20,21 +13,7 @@ export default function MainSection() {
       <div className={classes.toolbar} />
       <List>
         {state.dummyData.map((item, index) => {
-          const labelId = `checkbox-list-label-${index}`;
-          return (
-            <ListItem key={index} role={undefined} button>
-              <ListItemText
-                id={labelId}
-                primary={item.text}
-                secondary={item.notes}
-              />
-              <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="menu">
-                  <MoreVert />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          );
+          return <WordListItem item={item} index={index} key={index} />;
         })}
       </List>
     </Grid>

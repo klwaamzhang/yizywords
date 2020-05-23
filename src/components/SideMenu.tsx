@@ -24,10 +24,7 @@ export default function SideMenu() {
   const { toggleSideManu, updateCategories } = useAppActions();
 
   useEffect(() => {
-    // TODO: create update-categries
-    // populateCategories(state.dummyData);
     updateCategories(state.dummyData);
-    console.log("triggered");
   }, [state.dummyData]);
 
   const [open, setOpen] = React.useState(true);
