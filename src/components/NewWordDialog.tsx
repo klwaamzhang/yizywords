@@ -79,13 +79,18 @@ export default function NewWordDialog() {
       return;
     }
     createNewWord(formData);
+    handleDialogClose();
+  };
+
+  const handleDialogClose = () => {
+    setFormData({ text: "", notes: "", categories: ["Inbox"] });
     toggleNewWordDialog();
   };
 
   return (
     <Dialog
       open={state.isNewWordDialogOpened}
-      onClose={toggleNewWordDialog}
+      onClose={handleDialogClose}
       aria-labelledby="customized-dialog-title"
     >
       <DialogContent>
