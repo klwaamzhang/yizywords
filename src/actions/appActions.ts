@@ -1,5 +1,5 @@
 import React from "react";
-import { AppContext, AppActionType } from "../context";
+import { AppContext, AppActionType, DummyDataType } from "../context";
 
 export function useAppActions() {
   const { dispatch } = React.useContext(AppContext);
@@ -8,9 +8,13 @@ export function useAppActions() {
     return dispatch({ type: AppActionType.TOGGLE_SIDE_MANU });
   }
 
-  function openNewWordDialog() {
-    return dispatch({ type: AppActionType.OPEN_NEW_WORD_DIALOG });
+  function toggleNewWordDialog() {
+    return dispatch({ type: AppActionType.TOGGLE_NEW_WORD_DIALOG });
   }
 
-  return { toggleSideManu, openNewWordDialog };
+  function createNewWord(formData: DummyDataType) {
+    return dispatch({ type: AppActionType.CREATE_NEW_WORD, payload: formData });
+  }
+
+  return { toggleSideManu, toggleNewWordDialog, createNewWord };
 }

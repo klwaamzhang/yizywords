@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import { AppContext } from "../context";
+import { AppContext, DummyDataType } from "../context";
 import { useAppActions } from "../actions";
 import {
   Container,
@@ -12,13 +12,10 @@ import {
   Button,
   makeStyles,
   Chip,
-  Paper,
 } from "@material-ui/core";
 import { Bookmarks } from "@material-ui/icons";
 import TagFacesIcon from "@material-ui/icons/TagFaces";
-import Autocomplete, {
-  createFilterOptions,
-} from "@material-ui/lab/Autocomplete";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -63,18 +60,32 @@ export default function NewWordDialog() {
   const classes = useStyles();
 
   const { state } = React.useContext(AppContext);
-  const { openNewWordDialog } = useAppActions();
-
-  const handleSubmit = async (e: any) => {};
+  const { toggleNewWordDialog, createNewWord } = useAppActions();
 
   const categoriesForCmp: CateOptionType[] = state.categories.map((item) => {
     return { title: item };
   });
 
+  const [formData, setFormData] = React.useState<DummyDataType>({
+    text: "",
+    notes: "",
+    categories: ["Inbox"],
+  });
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    if (formData.categories.length === 0) {
+      alert("Please select at least one category!");
+      return;
+    }
+    createNewWord(formData);
+    toggleNewWordDialog();
+  };
+
   return (
     <Dialog
       open={state.isNewWordDialogOpened}
-      onClose={openNewWordDialog}
+      onClose={toggleNewWordDialog}
       aria-labelledby="customized-dialog-title"
     >
       <DialogContent>
@@ -98,6 +109,13 @@ export default function NewWordDialog() {
                 name="newWord"
                 autoComplete="newWord"
                 autoFocus
+                value={formData.text}
+                onChange={(event: any) => {
+                  setFormData({
+                    ...formData,
+                    text: event.target.value,
+                  });
+                }}
               />
               <TextField
                 variant="outlined"
@@ -110,13 +128,20 @@ export default function NewWordDialog() {
                 type="notes"
                 id="notes"
                 autoComplete="notes"
+                value={formData.notes}
+                onChange={(event: any) => {
+                  setFormData({
+                    ...formData,
+                    notes: event.target.value,
+                  });
+                }}
               />
               <Autocomplete
                 className={classes.autocmp}
                 multiple
                 id="tags-filled"
                 options={categoriesForCmp.map((option) => option.title)}
-                defaultValue={["Inbox"]}
+                // defaultValue={formData.categories}
                 freeSolo
                 renderTags={(value: string[], getTagProps) =>
                   value.map((option: string, index: number) => (
@@ -128,13 +153,20 @@ export default function NewWordDialog() {
                     />
                   ))
                 }
+                value={formData.categories}
+                onChange={(_: any, value: any) => {
+                  if (value)
+                    setFormData({
+                      ...formData,
+                      categories: value as string[],
+                    });
+                }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
                     variant="outlined"
                     label="Add a category"
                     placeholder="New"
-                    required
                   />
                 )}
               />

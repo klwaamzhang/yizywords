@@ -2,34 +2,43 @@ import React from "react";
 import { createCtx } from "../utilities/createCtx";
 import { appReducer } from "../reducers/appReducer";
 import { dummyData } from "../sampleData/data";
-import { type } from "os";
 // import { State, Action } from "../@types/app";
+
+export interface DummyDataType {
+  text: string;
+  notes: string;
+  categories: string[];
+}
 
 // app state type
 export type AppState = {
   isSideMenuOpen: boolean;
   categories: string[];
-  dummyData: Array<{ text: string; notes: string; categories: string[] }>;
+  dummyData: Array<DummyDataType>;
   isNewWordDialogOpened: boolean;
 };
 
 // app action type
 type TOGGLE_SIDE_MANU = "TOGGLE_SIDE_MANU";
-type OPEN_NEW_WORD_DIALOG = "OPEN_NEW_WORD_DIALOG";
+type TOGGLE_NEW_WORD_DIALOG = "TOGGLE_NEW_WORD_DIALOG";
+type CREATE_NEW_WORD = "CREATE_NEW_WORD";
 
 type actionType = {
   TOGGLE_SIDE_MANU: TOGGLE_SIDE_MANU;
-  OPEN_NEW_WORD_DIALOG: OPEN_NEW_WORD_DIALOG;
+  TOGGLE_NEW_WORD_DIALOG: TOGGLE_NEW_WORD_DIALOG;
+  CREATE_NEW_WORD: CREATE_NEW_WORD;
 };
 
 export const AppActionType: actionType = {
   TOGGLE_SIDE_MANU: "TOGGLE_SIDE_MANU",
-  OPEN_NEW_WORD_DIALOG: "OPEN_NEW_WORD_DIALOG",
+  TOGGLE_NEW_WORD_DIALOG: "TOGGLE_NEW_WORD_DIALOG",
+  CREATE_NEW_WORD: "CREATE_NEW_WORD",
 };
 
 export type AppAction =
   | { type: TOGGLE_SIDE_MANU }
-  | { type: OPEN_NEW_WORD_DIALOG };
+  | { type: TOGGLE_NEW_WORD_DIALOG }
+  | { type: CREATE_NEW_WORD; payload: DummyDataType };
 
 // app context
 const categories: string[] = dummyData

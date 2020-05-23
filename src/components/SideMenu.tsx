@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTheme } from "@material-ui/core/styles";
 import {
   Grid,
@@ -29,6 +29,11 @@ export default function SideMenu() {
   const { state } = React.useContext(AppContext);
   const { toggleSideManu } = useAppActions();
 
+  useEffect(() => {
+    // TODO: create update-categries
+    // populateCategories([state.dummyData)
+  }, [state.dummyData]);
+
   const [open, setOpen] = React.useState(true);
   const handleClick = () => {
     setOpen(!open);
@@ -55,12 +60,6 @@ export default function SideMenu() {
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItem>
             {state.categories.map((text, index) => (
               <ListItem button key={text} className={classes.nested}>
                 <ListItemIcon>
