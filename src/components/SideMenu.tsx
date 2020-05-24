@@ -24,7 +24,7 @@ export default function SideMenu() {
   const { toggleSideManu, updateCategories } = useAppActions();
 
   useEffect(() => {
-    updateCategories(state.dummyData);
+    updateCategories();
   }, [state.dummyData]);
 
   const [open, setOpen] = React.useState(true);

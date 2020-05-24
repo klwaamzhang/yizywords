@@ -23,12 +23,14 @@ type TOGGLE_SIDE_MANU = "TOGGLE_SIDE_MANU";
 type TOGGLE_NEW_WORD_DIALOG = "TOGGLE_NEW_WORD_DIALOG";
 type CREATE_NEW_WORD = "CREATE_NEW_WORD";
 type UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
+type DELETE_WORD_ITEM = "DELETE_WORD_ITEM";
 
 type actionType = {
   TOGGLE_SIDE_MANU: TOGGLE_SIDE_MANU;
   TOGGLE_NEW_WORD_DIALOG: TOGGLE_NEW_WORD_DIALOG;
   CREATE_NEW_WORD: CREATE_NEW_WORD;
   UPDATE_CATEGORIES: UPDATE_CATEGORIES;
+  DELETE_WORD_ITEM: DELETE_WORD_ITEM;
 };
 
 export const AppActionType: actionType = {
@@ -36,13 +38,15 @@ export const AppActionType: actionType = {
   TOGGLE_NEW_WORD_DIALOG: "TOGGLE_NEW_WORD_DIALOG",
   CREATE_NEW_WORD: "CREATE_NEW_WORD",
   UPDATE_CATEGORIES: "UPDATE_CATEGORIES",
+  DELETE_WORD_ITEM: "DELETE_WORD_ITEM",
 };
 
 export type AppAction =
   | { type: TOGGLE_SIDE_MANU }
   | { type: TOGGLE_NEW_WORD_DIALOG }
   | { type: CREATE_NEW_WORD; payload: DummyDataType }
-  | { type: UPDATE_CATEGORIES; payload: DummyDataType[] };
+  | { type: UPDATE_CATEGORIES }
+  | { type: DELETE_WORD_ITEM; payload: number };
 
 // app context
 export const populateCategories = (data: DummyDataType[]) => {
@@ -54,6 +58,11 @@ export const populateCategories = (data: DummyDataType[]) => {
       }
       return acc;
     }, new Array<string>());
+};
+
+export const removeAWord = (itemIndex: number, data: DummyDataType[]) => {
+  data.splice(itemIndex, 1);
+  return data;
 };
 
 const initialState: AppState = {

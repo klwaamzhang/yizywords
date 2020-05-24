@@ -16,10 +16,16 @@ export function useAppActions() {
     return dispatch({ type: AppActionType.CREATE_NEW_WORD, payload: formData });
   }
 
-  function updateCategories(dummyData: DummyDataType[]) {
+  function updateCategories() {
     return dispatch({
       type: AppActionType.UPDATE_CATEGORIES,
-      payload: dummyData,
+    });
+  }
+
+  function deleteWordItem(itemIndex: number) {
+    return dispatch({
+      type: AppActionType.DELETE_WORD_ITEM,
+      payload: itemIndex,
     });
   }
 
@@ -28,5 +34,6 @@ export function useAppActions() {
     toggleNewWordDialog,
     createNewWord,
     updateCategories,
+    deleteWordItem,
   };
 }

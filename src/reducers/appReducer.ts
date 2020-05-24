@@ -3,6 +3,7 @@ import {
   AppAction,
   AppActionType,
   populateCategories,
+  removeAWord,
 } from "../context";
 
 export function appReducer(state: AppState, action: AppAction): AppState {
@@ -15,6 +16,11 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, dummyData: [...state.dummyData, action.payload] };
     case AppActionType.UPDATE_CATEGORIES:
       return { ...state, categories: populateCategories(state.dummyData) };
+    case AppActionType.DELETE_WORD_ITEM:
+      return {
+        ...state,
+        dummyData: removeAWord(action.payload, state.dummyData),
+      };
     default:
       throw new Error("error: AppContext reducer error!");
   }

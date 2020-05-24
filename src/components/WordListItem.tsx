@@ -8,8 +8,10 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
+import { useAppActions } from "../actions";
 
 export default function WordListItem(props: any) {
+  const { deleteWordItem, updateCategories } = useAppActions();
   const index = props.index;
   const item = props.item;
   const labelId = `checkbox-list-label-${index}`;
@@ -23,6 +25,13 @@ export default function WordListItem(props: any) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const deleteWord = () => {
+    deleteWordItem(index);
+    updateCategories();
+    handleClose();
+  };
+
   return (
     <ListItem key={index} role={undefined} button>
       <ListItemText id={labelId} primary={item.text} secondary={item.notes} />
@@ -38,7 +47,7 @@ export default function WordListItem(props: any) {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>Update</MenuItem>
-          <MenuItem onClick={handleClose}>Delete</MenuItem>
+          <MenuItem onClick={deleteWord}>Delete</MenuItem>
         </Menu>
       </ListItemSecondaryAction>
     </ListItem>
