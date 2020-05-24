@@ -14,7 +14,6 @@ import {
   Chip,
 } from "@material-ui/core";
 import { Bookmarks } from "@material-ui/icons";
-import TagFacesIcon from "@material-ui/icons/TagFaces";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,11 +55,11 @@ interface CateOptionType {
   title: string;
 }
 
-export default function NewWordDialog() {
+export default function WordDialog() {
   const classes = useStyles();
 
   const { state } = React.useContext(AppContext);
-  const { toggleNewWordDialog, createNewWord } = useAppActions();
+  const { toggleWordDialog, createNewWord } = useAppActions();
 
   const categoriesForCmp: CateOptionType[] = state.categories.map((item) => {
     return { title: item };
@@ -84,12 +83,12 @@ export default function NewWordDialog() {
 
   const handleDialogClose = () => {
     setFormData({ text: "", notes: "", categories: ["Inbox"] });
-    toggleNewWordDialog();
+    toggleWordDialog();
   };
 
   return (
     <Dialog
-      open={state.isNewWordDialogOpened}
+      open={state.isWordDialogOpened}
       onClose={handleDialogClose}
       aria-labelledby="customized-dialog-title"
     >

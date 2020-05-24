@@ -15,7 +15,7 @@ export type AppState = {
   isSideMenuOpen: boolean;
   categories: string[];
   dummyData: Array<DummyDataType>;
-  isNewWordDialogOpened: boolean;
+  isWordDialogOpened: boolean;
 };
 
 // app action type
@@ -69,7 +69,7 @@ const initialState: AppState = {
   isSideMenuOpen: false,
   categories: populateCategories(dummyData),
   dummyData: dummyData,
-  isNewWordDialogOpened: false,
+  isWordDialogOpened: false,
 };
 
 export const [AppContext, AppCtxProvider] = createCtx<AppState, AppAction>(

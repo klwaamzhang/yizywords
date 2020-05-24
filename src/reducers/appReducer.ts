@@ -11,7 +11,7 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     case AppActionType.TOGGLE_SIDE_MANU:
       return { ...state, isSideMenuOpen: !state.isSideMenuOpen };
     case AppActionType.TOGGLE_NEW_WORD_DIALOG:
-      return { ...state, isNewWordDialogOpened: !state.isNewWordDialogOpened };
+      return { ...state, isWordDialogOpened: !state.isWordDialogOpened };
     case AppActionType.CREATE_NEW_WORD:
       return { ...state, dummyData: [...state.dummyData, action.payload] };
     case AppActionType.UPDATE_CATEGORIES:

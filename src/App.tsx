@@ -5,7 +5,7 @@ import { useStyles } from "./styles/global";
 import MainSection from "./components/MainSection";
 import SideMenu from "./components/SideMenu";
 import { AppContextProvider } from "./context";
-import NewWordDialog from "./components/NewWordDialog";
+import WordDialog from "./components/WordDialog";
 
 const App: React.FC = () => {
   const classes = useStyles();
@@ -14,7 +14,7 @@ const App: React.FC = () => {
     <AppContextProvider>
       <div className={classes.root}>
         <Topbar />
-        <NewWordDialog />
+        <WordDialog />
         <Container
           className={classes.noLeftRightPadding + " " + classes.displayColumn}
           maxWidth="md"

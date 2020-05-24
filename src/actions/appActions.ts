@@ -8,7 +8,7 @@ export function useAppActions() {
     return dispatch({ type: AppActionType.TOGGLE_SIDE_MANU });
   }
 
-  function toggleNewWordDialog() {
+  function toggleWordDialog() {
     return dispatch({ type: AppActionType.TOGGLE_NEW_WORD_DIALOG });
   }
 
@@ -31,7 +31,7 @@ export function useAppActions() {
 
   return {
     toggleSideManu,
-    toggleNewWordDialog,
+    toggleWordDialog,
     createNewWord,
     updateCategories,
     deleteWordItem,
