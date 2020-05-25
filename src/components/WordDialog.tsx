@@ -65,15 +65,11 @@ export default function WordDialog() {
     return { title: item };
   });
 
-  const [formData, setFormData] = React.useState<DummyDataType>(
-    state.currFormData === null
-      ? {
-          text: "",
-          notes: "",
-          categories: ["Inbox"],
-        }
-      : state.currFormData
-  );
+  const [formData, setFormData] = React.useState<DummyDataType>({
+    text: "",
+    notes: "",
+    categories: ["Inbox"],
+  });
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -86,17 +82,18 @@ export default function WordDialog() {
   };
 
   const handleDialogClose = () => {
-    if (state.currFormData === null) {
-      setFormData({ text: "", notes: "", categories: ["Inbox"] });
-    } else {
-      setFormData(state.currFormData);
-    }
+    setFormData({ text: "", notes: "", categories: ["Inbox"] });
     closeWordDialog();
+  };
+
+  const handleDialogEntering = () => {
+    if (state.currFormData) setFormData({ ...state.currFormData });
   };
 
   return (
     <Dialog
       open={state.isWordDialogOpened}
+      onEntering={handleDialogEntering}
       onClose={handleDialogClose}
       aria-labelledby="customized-dialog-title"
     >
@@ -107,7 +104,7 @@ export default function WordDialog() {
             <Avatar className={classes.avatar}>
               <Bookmarks />
             </Avatar>
-            {state.currFormData === null ? (
+            {state.currFormData ? (
               <Typography component="h1" variant="h5">
                 New Word or Phrase
               </Typography>
@@ -187,7 +184,7 @@ export default function WordDialog() {
                   />
                 )}
               />
-              {state.currFormData === null ? (
+              {state.currFormData ? (
                 <Button
                   type="submit"
                   fullWidth
