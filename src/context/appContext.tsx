@@ -18,6 +18,7 @@ export type AppState = {
   dummyData: Array<DummyDataType>;
   isWordDialogOpened: boolean;
   currFormData: DummyDataType | null;
+  mainSectionData: Array<DummyDataType>;
 };
 
 // app action type
@@ -74,21 +75,11 @@ export const populateCategories = (data: DummyDataType[]) => {
     }, new Array<string>());
 };
 
-export const removeAWord = (item: DummyDataType, data: DummyDataType[]) => {
-  data.splice(
-    data.findIndex((e) => e._id === item._id),
-    1
-  );
-  return data;
-};
-
-export const updateAWord = (item: DummyDataType, data: DummyDataType[]) => {
-  data.splice(
-    data.findIndex((e) => e._id === item._id),
-    1,
-    item
-  );
-  return data;
+export const filterMainSectionData = (
+  category: string,
+  data: DummyDataType[]
+) => {
+  return data.filter((item) => item.categories.find((e) => e === category));
 };
 
 const initialState: AppState = {
@@ -97,6 +88,7 @@ const initialState: AppState = {
   dummyData: dummyData,
   isWordDialogOpened: false,
   currFormData: null,
+  mainSectionData: filterMainSectionData("Inbox", dummyData),
 };
 
 export const [AppContext, AppCtxProvider] = createCtx<AppState, AppAction>(

@@ -3,8 +3,6 @@ import {
   AppAction,
   AppActionType,
   populateCategories,
-  removeAWord,
-  updateAWord,
 } from "../context";
 
 export function appReducer(state: AppState, action: AppAction): AppState {
@@ -18,9 +16,13 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     case AppActionType.UPDATE_CATEGORIES:
       return { ...state, categories: populateCategories(state.dummyData) };
     case AppActionType.DELETE_WORD_ITEM:
+      const newDataDelete = state.dummyData.splice(
+        state.dummyData.findIndex((e) => e._id === action.payload._id),
+        1
+      );
       return {
         ...state,
-        dummyData: removeAWord(action.payload, state.dummyData),
+        dummyData: newDataDelete,
       };
     case AppActionType.SET_NEW_WORD_DIALOG:
       return { ...state, isWordDialogOpened: true, currFormData: null };
@@ -31,9 +33,14 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         currFormData: action.payload,
       };
     case AppActionType.UPDATE_WORD_ITEM:
+      const newDataUpdate = state.dummyData.splice(
+        state.dummyData.findIndex((e) => e._id === action.payload._id),
+        1,
+        action.payload
+      );
       return {
         ...state,
-        dummyData: updateAWord(action.payload, state.dummyData),
+        dummyData: newDataUpdate,
       };
     default:
       throw new Error("error: AppContext reducer error!");

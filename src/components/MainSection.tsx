@@ -12,7 +12,7 @@ export default function MainSection() {
     <Grid item xs={12} sm={8} className={classes.mainContent}>
       <div className={classes.toolbar} />
       <List>
-        {state.dummyData.map((item, index) => {
+        {state.mainSectionData.map((item, index) => {
           return <WordListItem item={item} index={index} key={index} />;
         })}
       </List>
