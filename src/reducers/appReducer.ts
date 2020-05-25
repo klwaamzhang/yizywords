@@ -42,6 +42,8 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         ...state,
         dummyData: newDataUpdate,
       };
+    case AppActionType.SWICH_MAIN_SECTION_DATA:
+      return { ...state, mainSectionData: action.payload };
     default:
       throw new Error("error: AppContext reducer error!");
   }

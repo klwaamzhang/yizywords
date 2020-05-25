@@ -47,6 +47,13 @@ export function useAppActions() {
     });
   }
 
+  function switchMainSectionMenu(mainSectionData: DummyDataType[]) {
+    return dispatch({
+      type: AppActionType.SWICH_MAIN_SECTION_DATA,
+      payload: mainSectionData,
+    });
+  }
+
   return {
     toggleSideManu,
     closeWordDialog,
@@ -56,5 +63,6 @@ export function useAppActions() {
     setNewWordDialog,
     setUpdateWordDialog,
     updateWordItem,
+    switchMainSectionMenu,
   };
 }

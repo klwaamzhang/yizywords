@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import { Mail, MoveToInbox, ExpandMore, ExpandLess } from "@material-ui/icons";
 import { useStyles } from "../styles/global";
-import { AppContext } from "../context";
+import { AppContext, filterMainSectionData } from "../context";
 import { useAppActions } from "../actions";
 
 export default function SideMenu() {
@@ -21,7 +21,11 @@ export default function SideMenu() {
   const theme = useTheme();
 
   const { state } = React.useContext(AppContext);
-  const { toggleSideManu, updateCategories } = useAppActions();
+  const {
+    toggleSideManu,
+    updateCategories,
+    switchMainSectionMenu,
+  } = useAppActions();
 
   useEffect(() => {
     updateCategories();
@@ -32,12 +36,16 @@ export default function SideMenu() {
     setOpen(!open);
   };
 
+  const switchCategories = (category: string) => {
+    switchMainSectionMenu(filterMainSectionData(category, state.dummyData));
+  };
+
   const drawer = (
     <React.Fragment>
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button selected>
+        <ListItem button selected onClick={() => switchCategories("Inbox")}>
           <ListItemIcon>
             <MoveToInbox />
           </ListItemIcon>
@@ -54,7 +62,12 @@ export default function SideMenu() {
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {state.categories.map((text, index) => (
-              <ListItem button key={text} className={classes.nested}>
+              <ListItem
+                button
+                key={text}
+                className={classes.nested}
+                onClick={() => switchCategories(text)}
+              >
                 <ListItemIcon>
                   {index % 2 === 0 ? <MoveToInbox /> : <Mail />}
                 </ListItemIcon>

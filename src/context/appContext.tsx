@@ -30,6 +30,7 @@ type DELETE_WORD_ITEM = "DELETE_WORD_ITEM";
 type SET_NEW_WORD_DIALOG = "SET_NEW_WORD_DIALOG";
 type SET_UPDATE_WORD_DIALOG = "SET_UPDATE_WORD_DIALOG";
 type UPDATE_WORD_ITEM = "UPDATE_WORD_ITEM";
+type SWICH_MAIN_SECTION_DATA = "SWICH_MAIN_SECTION_DATA";
 
 type actionType = {
   TOGGLE_SIDE_MANU: TOGGLE_SIDE_MANU;
@@ -40,6 +41,7 @@ type actionType = {
   SET_NEW_WORD_DIALOG: SET_NEW_WORD_DIALOG;
   SET_UPDATE_WORD_DIALOG: SET_UPDATE_WORD_DIALOG;
   UPDATE_WORD_ITEM: UPDATE_WORD_ITEM;
+  SWICH_MAIN_SECTION_DATA: SWICH_MAIN_SECTION_DATA;
 };
 
 export const AppActionType: actionType = {
@@ -51,6 +53,7 @@ export const AppActionType: actionType = {
   SET_NEW_WORD_DIALOG: "SET_NEW_WORD_DIALOG",
   SET_UPDATE_WORD_DIALOG: "SET_UPDATE_WORD_DIALOG",
   UPDATE_WORD_ITEM: "UPDATE_WORD_ITEM",
+  SWICH_MAIN_SECTION_DATA: "SWICH_MAIN_SECTION_DATA",
 };
 
 export type AppAction =
@@ -61,7 +64,8 @@ export type AppAction =
   | { type: DELETE_WORD_ITEM; payload: DummyDataType }
   | { type: SET_NEW_WORD_DIALOG }
   | { type: SET_UPDATE_WORD_DIALOG; payload: DummyDataType }
-  | { type: UPDATE_WORD_ITEM; payload: DummyDataType };
+  | { type: UPDATE_WORD_ITEM; payload: DummyDataType }
+  | { type: SWICH_MAIN_SECTION_DATA; payload: DummyDataType[] };
 
 // app context
 export const populateCategories = (data: DummyDataType[]) => {
