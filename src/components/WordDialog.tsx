@@ -66,6 +66,7 @@ export default function WordDialog() {
   });
 
   const [formData, setFormData] = React.useState<DummyDataType>({
+    _id: 10 + Math.floor(Math.random() * 100000),
     text: "",
     notes: "",
     categories: ["Inbox"],
@@ -77,12 +78,21 @@ export default function WordDialog() {
       alert("Please select at least one category!");
       return;
     }
-    createNewWord(formData);
+    if (!state.currFormData) {
+      createNewWord(formData);
+    } else {
+      console.log("update");
+    }
     handleDialogClose();
   };
 
   const handleDialogClose = () => {
-    setFormData({ text: "", notes: "", categories: ["Inbox"] });
+    setFormData({
+      _id: 10 + Math.floor(Math.random() * 100000),
+      text: "",
+      notes: "",
+      categories: ["Inbox"],
+    });
     closeWordDialog();
   };
 
@@ -104,7 +114,7 @@ export default function WordDialog() {
             <Avatar className={classes.avatar}>
               <Bookmarks />
             </Avatar>
-            {state.currFormData ? (
+            {!state.currFormData ? (
               <Typography component="h1" variant="h5">
                 New Word or Phrase
               </Typography>
@@ -184,7 +194,7 @@ export default function WordDialog() {
                   />
                 )}
               />
-              {state.currFormData ? (
+              {!state.currFormData ? (
                 <Button
                   type="submit"
                   fullWidth

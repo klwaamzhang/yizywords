@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
 import { useAppActions } from "../actions";
-import { AppContext } from "../context";
 
 export default function WordListItem(props: any) {
   const {
@@ -32,11 +31,11 @@ export default function WordListItem(props: any) {
   };
 
   const deleteWord = () => {
-    deleteWordItem(index);
+    deleteWordItem(item);
     updateCategories();
     handleClose();
   };
-  const { state } = React.useContext(AppContext);
+
   const openUpdateWordDialog = () => {
     setUpdateWordDialog(item);
     handleClose();

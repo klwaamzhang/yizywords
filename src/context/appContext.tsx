@@ -5,6 +5,7 @@ import { dummyData } from "../sampleData/data";
 // import { State, Action } from "../@types/app";
 
 export interface DummyDataType {
+  _id: number;
   text: string;
   notes: string;
   categories: string[];
@@ -53,7 +54,7 @@ export type AppAction =
   | { type: CLOSE_WORD_DIALOG }
   | { type: CREATE_NEW_WORD; payload: DummyDataType }
   | { type: UPDATE_CATEGORIES }
-  | { type: DELETE_WORD_ITEM; payload: number }
+  | { type: DELETE_WORD_ITEM; payload: DummyDataType }
   | { type: SET_NEW_WORD_DIALOG }
   | { type: SET_UPDATE_WORD_DIALOG; payload: DummyDataType };
 
@@ -69,8 +70,11 @@ export const populateCategories = (data: DummyDataType[]) => {
     }, new Array<string>());
 };
 
-export const removeAWord = (itemIndex: number, data: DummyDataType[]) => {
-  data.splice(itemIndex, 1);
+export const removeAWord = (item: DummyDataType, data: DummyDataType[]) => {
+  data.splice(
+    data.findIndex((e) => e._id === item._id),
+    1
+  );
   return data;
 };
 

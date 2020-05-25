@@ -22,10 +22,10 @@ export function useAppActions() {
     });
   }
 
-  function deleteWordItem(itemIndex: number) {
+  function deleteWordItem(item: DummyDataType) {
     return dispatch({
       type: AppActionType.DELETE_WORD_ITEM,
-      payload: itemIndex,
+      payload: item,
     });
   }
 
