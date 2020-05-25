@@ -16,37 +16,46 @@ export type AppState = {
   categories: string[];
   dummyData: Array<DummyDataType>;
   isWordDialogOpened: boolean;
+  currFormData: DummyDataType | null;
 };
 
 // app action type
 type TOGGLE_SIDE_MANU = "TOGGLE_SIDE_MANU";
-type TOGGLE_NEW_WORD_DIALOG = "TOGGLE_NEW_WORD_DIALOG";
+type CLOSE_WORD_DIALOG = "CLOSE_WORD_DIALOG";
 type CREATE_NEW_WORD = "CREATE_NEW_WORD";
 type UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 type DELETE_WORD_ITEM = "DELETE_WORD_ITEM";
+type SET_NEW_WORD_DIALOG = "SET_NEW_WORD_DIALOG";
+type SET_UPDATE_WORD_DIALOG = "SET_UPDATE_WORD_DIALOG";
 
 type actionType = {
   TOGGLE_SIDE_MANU: TOGGLE_SIDE_MANU;
-  TOGGLE_NEW_WORD_DIALOG: TOGGLE_NEW_WORD_DIALOG;
+  CLOSE_WORD_DIALOG: CLOSE_WORD_DIALOG;
   CREATE_NEW_WORD: CREATE_NEW_WORD;
   UPDATE_CATEGORIES: UPDATE_CATEGORIES;
   DELETE_WORD_ITEM: DELETE_WORD_ITEM;
+  SET_NEW_WORD_DIALOG: SET_NEW_WORD_DIALOG;
+  SET_UPDATE_WORD_DIALOG: SET_UPDATE_WORD_DIALOG;
 };
 
 export const AppActionType: actionType = {
   TOGGLE_SIDE_MANU: "TOGGLE_SIDE_MANU",
-  TOGGLE_NEW_WORD_DIALOG: "TOGGLE_NEW_WORD_DIALOG",
+  CLOSE_WORD_DIALOG: "CLOSE_WORD_DIALOG",
   CREATE_NEW_WORD: "CREATE_NEW_WORD",
   UPDATE_CATEGORIES: "UPDATE_CATEGORIES",
   DELETE_WORD_ITEM: "DELETE_WORD_ITEM",
+  SET_NEW_WORD_DIALOG: "SET_NEW_WORD_DIALOG",
+  SET_UPDATE_WORD_DIALOG: "SET_UPDATE_WORD_DIALOG",
 };
 
 export type AppAction =
   | { type: TOGGLE_SIDE_MANU }
-  | { type: TOGGLE_NEW_WORD_DIALOG }
+  | { type: CLOSE_WORD_DIALOG }
   | { type: CREATE_NEW_WORD; payload: DummyDataType }
   | { type: UPDATE_CATEGORIES }
-  | { type: DELETE_WORD_ITEM; payload: number };
+  | { type: DELETE_WORD_ITEM; payload: number }
+  | { type: SET_NEW_WORD_DIALOG }
+  | { type: SET_UPDATE_WORD_DIALOG; payload: DummyDataType };
 
 // app context
 export const populateCategories = (data: DummyDataType[]) => {
@@ -70,6 +79,7 @@ const initialState: AppState = {
   categories: populateCategories(dummyData),
   dummyData: dummyData,
   isWordDialogOpened: false,
+  currFormData: null,
 };
 
 export const [AppContext, AppCtxProvider] = createCtx<AppState, AppAction>(

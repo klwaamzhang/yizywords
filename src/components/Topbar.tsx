@@ -13,7 +13,7 @@ import { useAppActions } from "../actions";
 
 export default function Topbar() {
   const classes = useStyles();
-  const { toggleSideManu, toggleWordDialog } = useAppActions();
+  const { toggleSideManu, setNewWordDialog } = useAppActions();
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -35,7 +35,7 @@ export default function Topbar() {
           <Typography variant="h6" className={classes.topbarTitle}>
             This is the app bar
           </Typography>
-          <Button color="inherit" onClick={toggleWordDialog}>
+          <Button color="inherit" onClick={setNewWordDialog}>
             New
           </Button>
         </Container>

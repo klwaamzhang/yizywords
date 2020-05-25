@@ -8,8 +8,8 @@ export function useAppActions() {
     return dispatch({ type: AppActionType.TOGGLE_SIDE_MANU });
   }
 
-  function toggleWordDialog() {
-    return dispatch({ type: AppActionType.TOGGLE_NEW_WORD_DIALOG });
+  function closeWordDialog() {
+    return dispatch({ type: AppActionType.CLOSE_WORD_DIALOG });
   }
 
   function createNewWord(formData: DummyDataType) {
@@ -29,11 +29,23 @@ export function useAppActions() {
     });
   }
 
+  function setNewWordDialog() {
+    return dispatch({ type: AppActionType.SET_NEW_WORD_DIALOG });
+  }
+
+  function setUpdateWordDialog(formData: DummyDataType) {
+    return dispatch({
+      type: AppActionType.SET_UPDATE_WORD_DIALOG,
+      payload: formData,
+    });
+  }
   return {
     toggleSideManu,
-    toggleWordDialog,
+    closeWordDialog,
     createNewWord,
     updateCategories,
     deleteWordItem,
+    setNewWordDialog,
+    setUpdateWordDialog,
   };
 }

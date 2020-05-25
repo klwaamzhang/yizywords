@@ -59,17 +59,21 @@ export default function WordDialog() {
   const classes = useStyles();
 
   const { state } = React.useContext(AppContext);
-  const { toggleWordDialog, createNewWord } = useAppActions();
+  const { closeWordDialog, createNewWord } = useAppActions();
 
   const categoriesForCmp: CateOptionType[] = state.categories.map((item) => {
     return { title: item };
   });
 
-  const [formData, setFormData] = React.useState<DummyDataType>({
-    text: "",
-    notes: "",
-    categories: ["Inbox"],
-  });
+  const [formData, setFormData] = React.useState<DummyDataType>(
+    state.currFormData === null
+      ? {
+          text: "",
+          notes: "",
+          categories: ["Inbox"],
+        }
+      : state.currFormData
+  );
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -82,8 +86,12 @@ export default function WordDialog() {
   };
 
   const handleDialogClose = () => {
-    setFormData({ text: "", notes: "", categories: ["Inbox"] });
-    toggleWordDialog();
+    if (state.currFormData === null) {
+      setFormData({ text: "", notes: "", categories: ["Inbox"] });
+    } else {
+      setFormData(state.currFormData);
+    }
+    closeWordDialog();
   };
 
   return (
@@ -99,9 +107,15 @@ export default function WordDialog() {
             <Avatar className={classes.avatar}>
               <Bookmarks />
             </Avatar>
-            <Typography component="h1" variant="h5">
-              New Word or Phrase
-            </Typography>
+            {state.currFormData === null ? (
+              <Typography component="h1" variant="h5">
+                New Word or Phrase
+              </Typography>
+            ) : (
+              <Typography component="h1" variant="h5">
+                Update Word or Phrase
+              </Typography>
+            )}
             <form className={classes.form} onSubmit={handleSubmit}>
               <TextField
                 variant="outlined"
@@ -145,7 +159,6 @@ export default function WordDialog() {
                 multiple
                 id="tags-filled"
                 options={categoriesForCmp.map((option) => option.title)}
-                // defaultValue={formData.categories}
                 freeSolo
                 renderTags={(value: string[], getTagProps) =>
                   value.map((option: string, index: number) => (
@@ -174,15 +187,27 @@ export default function WordDialog() {
                   />
                 )}
               />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                SAVE
-              </Button>
+              {state.currFormData === null ? (
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  SAVE
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                >
+                  UPDATE
+                </Button>
+              )}
             </form>
           </div>
         </Container>
