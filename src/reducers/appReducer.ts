@@ -4,6 +4,7 @@ import {
   AppActionType,
   populateCategories,
   removeAWord,
+  updateAWord,
 } from "../context";
 
 export function appReducer(state: AppState, action: AppAction): AppState {
@@ -28,6 +29,11 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         ...state,
         isWordDialogOpened: true,
         currFormData: action.payload,
+      };
+    case AppActionType.UPDATE_WORD_ITEM:
+      return {
+        ...state,
+        dummyData: updateAWord(action.payload, state.dummyData),
       };
     default:
       throw new Error("error: AppContext reducer error!");

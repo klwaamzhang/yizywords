@@ -28,6 +28,7 @@ type UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 type DELETE_WORD_ITEM = "DELETE_WORD_ITEM";
 type SET_NEW_WORD_DIALOG = "SET_NEW_WORD_DIALOG";
 type SET_UPDATE_WORD_DIALOG = "SET_UPDATE_WORD_DIALOG";
+type UPDATE_WORD_ITEM = "UPDATE_WORD_ITEM";
 
 type actionType = {
   TOGGLE_SIDE_MANU: TOGGLE_SIDE_MANU;
@@ -37,6 +38,7 @@ type actionType = {
   DELETE_WORD_ITEM: DELETE_WORD_ITEM;
   SET_NEW_WORD_DIALOG: SET_NEW_WORD_DIALOG;
   SET_UPDATE_WORD_DIALOG: SET_UPDATE_WORD_DIALOG;
+  UPDATE_WORD_ITEM: UPDATE_WORD_ITEM;
 };
 
 export const AppActionType: actionType = {
@@ -47,6 +49,7 @@ export const AppActionType: actionType = {
   DELETE_WORD_ITEM: "DELETE_WORD_ITEM",
   SET_NEW_WORD_DIALOG: "SET_NEW_WORD_DIALOG",
   SET_UPDATE_WORD_DIALOG: "SET_UPDATE_WORD_DIALOG",
+  UPDATE_WORD_ITEM: "UPDATE_WORD_ITEM",
 };
 
 export type AppAction =
@@ -56,7 +59,8 @@ export type AppAction =
   | { type: UPDATE_CATEGORIES }
   | { type: DELETE_WORD_ITEM; payload: DummyDataType }
   | { type: SET_NEW_WORD_DIALOG }
-  | { type: SET_UPDATE_WORD_DIALOG; payload: DummyDataType };
+  | { type: SET_UPDATE_WORD_DIALOG; payload: DummyDataType }
+  | { type: UPDATE_WORD_ITEM; payload: DummyDataType };
 
 // app context
 export const populateCategories = (data: DummyDataType[]) => {
@@ -74,6 +78,15 @@ export const removeAWord = (item: DummyDataType, data: DummyDataType[]) => {
   data.splice(
     data.findIndex((e) => e._id === item._id),
     1
+  );
+  return data;
+};
+
+export const updateAWord = (item: DummyDataType, data: DummyDataType[]) => {
+  data.splice(
+    data.findIndex((e) => e._id === item._id),
+    1,
+    item
   );
   return data;
 };

@@ -59,7 +59,12 @@ export default function WordDialog() {
   const classes = useStyles();
 
   const { state } = React.useContext(AppContext);
-  const { closeWordDialog, createNewWord } = useAppActions();
+  const {
+    closeWordDialog,
+    createNewWord,
+    updateWordItem,
+    updateCategories,
+  } = useAppActions();
 
   const categoriesForCmp: CateOptionType[] = state.categories.map((item) => {
     return { title: item };
@@ -81,7 +86,8 @@ export default function WordDialog() {
     if (!state.currFormData) {
       createNewWord(formData);
     } else {
-      console.log("update");
+      updateWordItem(formData);
+      updateCategories();
     }
     handleDialogClose();
   };

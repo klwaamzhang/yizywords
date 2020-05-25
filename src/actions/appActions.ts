@@ -39,6 +39,14 @@ export function useAppActions() {
       payload: formData,
     });
   }
+
+  function updateWordItem(item: DummyDataType) {
+    return dispatch({
+      type: AppActionType.UPDATE_WORD_ITEM,
+      payload: item,
+    });
+  }
+
   return {
     toggleSideManu,
     closeWordDialog,
@@ -47,5 +55,6 @@ export function useAppActions() {
     deleteWordItem,
     setNewWordDialog,
     setUpdateWordDialog,
+    updateWordItem,
   };
 }
