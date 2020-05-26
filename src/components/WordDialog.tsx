@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import { AppContext, DummyDataType } from "../context";
+import { AppContext, DummyDataType, filterMainSectionData } from "../context";
 import { useAppActions } from "../actions";
 import {
   Container,
@@ -64,6 +64,7 @@ export default function WordDialog() {
     createNewWord,
     updateWordItem,
     updateCategories,
+    switchMainSectionMenu,
   } = useAppActions();
 
   const categoriesForCmp: CateOptionType[] = state.categories.map((item) => {
@@ -88,6 +89,9 @@ export default function WordDialog() {
     } else {
       updateWordItem(formData);
       updateCategories();
+      switchMainSectionMenu(
+        filterMainSectionData(state.currCategory, state.dummyData)
+      );
     }
     handleDialogClose();
   };

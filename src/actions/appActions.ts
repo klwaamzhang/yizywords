@@ -54,6 +54,13 @@ export function useAppActions() {
     });
   }
 
+  function setCurrentCategory(currCategory: string) {
+    return dispatch({
+      type: AppActionType.SET_CURRENT_CATEGORY,
+      payload: currCategory,
+    });
+  }
+
   return {
     toggleSideManu,
     closeWordDialog,
@@ -64,5 +71,6 @@ export function useAppActions() {
     setUpdateWordDialog,
     updateWordItem,
     switchMainSectionMenu,
+    setCurrentCategory,
   };
 }

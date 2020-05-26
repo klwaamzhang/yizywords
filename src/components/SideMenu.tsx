@@ -25,6 +25,7 @@ export default function SideMenu() {
     toggleSideManu,
     updateCategories,
     switchMainSectionMenu,
+    setCurrentCategory,
   } = useAppActions();
 
   useEffect(() => {
@@ -37,6 +38,7 @@ export default function SideMenu() {
   };
 
   const switchCategories = (category: string) => {
+    setCurrentCategory(category);
     switchMainSectionMenu(filterMainSectionData(category, state.dummyData));
   };
 
@@ -45,7 +47,7 @@ export default function SideMenu() {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button selected onClick={() => switchCategories("Inbox")}>
+        <ListItem button onClick={() => switchCategories("Inbox")}>
           <ListItemIcon>
             <MoveToInbox />
           </ListItemIcon>

@@ -9,13 +9,16 @@ import {
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
 import { useAppActions } from "../actions";
+import { filterMainSectionData, AppContext } from "../context";
 
 export default function WordListItem(props: any) {
   const {
     deleteWordItem,
     updateCategories,
     setUpdateWordDialog,
+    switchMainSectionMenu,
   } = useAppActions();
+  const { state } = React.useContext(AppContext);
   const index = props.index;
   const item = props.item;
   const labelId = `checkbox-list-label-${index}`;
@@ -32,6 +35,9 @@ export default function WordListItem(props: any) {
 
   const deleteWord = () => {
     deleteWordItem(item);
+    switchMainSectionMenu(
+      filterMainSectionData(state.currCategory, state.dummyData)
+    );
     updateCategories();
     handleClose();
   };

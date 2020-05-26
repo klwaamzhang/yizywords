@@ -19,6 +19,7 @@ export type AppState = {
   isWordDialogOpened: boolean;
   currFormData: DummyDataType | null;
   mainSectionData: Array<DummyDataType>;
+  currCategory: string;
 };
 
 // app action type
@@ -31,6 +32,7 @@ type SET_NEW_WORD_DIALOG = "SET_NEW_WORD_DIALOG";
 type SET_UPDATE_WORD_DIALOG = "SET_UPDATE_WORD_DIALOG";
 type UPDATE_WORD_ITEM = "UPDATE_WORD_ITEM";
 type SWICH_MAIN_SECTION_DATA = "SWICH_MAIN_SECTION_DATA";
+type SET_CURRENT_CATEGORY = "SET_CURRENT_CATEGORY";
 
 type actionType = {
   TOGGLE_SIDE_MANU: TOGGLE_SIDE_MANU;
@@ -42,6 +44,7 @@ type actionType = {
   SET_UPDATE_WORD_DIALOG: SET_UPDATE_WORD_DIALOG;
   UPDATE_WORD_ITEM: UPDATE_WORD_ITEM;
   SWICH_MAIN_SECTION_DATA: SWICH_MAIN_SECTION_DATA;
+  SET_CURRENT_CATEGORY: SET_CURRENT_CATEGORY;
 };
 
 export const AppActionType: actionType = {
@@ -54,6 +57,7 @@ export const AppActionType: actionType = {
   SET_UPDATE_WORD_DIALOG: "SET_UPDATE_WORD_DIALOG",
   UPDATE_WORD_ITEM: "UPDATE_WORD_ITEM",
   SWICH_MAIN_SECTION_DATA: "SWICH_MAIN_SECTION_DATA",
+  SET_CURRENT_CATEGORY: "SET_CURRENT_CATEGORY",
 };
 
 export type AppAction =
@@ -65,7 +69,8 @@ export type AppAction =
   | { type: SET_NEW_WORD_DIALOG }
   | { type: SET_UPDATE_WORD_DIALOG; payload: DummyDataType }
   | { type: UPDATE_WORD_ITEM; payload: DummyDataType }
-  | { type: SWICH_MAIN_SECTION_DATA; payload: DummyDataType[] };
+  | { type: SWICH_MAIN_SECTION_DATA; payload: DummyDataType[] }
+  | { type: SET_CURRENT_CATEGORY; payload: string };
 
 // app context
 export const populateCategories = (data: DummyDataType[]) => {
@@ -93,6 +98,7 @@ const initialState: AppState = {
   isWordDialogOpened: false,
   currFormData: null,
   mainSectionData: filterMainSectionData("Inbox", dummyData),
+  currCategory: "Inbox",
 };
 
 export const [AppContext, AppCtxProvider] = createCtx<AppState, AppAction>(

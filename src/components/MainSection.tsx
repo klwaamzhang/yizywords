@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, List } from "@material-ui/core";
 import { useStyles } from "../styles/global";
-import { AppContext } from "../context";
+import { AppContext, filterMainSectionData } from "../context";
 import WordListItem from "./WordListItem";
+import { useAppActions } from "../actions";
 
 export default function MainSection() {
   const classes = useStyles();
   const { state } = React.useContext(AppContext);
+  const { switchMainSectionMenu } = useAppActions();
+
+  useEffect(() => {
+    switchMainSectionMenu(
+      filterMainSectionData(state.currCategory, state.dummyData)
+    );
+  }, [state.dummyData]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.mainContent}>
