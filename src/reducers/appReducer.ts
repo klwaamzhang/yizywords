@@ -7,8 +7,10 @@ import {
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
-    case AppActionType.TOGGLE_SIDE_MANU:
-      return { ...state, isSideMenuOpen: !state.isSideMenuOpen };
+    case AppActionType.OPEN_SIDE_MANU:
+      return { ...state, isSideMenuOpen: true };
+    case AppActionType.CLOSE_SIDE_MANU:
+      return { ...state, isSideMenuOpen: false };
     case AppActionType.CLOSE_WORD_DIALOG:
       return { ...state, isWordDialogOpened: false };
     case AppActionType.CREATE_NEW_WORD:

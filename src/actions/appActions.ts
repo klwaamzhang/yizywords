@@ -4,8 +4,12 @@ import { AppContext, AppActionType, DummyDataType } from "../context";
 export function useAppActions() {
   const { dispatch } = React.useContext(AppContext);
 
-  function toggleSideManu() {
-    return dispatch({ type: AppActionType.TOGGLE_SIDE_MANU });
+  function openSideManu() {
+    return dispatch({ type: AppActionType.OPEN_SIDE_MANU });
+  }
+
+  function closeSideManu() {
+    return dispatch({ type: AppActionType.CLOSE_SIDE_MANU });
   }
 
   function closeWordDialog() {
@@ -62,7 +66,8 @@ export function useAppActions() {
   }
 
   return {
-    toggleSideManu,
+    openSideManu,
+    closeSideManu,
     closeWordDialog,
     createNewWord,
     updateCategories,

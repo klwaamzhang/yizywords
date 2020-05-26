@@ -13,7 +13,7 @@ import { useAppActions } from "../actions";
 
 export default function Topbar() {
   const classes = useStyles();
-  const { toggleSideManu, setNewWordDialog } = useAppActions();
+  const { openSideManu, setNewWordDialog } = useAppActions();
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -27,13 +27,13 @@ export default function Topbar() {
             color="inherit"
             aria-label="open drawer"
             edge="start"
-            onClick={toggleSideManu}
+            onClick={openSideManu}
             className={classes.menuButton}
           >
             <Menu />
           </IconButton>
           <Typography variant="h6" className={classes.topbarTitle}>
-            This is the app bar
+            YizyWord
           </Typography>
           <Button color="inherit" onClick={setNewWordDialog}>
             New

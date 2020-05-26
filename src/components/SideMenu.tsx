@@ -11,7 +11,10 @@ import {
   Drawer,
   Collapse,
 } from "@material-ui/core";
-import { Mail, MoveToInbox, ExpandMore, ExpandLess } from "@material-ui/icons";
+import { MoveToInbox, ExpandMore, ExpandLess } from "@material-ui/icons";
+import CategoryIcon from "@material-ui/icons/Category";
+import SettingsIcon from "@material-ui/icons/Settings";
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import { useStyles } from "../styles/global";
 import { AppContext, filterMainSectionData } from "../context";
 import { useAppActions } from "../actions";
@@ -22,7 +25,7 @@ export default function SideMenu() {
 
   const { state } = React.useContext(AppContext);
   const {
-    toggleSideManu,
+    closeSideManu,
     updateCategories,
     switchMainSectionMenu,
     setCurrentCategory,
@@ -40,6 +43,7 @@ export default function SideMenu() {
   const switchCategories = (category: string) => {
     setCurrentCategory(category);
     switchMainSectionMenu(filterMainSectionData(category, state.dummyData));
+    closeSideManu();
   };
 
   const drawer = (
@@ -60,7 +64,7 @@ export default function SideMenu() {
 
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
-            <MoveToInbox />
+            <CategoryIcon />
           </ListItemIcon>
           <ListItemText primary="Categories" />
           {open ? <ExpandLess /> : <ExpandMore />}
@@ -76,7 +80,7 @@ export default function SideMenu() {
                 onClick={() => switchCategories(text)}
               >
                 <ListItemIcon>
-                  {index % 2 === 0 ? <MoveToInbox /> : <Mail />}
+                  <BookmarkBorderIcon />
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
@@ -89,7 +93,7 @@ export default function SideMenu() {
         <List>
           <ListItem button>
             <ListItemIcon>
-              <MoveToInbox />
+              <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Settings" />
           </ListItem>
@@ -104,7 +108,7 @@ export default function SideMenu() {
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
           open={state.isSideMenuOpen}
-          onClose={toggleSideManu}
+          onClose={closeSideManu}
           classes={{
             paper: classes.drawerPaper,
           }}
