@@ -89,9 +89,6 @@ export default function WordDialog() {
     } else {
       updateWordItem(formData);
       updateCategories();
-      switchMainSectionMenu(
-        filterMainSectionData(state.currCategory, state.dummyData)
-      );
     }
     handleDialogClose();
   };

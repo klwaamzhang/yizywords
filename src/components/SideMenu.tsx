@@ -47,7 +47,11 @@ export default function SideMenu() {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button onClick={() => switchCategories("Inbox")}>
+        <ListItem
+          selected={state.currCategory === "Inbox"}
+          button
+          onClick={() => switchCategories("Inbox")}
+        >
           <ListItemIcon>
             <MoveToInbox />
           </ListItemIcon>
@@ -65,6 +69,7 @@ export default function SideMenu() {
           <List component="div" disablePadding>
             {state.categories.map((text, index) => (
               <ListItem
+                selected={state.currCategory === text}
                 button
                 key={text}
                 className={classes.nested}

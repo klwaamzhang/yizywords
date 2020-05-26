@@ -35,9 +35,6 @@ export default function WordListItem(props: any) {
 
   const deleteWord = () => {
     deleteWordItem(item);
-    switchMainSectionMenu(
-      filterMainSectionData(state.currCategory, state.dummyData)
-    );
     updateCategories();
     handleClose();
   };
