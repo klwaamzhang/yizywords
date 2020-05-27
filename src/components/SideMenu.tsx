@@ -22,12 +22,19 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      display: "flex",
+      flexDirection: "column",
+    },
     toolbar: theme.mixins.toolbar,
     nestedListItem: {
       paddingLeft: theme.spacing(4),
     },
     drawerPaper: {
       width: 320,
+    },
+    firstList: {
+      flexGrow: 1,
     },
   })
 );
@@ -70,7 +77,7 @@ export default function SideMenu() {
     <React.Fragment>
       <div className={classes.toolbar} />
       <Divider />
-      <List>
+      <List className={classes.firstList}>
         <ListItem
           selected={state.currTab === "Inbox"}
           button
@@ -118,17 +125,15 @@ export default function SideMenu() {
           <ListItemText primary="Recycle Bin" />
         </ListItem>
       </List>
-      <div style={{ alignSelf: "end" }}>
-        <Divider />
-        <List>
-          <ListItem button>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </List>
-      </div>
+      <Divider />
+      <List>
+        <ListItem button>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Settings" />
+        </ListItem>
+      </List>
     </React.Fragment>
   );
   return (
@@ -139,6 +144,7 @@ export default function SideMenu() {
           anchor={theme.direction === "rtl" ? "right" : "left"}
           open={state.isSideMenuOpen}
           onClose={closeSideManu}
+          className={classes.root}
           classes={{
             paper: classes.drawerPaper,
           }}
@@ -150,7 +156,7 @@ export default function SideMenu() {
         </Drawer>
       </Hidden>
       <Hidden xsDown implementation="js">
-        <Grid item sm={4}>
+        <Grid item sm={4} className={classes.root}>
           {drawer}
         </Grid>
       </Hidden>
