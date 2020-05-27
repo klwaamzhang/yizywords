@@ -1,58 +1,33 @@
-import React from "react";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Container,
-  Grid,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Hidden,
-  Drawer,
-  Card,
-  CardContent,
-  CardHeader,
-  Avatar,
-  ListItemSecondaryAction,
-  Checkbox,
-} from "@material-ui/core";
-import {
-  Mail,
-  Menu,
-  MoveToInbox,
-  MoreVert,
-  ExpandMore,
-} from "@material-ui/icons";
+import React, { useEffect } from "react";
+import { Grid, List } from "@material-ui/core";
 import { useStyles } from "../styles/global";
-import { AppContext } from "../context";
+import { AppContext, filterMainSectionData } from "../context";
+import WordListItem from "./WordListItem";
+import { useAppActions } from "../actions";
 
 export default function MainSection() {
   const classes = useStyles();
   const { state } = React.useContext(AppContext);
+  const { switchMainSectionContent } = useAppActions();
+
+  useEffect(() => {
+    if (state.currTab !== "Recycle Bin") {
+      switchMainSectionContent(
+        filterMainSectionData(state.currTab, state.dummyData)
+      );
+    } else {
+      switchMainSectionContent(
+        state.dummyData.filter((item) => item.status === "deleted")
+      );
+    }
+  }, [state.dummyData]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.mainContent}>
       <div className={classes.toolbar} />
       <List>
-        {state.dummyData.map((item, index) => {
-          const labelId = `checkbox-list-label-${index}`;
-          return (
-            <ListItem key={index} role={undefined} button>
-              <ListItemText
-                id={labelId}
-                primary={item.text}
-                secondary={item.notes}
-              />
-              <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="menu">
-                  <MoreVert />
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          );
+        {state.mainSectionData.map((item, index) => {
+          return <WordListItem item={item} index={index} key={index} />;
         })}
       </List>
     </Grid>

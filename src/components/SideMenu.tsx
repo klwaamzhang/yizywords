@@ -1,15 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useTheme } from "@material-ui/core/styles";
 import {
-  makeStyles,
-  createStyles,
-  Theme,
-  useTheme,
-} from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Container,
   Grid,
   List,
   ListItem,
@@ -18,25 +9,15 @@ import {
   Divider,
   Hidden,
   Drawer,
-  Card,
-  CardContent,
-  CardHeader,
-  Avatar,
-  ListItemSecondaryAction,
-  Checkbox,
   Collapse,
 } from "@material-ui/core";
-import {
-  Mail,
-  Menu,
-  MoveToInbox,
-  MoreVert,
-  ExpandMore,
-  StarBorder,
-  ExpandLess,
-} from "@material-ui/icons";
+import { MoveToInbox, ExpandMore, ExpandLess } from "@material-ui/icons";
+import CategoryIcon from "@material-ui/icons/Category";
+import SettingsIcon from "@material-ui/icons/Settings";
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { useStyles } from "../styles/global";
-import { AppContext } from "../context";
+import { AppContext, filterMainSectionData } from "../context";
 import { useAppActions } from "../actions";
 
 export default function SideMenu() {
@@ -44,11 +25,33 @@ export default function SideMenu() {
   const theme = useTheme();
 
   const { state } = React.useContext(AppContext);
-  const { toggleSideManu } = useAppActions();
+  const {
+    closeSideManu,
+    updateCategories,
+    switchMainSectionContent,
+    setCurrentTab,
+  } = useAppActions();
+
+  useEffect(() => {
+    updateCategories();
+  }, [state.dummyData]);
 
   const [open, setOpen] = React.useState(true);
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const switchCategories = (currTab: string) => {
+    setCurrentTab(currTab);
+    switchMainSectionContent(filterMainSectionData(currTab, state.dummyData));
+    closeSideManu();
+  };
+
+  const showRecycleBin = () => {
+    setCurrentTab("Recycle Bin");
+    switchMainSectionContent(
+      state.dummyData.filter((item) => item.status === "deleted")
+    );
   };
 
   const drawer = (
@@ -56,7 +59,11 @@ export default function SideMenu() {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem button selected>
+        <ListItem
+          selected={state.currTab === "Inbox"}
+          button
+          onClick={() => switchCategories("Inbox")}
+        >
           <ListItemIcon>
             <MoveToInbox />
           </ListItemIcon>
@@ -65,36 +72,46 @@ export default function SideMenu() {
 
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
-            <MoveToInbox />
+            <CategoryIcon />
           </ListItemIcon>
           <ListItemText primary="Categories" />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              <ListItemText primary="Starred" />
-            </ListItem>
             {state.categories.map((text, index) => (
-              <ListItem button key={text} className={classes.nested}>
+              <ListItem
+                selected={state.currTab === text}
+                button
+                key={text}
+                className={classes.nested}
+                onClick={() => switchCategories(text)}
+              >
                 <ListItemIcon>
-                  {index % 2 === 0 ? <MoveToInbox /> : <Mail />}
+                  <BookmarkBorderIcon />
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
         </Collapse>
+        <ListItem
+          selected={state.currTab === "Recycle Bin"}
+          onClick={showRecycleBin}
+          button
+        >
+          <ListItemIcon>
+            <DeleteIcon />
+          </ListItemIcon>
+          <ListItemText primary="Recycle Bin" />
+        </ListItem>
       </List>
       <div style={{ alignSelf: "end" }}>
         <Divider />
         <List>
           <ListItem button>
             <ListItemIcon>
-              <MoveToInbox />
+              <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Settings" />
           </ListItem>
@@ -109,7 +126,7 @@ export default function SideMenu() {
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
           open={state.isSideMenuOpen}
-          onClose={toggleSideManu}
+          onClose={closeSideManu}
           classes={{
             paper: classes.drawerPaper,
           }}

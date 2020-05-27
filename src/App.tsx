@@ -1,42 +1,11 @@
 import React from "react";
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-  useTheme,
-} from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Container,
-  Grid,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Hidden,
-  Drawer,
-  Card,
-  CardContent,
-  CardHeader,
-  Avatar,
-  ListItemSecondaryAction,
-  Checkbox,
-} from "@material-ui/core";
-import {
-  Mail,
-  Menu,
-  MoveToInbox,
-  MoreVert,
-  ExpandMore,
-} from "@material-ui/icons";
+import { Container, Grid } from "@material-ui/core";
 import Topbar from "./components/Topbar";
 import { useStyles } from "./styles/global";
 import MainSection from "./components/MainSection";
 import SideMenu from "./components/SideMenu";
 import { AppContextProvider } from "./context";
+import WordDialog from "./components/WordDialog";
 
 const App: React.FC = () => {
   const classes = useStyles();
@@ -45,6 +14,7 @@ const App: React.FC = () => {
     <AppContextProvider>
       <div className={classes.root}>
         <Topbar />
+        <WordDialog />
         <Container
           className={classes.noLeftRightPadding + " " + classes.displayColumn}
           maxWidth="md"
