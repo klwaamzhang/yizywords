@@ -10,7 +10,7 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      backgroundColor: "#f5f5f5",
+      backgroundColor: "#f1f1f1",
     },
     container: {
       paddingLeft: 0,
@@ -19,7 +19,7 @@ const useStyles = makeStyles(() =>
     },
     grid: {
       height: "100%",
-      backgroundColor: "#eee",
+      backgroundColor: "#fff",
     },
   })
 );

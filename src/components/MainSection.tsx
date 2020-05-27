@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       height: "100%",
       overflow: "auto",
-      backgroundColor: "#fff",
     },
     toolbar: theme.mixins.toolbar,
   })

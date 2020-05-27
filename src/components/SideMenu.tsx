@@ -19,14 +19,20 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { AppContext, filterMainSectionData } from "../context";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import LogoText from "./logo/LogoText";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
       flexDirection: "column",
+      borderRight: "1px solid rgba(0, 0, 0, 0.12)",
     },
     toolbar: theme.mixins.toolbar,
+    sideMenuLogo: {
+      display: "flex",
+      paddingLeft: theme.spacing(2),
+    },
     nestedListItem: {
       paddingLeft: theme.spacing(4),
     },
@@ -75,7 +81,9 @@ export default function SideMenu() {
 
   const drawer = (
     <React.Fragment>
-      <div className={classes.toolbar} />
+      <div className={`${classes.toolbar} ${classes.sideMenuLogo}`}>
+        <LogoText />
+      </div>
       <Divider />
       <List className={classes.firstList}>
         <ListItem

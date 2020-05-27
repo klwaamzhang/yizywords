@@ -5,11 +5,11 @@ import {
   Container,
   IconButton,
   Button,
-  Typography,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import LogoText from "./logo/LogoText";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,9 +51,7 @@ export default function Topbar() {
           >
             <Menu />
           </IconButton>
-          <Typography variant="h6" className={classes.topbarTitle}>
-            YizyWords
-          </Typography>
+          <LogoText />
           <Button color="inherit" onClick={setNewWordDialog}>
             New
           </Button>
