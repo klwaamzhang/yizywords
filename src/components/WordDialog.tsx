@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import { AppContext, DummyDataType, filterMainSectionData } from "../context";
+import { AppContext } from "../context";
 import { useAppActions } from "../actions";
 import {
   Container,
@@ -15,6 +15,7 @@ import {
 } from "@material-ui/core";
 import { Bookmarks } from "@material-ui/icons";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { Word } from "../@types";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -71,7 +72,7 @@ export default function WordDialog() {
     return { title: item };
   });
 
-  const [formData, setFormData] = React.useState<DummyDataType>({
+  const [formData, setFormData] = React.useState<Word>({
     _id: 10 + Math.floor(Math.random() * 100000),
     text: "",
     notes: "",

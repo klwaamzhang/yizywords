@@ -16,9 +16,34 @@ import CategoryIcon from "@material-ui/icons/Category";
 import SettingsIcon from "@material-ui/icons/Settings";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { useStyles } from "../styles/global";
 import { AppContext, filterMainSectionData } from "../context";
 import { useAppActions } from "../actions";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import LogoText from "./logo/LogoText";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: "flex",
+      flexDirection: "column",
+      borderRight: "1px solid rgba(0, 0, 0, 0.12)",
+    },
+    toolbar: theme.mixins.toolbar,
+    sideMenuLogo: {
+      display: "flex",
+      paddingLeft: theme.spacing(2),
+    },
+    nestedListItem: {
+      paddingLeft: theme.spacing(4),
+    },
+    drawerPaper: {
+      width: 320,
+    },
+    firstList: {
+      flexGrow: 1,
+    },
+  })
+);
 
 export default function SideMenu() {
   const classes = useStyles();
@@ -56,9 +81,11 @@ export default function SideMenu() {
 
   const drawer = (
     <React.Fragment>
-      <div className={classes.toolbar} />
+      <div className={`${classes.toolbar} ${classes.sideMenuLogo}`}>
+        <LogoText />
+      </div>
       <Divider />
-      <List>
+      <List className={classes.firstList}>
         <ListItem
           selected={state.currTab === "Inbox"}
           button
@@ -84,7 +111,7 @@ export default function SideMenu() {
                 selected={state.currTab === text}
                 button
                 key={text}
-                className={classes.nested}
+                className={classes.nestedListItem}
                 onClick={() => switchCategories(text)}
               >
                 <ListItemIcon>
@@ -106,17 +133,15 @@ export default function SideMenu() {
           <ListItemText primary="Recycle Bin" />
         </ListItem>
       </List>
-      <div style={{ alignSelf: "end" }}>
-        <Divider />
-        <List>
-          <ListItem button>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItem>
-        </List>
-      </div>
+      <Divider />
+      <List>
+        <ListItem button>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Settings" />
+        </ListItem>
+      </List>
     </React.Fragment>
   );
   return (
@@ -127,6 +152,7 @@ export default function SideMenu() {
           anchor={theme.direction === "rtl" ? "right" : "left"}
           open={state.isSideMenuOpen}
           onClose={closeSideManu}
+          className={classes.root}
           classes={{
             paper: classes.drawerPaper,
           }}
@@ -138,7 +164,7 @@ export default function SideMenu() {
         </Drawer>
       </Hidden>
       <Hidden xsDown implementation="js">
-        <Grid item sm={4} className={classes.sideMenu}>
+        <Grid item sm={4} className={classes.root}>
           {drawer}
         </Grid>
       </Hidden>

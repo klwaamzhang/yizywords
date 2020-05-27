@@ -1,9 +1,5 @@
-import {
-  AppState,
-  AppAction,
-  AppActionType,
-  populateCategories,
-} from "../context";
+import { populateCategories } from "../context";
+import { AppState, AppAction, AppActionType } from "../@types/app";
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
