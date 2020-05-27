@@ -8,12 +8,18 @@ import { useAppActions } from "../actions";
 export default function MainSection() {
   const classes = useStyles();
   const { state } = React.useContext(AppContext);
-  const { switchMainSectionMenu } = useAppActions();
+  const { switchMainSectionContent } = useAppActions();
 
   useEffect(() => {
-    switchMainSectionMenu(
-      filterMainSectionData(state.currCategory, state.dummyData)
-    );
+    if (state.currTab !== "Recycle Bin") {
+      switchMainSectionContent(
+        filterMainSectionData(state.currTab, state.dummyData)
+      );
+    } else {
+      switchMainSectionContent(
+        state.dummyData.filter((item) => item.status === "deleted")
+      );
+    }
   }, [state.dummyData]);
 
   return (

@@ -28,8 +28,8 @@ export default function SideMenu() {
   const {
     closeSideManu,
     updateCategories,
-    switchMainSectionMenu,
-    setCurrentCategory,
+    switchMainSectionContent,
+    setCurrentTab,
   } = useAppActions();
 
   useEffect(() => {
@@ -41,14 +41,15 @@ export default function SideMenu() {
     setOpen(!open);
   };
 
-  const switchCategories = (category: string) => {
-    setCurrentCategory(category);
-    switchMainSectionMenu(filterMainSectionData(category, state.dummyData));
+  const switchCategories = (currTab: string) => {
+    setCurrentTab(currTab);
+    switchMainSectionContent(filterMainSectionData(currTab, state.dummyData));
     closeSideManu();
   };
 
   const showRecycleBin = () => {
-    switchMainSectionMenu(
+    setCurrentTab("Recycle Bin");
+    switchMainSectionContent(
       state.dummyData.filter((item) => item.status === "deleted")
     );
   };
@@ -59,7 +60,7 @@ export default function SideMenu() {
       <Divider />
       <List>
         <ListItem
-          selected={state.currCategory === "Inbox"}
+          selected={state.currTab === "Inbox"}
           button
           onClick={() => switchCategories("Inbox")}
         >
@@ -80,7 +81,7 @@ export default function SideMenu() {
           <List component="div" disablePadding>
             {state.categories.map((text, index) => (
               <ListItem
-                selected={state.currCategory === text}
+                selected={state.currTab === text}
                 button
                 key={text}
                 className={classes.nested}
@@ -95,7 +96,7 @@ export default function SideMenu() {
           </List>
         </Collapse>
         <ListItem
-          selected={state.currCategory === "Recycle Bin"}
+          selected={state.currTab === "Recycle Bin"}
           onClick={showRecycleBin}
           button
         >

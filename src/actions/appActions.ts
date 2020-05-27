@@ -44,17 +44,17 @@ export function useAppActions() {
     });
   }
 
-  function switchMainSectionMenu(mainSectionData: DummyDataType[]) {
+  function switchMainSectionContent(mainSectionData: DummyDataType[]) {
     return dispatch({
       type: AppActionType.SWICH_MAIN_SECTION_DATA,
       payload: mainSectionData,
     });
   }
 
-  function setCurrentCategory(currCategory: string) {
+  function setCurrentTab(currTab: string) {
     return dispatch({
-      type: AppActionType.SET_CURRENT_CATEGORY,
-      payload: currCategory,
+      type: AppActionType.SET_CURRENT_TAB,
+      payload: currTab,
     });
   }
 
@@ -67,7 +67,7 @@ export function useAppActions() {
     setNewWordDialog,
     setUpdateWordDialog,
     updateWordItem,
-    switchMainSectionMenu,
-    setCurrentCategory,
+    switchMainSectionContent,
+    setCurrentTab,
   };
 }

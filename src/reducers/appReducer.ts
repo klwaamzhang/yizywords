@@ -32,8 +32,8 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, dummyData: newDataUpdate };
     case AppActionType.SWICH_MAIN_SECTION_DATA:
       return { ...state, mainSectionData: action.payload };
-    case AppActionType.SET_CURRENT_CATEGORY:
-      return { ...state, currCategory: action.payload };
+    case AppActionType.SET_CURRENT_TAB:
+      return { ...state, currTab: action.payload };
     default:
       throw new Error("error: AppContext reducer error!");
   }

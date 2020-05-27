@@ -43,6 +43,10 @@ export default function WordListItem(props: any) {
     handleClose();
   };
 
+  const restoreWord = () => {
+    updateWordItem({ ...item, status: "active" });
+  };
+
   return (
     <ListItem key={index} role={undefined} button>
       <ListItemText id={labelId} primary={item.text} secondary={item.notes} />
@@ -57,8 +61,14 @@ export default function WordListItem(props: any) {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={openUpdateWordDialog}>Update</MenuItem>
-          <MenuItem onClick={deleteWord}>Delete</MenuItem>
+          {item.status !== "deleted" ? (
+            <>
+              <MenuItem onClick={openUpdateWordDialog}>Update</MenuItem>
+              <MenuItem onClick={deleteWord}>Delete</MenuItem>
+            </>
+          ) : (
+            <MenuItem onClick={restoreWord}>Restore</MenuItem>
+          )}
         </Menu>
       </ListItemSecondaryAction>
     </ListItem>
