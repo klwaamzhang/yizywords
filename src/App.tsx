@@ -6,6 +6,7 @@ import MainSection from "./components/MainSection";
 import SideMenu from "./components/SideMenu";
 import { AppContextProvider } from "./context";
 import WordDialog from "./components/WordDialog";
+import LoginPage from "./components/LoginPage";
 
 const App: React.FC = () => {
   const classes = useStyles();
@@ -14,7 +15,7 @@ const App: React.FC = () => {
     <AppContextProvider>
       <div className={classes.root}>
         <Topbar />
-        <WordDialog />
+        {/* <WordDialog />
         <Container
           className={classes.noLeftRightPadding + " " + classes.displayColumn}
           maxWidth="md"
@@ -27,7 +28,8 @@ const App: React.FC = () => {
             <SideMenu />
             <MainSection />
           </Grid>
-        </Container>
+        </Container> */}
+        <LoginPage />
       </div>
     </AppContextProvider>
   );

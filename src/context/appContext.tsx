@@ -21,6 +21,7 @@ export type AppState = {
   currFormData: DummyDataType | null;
   mainSectionData: Array<DummyDataType>;
   currTab: string;
+  isLoggedin: boolean;
 };
 
 // app action type
@@ -103,6 +104,7 @@ const initialState: AppState = {
   currFormData: null,
   mainSectionData: filterMainSectionData("Inbox", dummyData),
   currTab: "Inbox",
+  isLoggedin: false,
 };
 
 export const [AppContext, AppCtxProvider] = createCtx<AppState, AppAction>(
