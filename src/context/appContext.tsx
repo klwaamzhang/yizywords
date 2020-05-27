@@ -31,6 +31,7 @@ const initialState: AppState = {
   currFormData: null,
   mainSectionData: filterMainSectionData("Inbox", dummyData),
   currTab: "Inbox",
+  // isLoggedin: false,
 };
 
 export const [AppContext, AppCtxProvider] = createCtx<AppState, AppAction>(
