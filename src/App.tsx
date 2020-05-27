@@ -6,6 +6,7 @@ import SideMenu from "./components/SideMenu";
 import { AppContextProvider } from "./context";
 import WordDialog from "./components/WordDialog";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
+import LoginPage from "./components/LoginPage";
 
 const useStyles = makeStyles(() =>
   createStyles({
