@@ -17,11 +17,6 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, dummyData: [...state.dummyData, action.payload] };
     case AppActionType.UPDATE_CATEGORIES:
       return { ...state, categories: populateCategories(state.dummyData) };
-    case AppActionType.DELETE_WORD_ITEM:
-      const newDataDelete = state.dummyData.filter(
-        (item) => item._id !== action.payload._id
-      );
-      return { ...state, dummyData: newDataDelete };
     case AppActionType.SET_NEW_WORD_DIALOG:
       return { ...state, isWordDialogOpened: true, currFormData: null };
     case AppActionType.SET_UPDATE_WORD_DIALOG:

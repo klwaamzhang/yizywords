@@ -9,6 +9,7 @@ export interface DummyDataType {
   text: string;
   notes: string;
   categories: string[];
+  status: string;
 }
 
 // app state type
@@ -28,7 +29,6 @@ type CLOSE_SIDE_MANU = "CLOSE_SIDE_MANU";
 type CLOSE_WORD_DIALOG = "CLOSE_WORD_DIALOG";
 type CREATE_NEW_WORD = "CREATE_NEW_WORD";
 type UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
-type DELETE_WORD_ITEM = "DELETE_WORD_ITEM";
 type SET_NEW_WORD_DIALOG = "SET_NEW_WORD_DIALOG";
 type SET_UPDATE_WORD_DIALOG = "SET_UPDATE_WORD_DIALOG";
 type UPDATE_WORD_ITEM = "UPDATE_WORD_ITEM";
@@ -41,7 +41,6 @@ type actionType = {
   CLOSE_WORD_DIALOG: CLOSE_WORD_DIALOG;
   CREATE_NEW_WORD: CREATE_NEW_WORD;
   UPDATE_CATEGORIES: UPDATE_CATEGORIES;
-  DELETE_WORD_ITEM: DELETE_WORD_ITEM;
   SET_NEW_WORD_DIALOG: SET_NEW_WORD_DIALOG;
   SET_UPDATE_WORD_DIALOG: SET_UPDATE_WORD_DIALOG;
   UPDATE_WORD_ITEM: UPDATE_WORD_ITEM;
@@ -55,7 +54,6 @@ export const AppActionType: actionType = {
   CLOSE_WORD_DIALOG: "CLOSE_WORD_DIALOG",
   CREATE_NEW_WORD: "CREATE_NEW_WORD",
   UPDATE_CATEGORIES: "UPDATE_CATEGORIES",
-  DELETE_WORD_ITEM: "DELETE_WORD_ITEM",
   SET_NEW_WORD_DIALOG: "SET_NEW_WORD_DIALOG",
   SET_UPDATE_WORD_DIALOG: "SET_UPDATE_WORD_DIALOG",
   UPDATE_WORD_ITEM: "UPDATE_WORD_ITEM",
@@ -69,7 +67,6 @@ export type AppAction =
   | { type: CLOSE_WORD_DIALOG }
   | { type: CREATE_NEW_WORD; payload: DummyDataType }
   | { type: UPDATE_CATEGORIES }
-  | { type: DELETE_WORD_ITEM; payload: DummyDataType }
   | { type: SET_NEW_WORD_DIALOG }
   | { type: SET_UPDATE_WORD_DIALOG; payload: DummyDataType }
   | { type: UPDATE_WORD_ITEM; payload: DummyDataType }
@@ -92,7 +89,10 @@ export const filterMainSectionData = (
   category: string,
   data: DummyDataType[]
 ) => {
-  return data.filter((item) => item.categories.find((e) => e === category));
+  return data.filter(
+    (item) =>
+      item.categories.find((e) => e === category) && item.status !== "deleted"
+  );
 };
 
 const initialState: AppState = {

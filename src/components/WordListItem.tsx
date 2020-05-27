@@ -13,10 +13,9 @@ import { filterMainSectionData, AppContext } from "../context";
 
 export default function WordListItem(props: any) {
   const {
-    deleteWordItem,
+    updateWordItem,
     updateCategories,
     setUpdateWordDialog,
-    switchMainSectionMenu,
   } = useAppActions();
   const { state } = React.useContext(AppContext);
   const index = props.index;
@@ -34,7 +33,7 @@ export default function WordListItem(props: any) {
   };
 
   const deleteWord = () => {
-    deleteWordItem(item);
+    updateWordItem({ ...item, status: "deleted" });
     updateCategories();
     handleClose();
   };

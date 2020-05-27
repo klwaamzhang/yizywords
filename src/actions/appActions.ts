@@ -26,13 +26,6 @@ export function useAppActions() {
     });
   }
 
-  function deleteWordItem(item: DummyDataType) {
-    return dispatch({
-      type: AppActionType.DELETE_WORD_ITEM,
-      payload: item,
-    });
-  }
-
   function setNewWordDialog() {
     return dispatch({ type: AppActionType.SET_NEW_WORD_DIALOG });
   }
@@ -71,7 +64,6 @@ export function useAppActions() {
     closeWordDialog,
     createNewWord,
     updateCategories,
-    deleteWordItem,
     setNewWordDialog,
     setUpdateWordDialog,
     updateWordItem,

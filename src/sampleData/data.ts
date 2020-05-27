@@ -5,6 +5,7 @@ export const dummyData = [
     notes: "note",
     // orginal url: "url",
     categories: ["Inbox"],
+    status: "active",
   },
   {
     _id: 2,
@@ -12,6 +13,7 @@ export const dummyData = [
     notes: "note",
     // orginal url: "url",
     categories: ["New Words"],
+    status: "active",
   },
   {
     _id: 3,
@@ -19,6 +21,7 @@ export const dummyData = [
     notes: "note",
     // orginal url: "url",
     categories: ["Verbs"],
+    status: "active",
   },
   {
     _id: 4,
@@ -26,6 +29,7 @@ export const dummyData = [
     notes: "note",
     // orginal url: "url",
     categories: ["Cool Adjectives"],
+    status: "active",
   },
   {
     _id: 5,
@@ -33,6 +37,7 @@ export const dummyData = [
     notes: "note",
     // orginal url: "url",
     categories: ["Verbs"],
+    status: "active",
   },
   {
     _id: 6,
@@ -40,6 +45,7 @@ export const dummyData = [
     notes: "note",
     // orginal url: "url",
     categories: ["Inbox", "Verbs"],
+    status: "active",
   },
   {
     _id: 7,
@@ -47,6 +53,7 @@ export const dummyData = [
     notes: "note",
     // orginal url: "url",
     categories: ["Inbox", "Cool Adjectives", "New Words"],
+    status: "active",
   },
   {
     _id: 8,
@@ -54,6 +61,7 @@ export const dummyData = [
     notes: "note",
     // orginal url: "url",
     categories: ["Inbox"],
+    status: "active",
   },
   {
     _id: 9,
@@ -61,5 +69,6 @@ export const dummyData = [
     notes: "note",
     // orginal url: "url",
     categories: ["Inbox"],
+    status: "deleted",
   },
 ];

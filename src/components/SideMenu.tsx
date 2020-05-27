@@ -15,6 +15,7 @@ import { MoveToInbox, ExpandMore, ExpandLess } from "@material-ui/icons";
 import CategoryIcon from "@material-ui/icons/Category";
 import SettingsIcon from "@material-ui/icons/Settings";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import DeleteIcon from "@material-ui/icons/Delete";
 import { useStyles } from "../styles/global";
 import { AppContext, filterMainSectionData } from "../context";
 import { useAppActions } from "../actions";
@@ -44,6 +45,12 @@ export default function SideMenu() {
     setCurrentCategory(category);
     switchMainSectionMenu(filterMainSectionData(category, state.dummyData));
     closeSideManu();
+  };
+
+  const showRecycleBin = () => {
+    switchMainSectionMenu(
+      state.dummyData.filter((item) => item.status === "deleted")
+    );
   };
 
   const drawer = (
@@ -87,6 +94,16 @@ export default function SideMenu() {
             ))}
           </List>
         </Collapse>
+        <ListItem
+          selected={state.currCategory === "Recycle Bin"}
+          onClick={showRecycleBin}
+          button
+        >
+          <ListItemIcon>
+            <DeleteIcon />
+          </ListItemIcon>
+          <ListItemText primary="Recycle Bin" />
+        </ListItem>
       </List>
       <div style={{ alignSelf: "end" }}>
         <Divider />

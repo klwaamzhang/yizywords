@@ -76,6 +76,7 @@ export default function WordDialog() {
     text: "",
     notes: "",
     categories: ["Inbox"],
+    status: "active",
   });
 
   const handleSubmit = async (e: any) => {
@@ -99,6 +100,7 @@ export default function WordDialog() {
       text: "",
       notes: "",
       categories: ["Inbox"],
+      status: "active",
     });
     closeWordDialog();
   };
