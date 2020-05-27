@@ -24,7 +24,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const App: React.FC = () => {
+export default function App() {
   const classes = useStyles();
 
   return (
@@ -41,6 +41,4 @@ const App: React.FC = () => {
       <WordDialog />
     </AppContextProvider>
   );
-};
-
-export default App;
+}
