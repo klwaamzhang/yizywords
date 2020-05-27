@@ -16,9 +16,21 @@ import CategoryIcon from "@material-ui/icons/Category";
 import SettingsIcon from "@material-ui/icons/Settings";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { useStyles } from "../styles/global";
 import { AppContext, filterMainSectionData } from "../context";
 import { useAppActions } from "../actions";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    toolbar: theme.mixins.toolbar,
+    nestedListItem: {
+      paddingLeft: theme.spacing(4),
+    },
+    drawerPaper: {
+      width: 320,
+    },
+  })
+);
 
 export default function SideMenu() {
   const classes = useStyles();
@@ -84,7 +96,7 @@ export default function SideMenu() {
                 selected={state.currTab === text}
                 button
                 key={text}
-                className={classes.nested}
+                className={classes.nestedListItem}
                 onClick={() => switchCategories(text)}
               >
                 <ListItemIcon>
@@ -138,7 +150,7 @@ export default function SideMenu() {
         </Drawer>
       </Hidden>
       <Hidden xsDown implementation="js">
-        <Grid item sm={4} className={classes.sideMenu}>
+        <Grid item sm={4}>
           {drawer}
         </Grid>
       </Hidden>

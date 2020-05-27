@@ -8,15 +8,34 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-import { useStyles } from "../styles/global";
 import { useAppActions } from "../actions";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    noLeftRightPadding: {
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+      [theme.breakpoints.up("sm")]: {
+        display: "none",
+      },
+    },
+    topbarTitle: {
+      flexGrow: 1,
+      alignSelf: "center",
+    },
+  })
+);
 
 export default function Topbar() {
   const classes = useStyles();
   const { openSideManu, setNewWordDialog } = useAppActions();
 
   return (
-    <AppBar position="fixed" className={classes.appBar}>
+    <AppBar position="fixed">
       <Toolbar>
         <Container
           style={{ display: "flex" }}
@@ -33,7 +52,7 @@ export default function Topbar() {
             <Menu />
           </IconButton>
           <Typography variant="h6" className={classes.topbarTitle}>
-            YizyWord
+            YizyWords
           </Typography>
           <Button color="inherit" onClick={setNewWordDialog}>
             New
