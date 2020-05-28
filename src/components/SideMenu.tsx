@@ -16,11 +16,11 @@ import CategoryIcon from "@material-ui/icons/Category";
 import SettingsIcon from "@material-ui/icons/Settings";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { AppContext, filterMainSectionData } from "../context";
+import { AppContext } from "../context";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useHelperFunctions from "../utilities/helper";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -70,19 +70,6 @@ export default function SideMenu() {
     setOpen(!open);
   };
 
-  // const switchCategories = (currTab: string) => {
-  //   setCurrentTab(currTab);
-  //   filterMainSectionList(filterMainSectionData(currTab, state.dummyData));
-  //   closeSideManu();
-  // };
-
-  // const showRecycleBin = () => {
-  //   setCurrentTab("Recycle Bin");
-  //   filterMainSectionList(
-  //     state.dummyData.filter((item) => item.status === "deleted")
-  //   );
-  // };
-
   const drawer = (
     <React.Fragment>
       <div className={`${classes.toolbar} ${classes.sideMenuLogo}`}>
@@ -94,7 +81,7 @@ export default function SideMenu() {
           <ListItem
             selected={location.pathname === "/Inbox"}
             button
-            // onClick={() => switchCategories("Inbox")}
+            onClick={closeSideManu}
           >
             <ListItemIcon>
               <MoveToInbox />
@@ -122,7 +109,7 @@ export default function SideMenu() {
                   selected={location.pathname === `/${toUrlFormat(text)}`}
                   button
                   className={classes.nestedListItem}
-                  // onClick={() => switchCategories(text)}
+                  onClick={closeSideManu}
                 >
                   <ListItemIcon>
                     <BookmarkBorderIcon />
@@ -136,7 +123,7 @@ export default function SideMenu() {
         <Link className={classes.routerLink} to="/Recycle-Bin">
           <ListItem
             selected={location.pathname === "/Recycle-Bin"}
-            // onClick={showRecycleBin}
+            onClick={closeSideManu}
             button
           >
             <ListItemIcon>

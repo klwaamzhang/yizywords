@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Grid, List } from "@material-ui/core";
-import { AppContext, filterMainSectionData } from "../context";
+import { AppContext } from "../context";
 import WordListItem from "./WordListItem";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
@@ -29,15 +29,6 @@ export default function MainSection() {
   console.log(filterName);
 
   useEffect(() => {
-    // if (categoryName !== "Recycle Bin") {
-    //   filterMainSectionList(
-    //     filterMainSectionData(categoryName, state.dummyData)
-    //   );
-    // } else {
-    //   filterMainSectionList(
-    //     state.dummyData.filter((item) => item.status === "deleted")
-    //   );
-    // }
     filterMainSectionList(categoryName);
   }, [state.dummyData, categoryName]);
 
