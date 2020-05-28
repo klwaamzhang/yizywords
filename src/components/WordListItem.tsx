@@ -62,10 +62,11 @@ export default function WordListItem(props: any) {
           onClose={handleClose}
         >
           {item.status !== "deleted" ? (
-            <>
+            // consider to use an array???
+            <span>
               <MenuItem onClick={openUpdateWordDialog}>Update</MenuItem>
               <MenuItem onClick={deleteWord}>Delete</MenuItem>
-            </>
+            </span>
           ) : (
             <MenuItem onClick={restoreWord}>Restore</MenuItem>
           )}

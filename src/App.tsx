@@ -7,7 +7,12 @@ import { AppContextProvider } from "./context";
 import WordDialog from "./components/WordDialog";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import LoginPage from "./components/LoginPage";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -38,13 +43,19 @@ export default function App() {
             <Route path="/login">
               <LoginPage />
             </Route>
-            <Route path="/">
+            <Route path="/inbox">
               <Container className={classes.container} maxWidth="md">
                 <Grid className={classes.grid} container spacing={0}>
                   <SideMenu />
                   <MainSection />
                 </Grid>
               </Container>
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/inbox" />
+            </Route>
+            <Route path="*">
+              <Redirect to="/login" />
             </Route>
           </Switch>
         </div>

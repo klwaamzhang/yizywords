@@ -20,6 +20,8 @@ import { AppContext, filterMainSectionData } from "../context";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
+import { Link, useLocation, useParams } from "react-router-dom";
+import useHelperFunctions from "../utilities/helper";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,12 +44,19 @@ const useStyles = makeStyles((theme: Theme) =>
     firstList: {
       flexGrow: 1,
     },
+    routerLink: {
+      color: "black",
+      textDecoration: "none",
+    },
   })
 );
 
 export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
+
+  const location = useLocation();
+  const { convertLinkName } = useHelperFunctions();
 
   const { state } = React.useContext(AppContext);
   const {
@@ -86,16 +95,18 @@ export default function SideMenu() {
       </div>
       <Divider />
       <List className={classes.firstList}>
-        <ListItem
-          selected={state.currTab === "Inbox"}
-          button
-          onClick={() => switchCategories("Inbox")}
-        >
-          <ListItemIcon>
-            <MoveToInbox />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
-        </ListItem>
+        <Link className={classes.routerLink} to="/inbox">
+          <ListItem
+            selected={location.pathname === "/inbox"}
+            button
+            // onClick={() => switchCategories("Inbox")}
+          >
+            <ListItemIcon>
+              <MoveToInbox />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+          </ListItem>
+        </Link>
 
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
@@ -107,31 +118,38 @@ export default function SideMenu() {
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {state.categories.map((text, index) => (
-              <ListItem
-                selected={state.currTab === text}
-                button
-                key={text}
-                className={classes.nestedListItem}
-                onClick={() => switchCategories(text)}
+              <Link
+                className={classes.routerLink}
+                key={index}
+                to={`/${convertLinkName(text)}`}
               >
-                <ListItemIcon>
-                  <BookmarkBorderIcon />
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
+                <ListItem
+                  selected={location.pathname === `/${convertLinkName(text)}`}
+                  button
+                  className={classes.nestedListItem}
+                  // onClick={() => switchCategories(text)}
+                >
+                  <ListItemIcon>
+                    <BookmarkBorderIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              </Link>
             ))}
           </List>
         </Collapse>
-        <ListItem
-          selected={state.currTab === "Recycle Bin"}
-          onClick={showRecycleBin}
-          button
-        >
-          <ListItemIcon>
-            <DeleteIcon />
-          </ListItemIcon>
-          <ListItemText primary="Recycle Bin" />
-        </ListItem>
+        <Link className={classes.routerLink} to="/recycle-bin">
+          <ListItem
+            selected={location.pathname === "/recycle-bin"}
+            // onClick={showRecycleBin}
+            button
+          >
+            <ListItemIcon>
+              <DeleteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Recycle Bin" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>
@@ -145,7 +163,7 @@ export default function SideMenu() {
     </React.Fragment>
   );
   return (
-    <>
+    <React.Fragment>
       <Hidden smUp implementation="js">
         <Drawer
           variant="temporary"
@@ -168,6 +186,6 @@ export default function SideMenu() {
           {drawer}
         </Grid>
       </Hidden>
-    </>
+    </React.Fragment>
   );
 }
