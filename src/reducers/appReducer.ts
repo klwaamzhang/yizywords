@@ -1,4 +1,4 @@
-import { populateCategories, filterMainSectionData } from "../context";
+import { populateCategories, filterMainSectionData } from "../utilities/helper";
 import { AppState, AppAction, AppActionType } from "../@types/app";
 
 export function appReducer(state: AppState, action: AppAction): AppState {

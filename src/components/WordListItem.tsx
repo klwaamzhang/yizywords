@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
 import { useAppActions } from "../actions";
-import { filterMainSectionData, AppContext } from "../context";
+import { AppContext } from "../context";
 
 export default function WordListItem(props: any) {
   const {
