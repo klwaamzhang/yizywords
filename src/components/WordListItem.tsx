@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
 import { useAppActions } from "../actions";
-import { AppContext } from "../context";
 
 export default function WordListItem(props: any) {
   const {
@@ -17,7 +16,6 @@ export default function WordListItem(props: any) {
     updateCategories,
     openUpdateWordDialog,
   } = useAppActions();
-  const { state } = React.useContext(AppContext);
   const index = props.index;
   const item = props.item;
   const labelId = `checkbox-list-label-${index}`;

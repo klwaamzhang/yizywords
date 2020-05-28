@@ -7,7 +7,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-import { useAppActions } from "../actions";
+import { useAppActions, useNavActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
 
@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Topbar() {
   const classes = useStyles();
-  const { openSideManu, openNewWordDialog } = useAppActions();
+  const { openNewWordDialog } = useAppActions();
+  const { openSideManu } = useNavActions();
 
   return (
     <AppBar position="fixed">

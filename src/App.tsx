@@ -3,7 +3,7 @@ import { Container, Grid } from "@material-ui/core";
 import Topbar from "./components/Topbar";
 import MainSection from "./components/MainSection";
 import SideMenu from "./components/SideMenu";
-import { AppContextProvider } from "./context";
+import { AppContextProvider, NavContextProvider } from "./context";
 import WordDialog from "./components/WordDialog";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import LoginPage from "./components/LoginPage";
@@ -38,26 +38,28 @@ export default function App() {
     <Router>
       <AppContextProvider>
         <div className={classes.root}>
-          <Topbar />
-          <Switch>
-            <Route path="/login">
-              <LoginPage />
-            </Route>
-            <Route path="/:filterName">
-              <Container className={classes.container} maxWidth="md">
-                <Grid className={classes.grid} container spacing={0}>
-                  <SideMenu />
-                  <MainSection />
-                </Grid>
-              </Container>
-            </Route>
-            <Route exact path="/">
-              <Redirect to="/Inbox" />
-            </Route>
-            {/* <Route path="*">
+          <NavContextProvider>
+            <Topbar />
+            <Switch>
+              <Route path="/login">
+                <LoginPage />
+              </Route>
+              <Route path="/:filterName">
+                <Container className={classes.container} maxWidth="md">
+                  <Grid className={classes.grid} container spacing={0}>
+                    <SideMenu />
+                    <MainSection />
+                  </Grid>
+                </Container>
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/Inbox" />
+              </Route>
+              {/* <Route path="*">
               <Redirect to="/" />
             </Route> */}
-          </Switch>
+            </Switch>
+          </NavContextProvider>
         </div>
         <WordDialog />
       </AppContextProvider>
