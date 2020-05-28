@@ -43,7 +43,7 @@ export default function App() {
             <Route path="/login">
               <LoginPage />
             </Route>
-            <Route path="/inbox">
+            <Route path="/:filterName">
               <Container className={classes.container} maxWidth="md">
                 <Grid className={classes.grid} container spacing={0}>
                   <SideMenu />
@@ -52,11 +52,11 @@ export default function App() {
               </Container>
             </Route>
             <Route exact path="/">
-              <Redirect to="/inbox" />
+              <Redirect to="/Inbox" />
             </Route>
-            <Route path="*">
-              <Redirect to="/login" />
-            </Route>
+            {/* <Route path="*">
+              <Redirect to="/" />
+            </Route> */}
           </Switch>
         </div>
         <WordDialog />

@@ -46,12 +46,19 @@ export function useAppActions() {
     });
   }
 
-  function switchMainSectionContent(mainSectionData: Word[]) {
+  function switchMainSectionContent(categoryName: string) {
     return dispatch({
       type: AppActionType.SWICH_MAIN_SECTION_DATA,
-      payload: mainSectionData,
+      payload: categoryName,
     });
   }
+
+  // function switchMainSectionContent(mainSectionData: Word[]) {
+  //   return dispatch({
+  //     type: AppActionType.SWICH_MAIN_SECTION_DATA,
+  //     payload: mainSectionData,
+  //   });
+  // }
 
   function setCurrentTab(currTab: string) {
     return dispatch({

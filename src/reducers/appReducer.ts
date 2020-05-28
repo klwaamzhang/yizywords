@@ -1,4 +1,4 @@
-import { populateCategories } from "../context";
+import { populateCategories, filterMainSectionData } from "../context";
 import { AppState, AppAction, AppActionType } from "../@types/app";
 
 export function appReducer(state: AppState, action: AppAction): AppState {
@@ -27,7 +27,10 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       );
       return { ...state, dummyData: newDataUpdate };
     case AppActionType.SWICH_MAIN_SECTION_DATA:
-      return { ...state, mainSectionData: action.payload };
+      return {
+        ...state,
+        mainSectionData: filterMainSectionData(action.payload, state.dummyData),
+      };
     case AppActionType.SET_CURRENT_TAB:
       return { ...state, currTab: action.payload };
     default:

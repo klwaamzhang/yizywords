@@ -1,9 +1,14 @@
 export default function useHelperFunctions() {
-  function convertLinkName(name: string) {
-    return name.toLowerCase().split(" ").join("-");
+  function toUrlFormat(text: string) {
+    return text.split(" ").join("-");
+  }
+
+  function toDisplayFormat(text: string) {
+    return text.split("-").join(" ");
   }
 
   return {
-    convertLinkName,
+    toUrlFormat,
+    toDisplayFormat,
   };
 }

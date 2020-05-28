@@ -56,7 +56,7 @@ export default function SideMenu() {
   const theme = useTheme();
 
   const location = useLocation();
-  const { convertLinkName } = useHelperFunctions();
+  const { toUrlFormat } = useHelperFunctions();
 
   const { state } = React.useContext(AppContext);
   const {
@@ -75,18 +75,18 @@ export default function SideMenu() {
     setOpen(!open);
   };
 
-  const switchCategories = (currTab: string) => {
-    setCurrentTab(currTab);
-    switchMainSectionContent(filterMainSectionData(currTab, state.dummyData));
-    closeSideManu();
-  };
+  // const switchCategories = (currTab: string) => {
+  //   setCurrentTab(currTab);
+  //   switchMainSectionContent(filterMainSectionData(currTab, state.dummyData));
+  //   closeSideManu();
+  // };
 
-  const showRecycleBin = () => {
-    setCurrentTab("Recycle Bin");
-    switchMainSectionContent(
-      state.dummyData.filter((item) => item.status === "deleted")
-    );
-  };
+  // const showRecycleBin = () => {
+  //   setCurrentTab("Recycle Bin");
+  //   switchMainSectionContent(
+  //     state.dummyData.filter((item) => item.status === "deleted")
+  //   );
+  // };
 
   const drawer = (
     <React.Fragment>
@@ -95,9 +95,9 @@ export default function SideMenu() {
       </div>
       <Divider />
       <List className={classes.firstList}>
-        <Link className={classes.routerLink} to="/inbox">
+        <Link className={classes.routerLink} to="/Inbox">
           <ListItem
-            selected={location.pathname === "/inbox"}
+            selected={location.pathname === "/Inbox"}
             button
             // onClick={() => switchCategories("Inbox")}
           >
@@ -121,10 +121,10 @@ export default function SideMenu() {
               <Link
                 className={classes.routerLink}
                 key={index}
-                to={`/${convertLinkName(text)}`}
+                to={`/${toUrlFormat(text)}`}
               >
                 <ListItem
-                  selected={location.pathname === `/${convertLinkName(text)}`}
+                  selected={location.pathname === `/${toUrlFormat(text)}`}
                   button
                   className={classes.nestedListItem}
                   // onClick={() => switchCategories(text)}
@@ -138,9 +138,9 @@ export default function SideMenu() {
             ))}
           </List>
         </Collapse>
-        <Link className={classes.routerLink} to="/recycle-bin">
+        <Link className={classes.routerLink} to="/Recycle-Bin">
           <ListItem
-            selected={location.pathname === "/recycle-bin"}
+            selected={location.pathname === "/Recycle-Bin"}
             // onClick={showRecycleBin}
             button
           >

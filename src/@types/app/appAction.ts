@@ -46,5 +46,5 @@ export type AppAction =
   | { type: SET_NEW_WORD_DIALOG }
   | { type: SET_UPDATE_WORD_DIALOG; payload: Word }
   | { type: UPDATE_WORD_ITEM; payload: Word }
-  | { type: SWICH_MAIN_SECTION_DATA; payload: Word[] }
+  | { type: SWICH_MAIN_SECTION_DATA; payload: string }
   | { type: SET_CURRENT_TAB; payload: string };

@@ -16,10 +16,13 @@ export const populateCategories = (data: Word[]) => {
     }, new Array<string>());
 };
 
-export const filterMainSectionData = (category: string, data: Word[]) => {
+export const filterMainSectionData = (filterName: string, data: Word[]) => {
+  if (filterName === "Recycle Bin") {
+    return data.filter((item) => item.status === "deleted");
+  }
   return data.filter(
     (item) =>
-      item.categories.find((e) => e === category) && item.status !== "deleted"
+      item.status !== "deleted" && item.categories.find((e) => e === filterName)
   );
 };
 

@@ -4,6 +4,8 @@ import { AppContext, filterMainSectionData } from "../context";
 import WordListItem from "./WordListItem";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { useParams } from "react-router-dom";
+import useHelperFunctions from "../utilities/helper";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,17 +22,24 @@ export default function MainSection() {
   const { state } = React.useContext(AppContext);
   const { switchMainSectionContent } = useAppActions();
 
+  const { toDisplayFormat } = useHelperFunctions();
+
+  const { filterName } = useParams();
+  const categoryName = toDisplayFormat(filterName);
+  console.log(filterName);
+
   useEffect(() => {
-    if (state.currTab !== "Recycle Bin") {
-      switchMainSectionContent(
-        filterMainSectionData(state.currTab, state.dummyData)
-      );
-    } else {
-      switchMainSectionContent(
-        state.dummyData.filter((item) => item.status === "deleted")
-      );
-    }
-  }, [state.dummyData]);
+    // if (categoryName !== "Recycle Bin") {
+    //   switchMainSectionContent(
+    //     filterMainSectionData(categoryName, state.dummyData)
+    //   );
+    // } else {
+    //   switchMainSectionContent(
+    //     state.dummyData.filter((item) => item.status === "deleted")
+    //   );
+    // }
+    switchMainSectionContent(categoryName);
+  }, [categoryName]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.root}>
