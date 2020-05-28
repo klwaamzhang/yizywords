@@ -37,8 +37,8 @@ export default function App() {
   return (
     <Router>
       <AppContextProvider>
-        <div className={classes.root}>
-          <NavContextProvider>
+        <NavContextProvider>
+          <div className={classes.root}>
             <Topbar />
             <Switch>
               <Route path="/login">
@@ -59,9 +59,9 @@ export default function App() {
               <Redirect to="/" />
             </Route> */}
             </Switch>
-          </NavContextProvider>
-        </div>
-        <WordDialog />
+          </div>
+          <WordDialog />
+        </NavContextProvider>
       </AppContextProvider>
     </Router>
   );

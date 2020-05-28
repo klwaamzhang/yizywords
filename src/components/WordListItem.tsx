@@ -8,14 +8,11 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
-import { useAppActions } from "../actions";
+import { useAppActions, useNavActions } from "../actions";
 
 export default function WordListItem(props: any) {
-  const {
-    updateWordItem,
-    updateCategories,
-    openUpdateWordDialog,
-  } = useAppActions();
+  const { updateWordItem, openUpdateWordDialog } = useAppActions();
+
   const index = props.index;
   const item = props.item;
   const labelId = `checkbox-list-label-${index}`;
@@ -32,7 +29,6 @@ export default function WordListItem(props: any) {
 
   const deleteWord = () => {
     updateWordItem({ ...item, status: "deleted" });
-    updateCategories();
     handleClose();
   };
 

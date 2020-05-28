@@ -6,14 +6,6 @@ import { Word } from "../@types";
 export function useAppActions() {
   const { dispatch } = React.useContext(AppContext);
 
-  function openSideManu() {
-    return dispatch({ type: AppActionType.OPEN_SIDE_MANU });
-  }
-
-  function closeSideManu() {
-    return dispatch({ type: AppActionType.CLOSE_SIDE_MANU });
-  }
-
   function openNewWordDialog() {
     return dispatch({ type: AppActionType.OPEN_NEW_WORD_DIALOG });
   }
@@ -47,36 +39,12 @@ export function useAppActions() {
     });
   }
 
-  function updateCategories() {
-    return dispatch({
-      type: AppActionType.UPDATE_CATEGORIES,
-    });
-  }
-
-  // function filterMainSectionList(mainSectionData: Word[]) {
-  //   return dispatch({
-  //     type: AppActionType.FILTER_MAIN_SECTION_LIST,
-  //     payload: mainSectionData,
-  //   });
-  // }
-
-  // function setCurrentTab(currTab: string) {
-  //   return dispatch({
-  //     type: AppActionType.SET_CURRENT_TAB,
-  //     payload: currTab,
-  //   });
-  // }
-
   return {
-    openSideManu,
-    closeSideManu,
     closeWordDialog,
     createNewWord,
-    updateCategories,
     openNewWordDialog,
     openUpdateWordDialog,
     updateWordItem,
     filterMainSectionList,
-    // setCurrentTab,
   };
 }

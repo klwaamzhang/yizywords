@@ -26,7 +26,7 @@ export default function MainSection() {
 
   const { filterName } = useParams();
   const categoryName = toDisplayFormat(filterName);
-  console.log(filterName);
+  console.log("Main Section");
 
   useEffect(() => {
     filterMainSectionList(categoryName);

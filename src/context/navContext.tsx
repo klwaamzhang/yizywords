@@ -3,10 +3,11 @@ import { createCtx } from "../utilities/createCtx";
 import { navReducer } from "../reducers";
 import { dummyData } from "../sampleData/data";
 import { NavState, NavAction } from "../@types/nav";
+import { populateCategories } from "../utilities/helper";
 
 const initialState: NavState = {
   isSideMenuOpen: false,
-  // categories: populateCategories(dummyData),
+  categories: populateCategories(dummyData),
 };
 
 export const [NavContext, NavCtxProvider] = createCtx<NavState, NavAction>(

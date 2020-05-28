@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import { AppContext } from "../context";
+import { AppContext, NavContext } from "../context";
 import { useAppActions } from "../actions";
 import {
   Container,
@@ -59,16 +59,11 @@ interface CateOptionType {
 export default function WordDialog() {
   const classes = useStyles();
 
-  const { state } = React.useContext(AppContext);
-  const {
-    closeWordDialog,
-    createNewWord,
-    updateWordItem,
-    updateCategories,
-    filterMainSectionList,
-  } = useAppActions();
+  const { state: appState } = React.useContext(AppContext);
+  const { state: navState } = React.useContext(NavContext);
+  const { closeWordDialog, createNewWord, updateWordItem } = useAppActions();
 
-  const categoriesForCmp: CateOptionType[] = state.categories.map((item) => {
+  const categoriesForCmp: CateOptionType[] = navState.categories.map((item) => {
     return { title: item };
   });
 
@@ -86,11 +81,10 @@ export default function WordDialog() {
       alert("Please select at least one category!");
       return;
     }
-    if (!state.currFormData) {
+    if (!appState.currFormData) {
       createNewWord(formData);
     } else {
       updateWordItem(formData);
-      updateCategories();
     }
     handleDialogClose();
   };
@@ -107,12 +101,12 @@ export default function WordDialog() {
   };
 
   const handleDialogEntering = () => {
-    if (state.currFormData) setFormData({ ...state.currFormData });
+    if (appState.currFormData) setFormData({ ...appState.currFormData });
   };
 
   return (
     <Dialog
-      open={state.isWordDialogOpened}
+      open={appState.isWordDialogOpened}
       onEntering={handleDialogEntering}
       onClose={handleDialogClose}
       aria-labelledby="customized-dialog-title"
@@ -124,7 +118,7 @@ export default function WordDialog() {
             <Avatar className={classes.avatar}>
               <Bookmarks />
             </Avatar>
-            {!state.currFormData ? (
+            {!appState.currFormData ? (
               <Typography component="h1" variant="h5">
                 New Word or Phrase
               </Typography>
@@ -204,7 +198,7 @@ export default function WordDialog() {
                   />
                 )}
               />
-              {!state.currFormData ? (
+              {!appState.currFormData ? (
                 <Button
                   type="submit"
                   fullWidth

@@ -17,7 +17,7 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { AppContext, NavContext } from "../context";
-import { useAppActions, useNavActions } from "../actions";
+import { useNavActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
 import { Link, useLocation } from "react-router-dom";
@@ -58,13 +58,14 @@ export default function SideMenu() {
   const location = useLocation();
   const { toUrlFormat } = useHelperFunctions();
 
-  const appState = React.useContext(AppContext).state;
-  const navState = React.useContext(NavContext).state;
-  const { updateCategories } = useAppActions();
-  const { closeSideManu } = useNavActions();
+  console.log("Side Menu");
+
+  const { state: appState } = React.useContext(AppContext);
+  const { state: navState } = React.useContext(NavContext);
+  const { closeSideManu, updateCategories } = useNavActions();
 
   useEffect(() => {
-    updateCategories();
+    updateCategories(appState.dummyData);
   }, [appState.dummyData]);
 
   const [open, setOpen] = React.useState(true);
@@ -101,7 +102,7 @@ export default function SideMenu() {
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {appState.categories.map((text, index) => (
+            {navState.categories.map((text, index) => (
               <Link
                 className={classes.routerLink}
                 key={index}
