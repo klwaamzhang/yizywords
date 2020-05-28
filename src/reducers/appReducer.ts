@@ -13,9 +13,9 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, dummyData: [...state.dummyData, action.payload] };
     case AppActionType.UPDATE_CATEGORIES:
       return { ...state, categories: populateCategories(state.dummyData) };
-    case AppActionType.SET_NEW_WORD_DIALOG:
+    case AppActionType.OPEN_NEW_WORD_DIALOG:
       return { ...state, isWordDialogOpened: true, currFormData: null };
-    case AppActionType.SET_UPDATE_WORD_DIALOG:
+    case AppActionType.OPEN_UPDATE_WORD_DIALOG:
       return {
         ...state,
         isWordDialogOpened: true,
@@ -26,13 +26,13 @@ export function appReducer(state: AppState, action: AppAction): AppState {
         item._id === action.payload._id ? action.payload : item
       );
       return { ...state, dummyData: newDataUpdate };
-    case AppActionType.SWICH_MAIN_SECTION_DATA:
+    case AppActionType.FILTER_MAIN_SECTION_LIST:
       return {
         ...state,
         mainSectionData: filterMainSectionData(action.payload, state.dummyData),
       };
-    case AppActionType.SET_CURRENT_TAB:
-      return { ...state, currTab: action.payload };
+    case AppActionType.UPDATE_MULTIPLE:
+      return { ...state, ...action.payload };
     default:
       throw new Error("error: AppContext reducer error!");
   }

@@ -7,5 +7,4 @@ export type AppState = {
   isWordDialogOpened: boolean;
   currFormData: Word | null;
   mainSectionData: Array<Word>;
-  currTab: string;
 };

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function MainSection() {
   const classes = useStyles();
   const { state } = React.useContext(AppContext);
-  const { switchMainSectionContent } = useAppActions();
+  const { filterMainSectionList } = useAppActions();
 
   const { toDisplayFormat } = useHelperFunctions();
 
@@ -30,16 +30,16 @@ export default function MainSection() {
 
   useEffect(() => {
     // if (categoryName !== "Recycle Bin") {
-    //   switchMainSectionContent(
+    //   filterMainSectionList(
     //     filterMainSectionData(categoryName, state.dummyData)
     //   );
     // } else {
-    //   switchMainSectionContent(
+    //   filterMainSectionList(
     //     state.dummyData.filter((item) => item.status === "deleted")
     //   );
     // }
-    switchMainSectionContent(categoryName);
-  }, [categoryName]);
+    filterMainSectionList(categoryName);
+  }, [state.dummyData, categoryName]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.root}>

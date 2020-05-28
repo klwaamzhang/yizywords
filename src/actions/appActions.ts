@@ -14,29 +14,23 @@ export function useAppActions() {
     return dispatch({ type: AppActionType.CLOSE_SIDE_MANU });
   }
 
+  function openNewWordDialog() {
+    return dispatch({ type: AppActionType.OPEN_NEW_WORD_DIALOG });
+  }
+
+  function openUpdateWordDialog(formData: Word) {
+    return dispatch({
+      type: AppActionType.OPEN_UPDATE_WORD_DIALOG,
+      payload: formData,
+    });
+  }
+
   function closeWordDialog() {
     return dispatch({ type: AppActionType.CLOSE_WORD_DIALOG });
   }
 
   function createNewWord(formData: Word) {
     return dispatch({ type: AppActionType.CREATE_NEW_WORD, payload: formData });
-  }
-
-  function updateCategories() {
-    return dispatch({
-      type: AppActionType.UPDATE_CATEGORIES,
-    });
-  }
-
-  function setNewWordDialog() {
-    return dispatch({ type: AppActionType.SET_NEW_WORD_DIALOG });
-  }
-
-  function setUpdateWordDialog(formData: Word) {
-    return dispatch({
-      type: AppActionType.SET_UPDATE_WORD_DIALOG,
-      payload: formData,
-    });
   }
 
   function updateWordItem(item: Word) {
@@ -46,26 +40,32 @@ export function useAppActions() {
     });
   }
 
-  function switchMainSectionContent(categoryName: string) {
+  function filterMainSectionList(categoryName: string) {
     return dispatch({
-      type: AppActionType.SWICH_MAIN_SECTION_DATA,
+      type: AppActionType.FILTER_MAIN_SECTION_LIST,
       payload: categoryName,
     });
   }
 
-  // function switchMainSectionContent(mainSectionData: Word[]) {
+  function updateCategories() {
+    return dispatch({
+      type: AppActionType.UPDATE_CATEGORIES,
+    });
+  }
+
+  // function filterMainSectionList(mainSectionData: Word[]) {
   //   return dispatch({
-  //     type: AppActionType.SWICH_MAIN_SECTION_DATA,
+  //     type: AppActionType.FILTER_MAIN_SECTION_LIST,
   //     payload: mainSectionData,
   //   });
   // }
 
-  function setCurrentTab(currTab: string) {
-    return dispatch({
-      type: AppActionType.SET_CURRENT_TAB,
-      payload: currTab,
-    });
-  }
+  // function setCurrentTab(currTab: string) {
+  //   return dispatch({
+  //     type: AppActionType.SET_CURRENT_TAB,
+  //     payload: currTab,
+  //   });
+  // }
 
   return {
     openSideManu,
@@ -73,10 +73,10 @@ export function useAppActions() {
     closeWordDialog,
     createNewWord,
     updateCategories,
-    setNewWordDialog,
-    setUpdateWordDialog,
+    openNewWordDialog,
+    openUpdateWordDialog,
     updateWordItem,
-    switchMainSectionContent,
-    setCurrentTab,
+    filterMainSectionList,
+    // setCurrentTab,
   };
 }

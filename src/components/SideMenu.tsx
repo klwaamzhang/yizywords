@@ -59,12 +59,7 @@ export default function SideMenu() {
   const { toUrlFormat } = useHelperFunctions();
 
   const { state } = React.useContext(AppContext);
-  const {
-    closeSideManu,
-    updateCategories,
-    switchMainSectionContent,
-    setCurrentTab,
-  } = useAppActions();
+  const { closeSideManu, updateCategories } = useAppActions();
 
   useEffect(() => {
     updateCategories();
@@ -77,13 +72,13 @@ export default function SideMenu() {
 
   // const switchCategories = (currTab: string) => {
   //   setCurrentTab(currTab);
-  //   switchMainSectionContent(filterMainSectionData(currTab, state.dummyData));
+  //   filterMainSectionList(filterMainSectionData(currTab, state.dummyData));
   //   closeSideManu();
   // };
 
   // const showRecycleBin = () => {
   //   setCurrentTab("Recycle Bin");
-  //   switchMainSectionContent(
+  //   filterMainSectionList(
   //     state.dummyData.filter((item) => item.status === "deleted")
   //   );
   // };

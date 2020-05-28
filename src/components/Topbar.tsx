@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Topbar() {
   const classes = useStyles();
-  const { openSideManu, setNewWordDialog } = useAppActions();
+  const { openSideManu, openNewWordDialog } = useAppActions();
 
   return (
     <AppBar position="fixed">
@@ -52,7 +52,7 @@ export default function Topbar() {
             <Menu />
           </IconButton>
           <LogoText />
-          <Button color="inherit" onClick={setNewWordDialog}>
+          <Button color="inherit" onClick={openNewWordDialog}>
             New
           </Button>
         </Container>

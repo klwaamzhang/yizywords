@@ -33,7 +33,7 @@ const initialState: AppState = {
   isWordDialogOpened: false,
   currFormData: null,
   mainSectionData: filterMainSectionData("Inbox", dummyData),
-  currTab: "Inbox",
+  // currTab: "Inbox",
   // isLoggedin: false,
 };
 

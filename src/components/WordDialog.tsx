@@ -65,7 +65,7 @@ export default function WordDialog() {
     createNewWord,
     updateWordItem,
     updateCategories,
-    switchMainSectionContent,
+    filterMainSectionList,
   } = useAppActions();
 
   const categoriesForCmp: CateOptionType[] = state.categories.map((item) => {

@@ -15,7 +15,7 @@ export default function WordListItem(props: any) {
   const {
     updateWordItem,
     updateCategories,
-    setUpdateWordDialog,
+    openUpdateWordDialog,
   } = useAppActions();
   const { state } = React.useContext(AppContext);
   const index = props.index;
@@ -38,8 +38,8 @@ export default function WordListItem(props: any) {
     handleClose();
   };
 
-  const openUpdateWordDialog = () => {
-    setUpdateWordDialog(item);
+  const updateWord = () => {
+    openUpdateWordDialog(item);
     handleClose();
   };
 
@@ -64,7 +64,7 @@ export default function WordListItem(props: any) {
           {item.status !== "deleted" ? (
             // consider to use an array???
             <span>
-              <MenuItem onClick={openUpdateWordDialog}>Update</MenuItem>
+              <MenuItem onClick={updateWord}>Update</MenuItem>
               <MenuItem onClick={deleteWord}>Delete</MenuItem>
             </span>
           ) : (
