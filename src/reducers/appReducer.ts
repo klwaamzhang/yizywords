@@ -1,20 +1,10 @@
-import { populateCategories, filterMainSectionData } from "../utilities/helper";
+import { filterMainSectionData } from "../utilities/helper";
 import { AppState, AppAction, AppActionType } from "../@types/app";
 
 export function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
-    case AppActionType.CLOSE_WORD_DIALOG:
-      return { ...state, isWordDialogOpened: false };
     case AppActionType.CREATE_NEW_WORD:
       return { ...state, dummyData: [...state.dummyData, action.payload] };
-    case AppActionType.OPEN_NEW_WORD_DIALOG:
-      return { ...state, isWordDialogOpened: true, currFormData: null };
-    case AppActionType.OPEN_UPDATE_WORD_DIALOG:
-      return {
-        ...state,
-        isWordDialogOpened: true,
-        currFormData: action.payload,
-      };
     case AppActionType.UPDATE_WORD_ITEM:
       const newDataUpdate = state.dummyData.map((item) =>
         item._id === action.payload._id ? action.payload : item
