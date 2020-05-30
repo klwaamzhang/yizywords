@@ -42,6 +42,8 @@ export default function WordListItem(props: any) {
     updateWordItem({ ...item, status: "active" });
   };
 
+  console.log("Component: Word List Item");
+
   return (
     <ListItem key={index} role={undefined} button>
       <ListItemText id={labelId} primary={item.text} secondary={item.notes} />

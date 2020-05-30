@@ -35,6 +35,8 @@ export default function Topbar() {
   const { openNewWordDialog } = useDialogActions();
   const { openSideManu } = useNavActions();
 
+  console.log("Component: Topbar");
+
   return (
     <AppBar position="fixed">
       <Toolbar>

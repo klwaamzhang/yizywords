@@ -4,14 +4,16 @@ import { NavActionType } from "../@types/nav";
 import { Word } from "../@types";
 
 export function useNavActions() {
-  const { dispatch } = React.useContext(NavContext);
+  const { state, dispatch } = React.useContext(NavContext);
 
   function openSideManu() {
     return dispatch({ type: NavActionType.OPEN_SIDE_MANU });
   }
 
   function closeSideManu() {
-    return dispatch({ type: NavActionType.CLOSE_SIDE_MANU });
+    if (state.isSideMenuOpen) {
+      return dispatch({ type: NavActionType.CLOSE_SIDE_MANU });
+    }
   }
 
   function updateCategories(words: Word[]) {

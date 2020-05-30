@@ -48,6 +48,8 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: any) => {};
 
+  console.log("Login Page Component");
+
   return (
     <div className={classes.root}>
       <Paper className={classes.paper} elevation={3}>

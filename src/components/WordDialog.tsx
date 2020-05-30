@@ -60,12 +60,13 @@ export default function WordDialog() {
   const classes = useStyles();
 
   const { state: appState } = React.useContext(AppContext);
-  const { state: navState } = React.useContext(NavContext);
+  // const { state: navState } = React.useContext(NavContext);
+  const { categories } = React.useContext(NavContext).state;
   const { state: dialogState } = React.useContext(DialogContext);
   const { createNewWord, updateWordItem } = useAppActions();
   const { closeWordDialog } = useDialogActions();
 
-  const categoriesForCmp: CateOptionType[] = navState.categories.map((item) => {
+  const categoriesForCmp: CateOptionType[] = categories.map((item) => {
     return { title: item };
   });
 
@@ -105,6 +106,8 @@ export default function WordDialog() {
   const handleDialogEntering = () => {
     if (dialogState.currFormData) setFormData({ ...dialogState.currFormData });
   };
+
+  console.log("Component: Word Dialog");
 
   return (
     <Dialog

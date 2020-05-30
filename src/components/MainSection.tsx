@@ -4,7 +4,7 @@ import { AppContext } from "../context";
 import WordListItem from "./WordListItem";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import useHelperFunctions from "../utilities/helper";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -21,16 +21,16 @@ export default function MainSection() {
   const classes = useStyles();
   const { state } = React.useContext(AppContext);
   const { filterMainSectionList } = useAppActions();
-
   const { toDisplayFormat } = useHelperFunctions();
 
-  const { filterName } = useParams();
-  const categoryName = toDisplayFormat(filterName);
-  console.log("Main Section");
+  const location = useLocation();
+
+  console.log("Component: Main Section");
 
   useEffect(() => {
-    filterMainSectionList(categoryName);
-  }, [state.dummyData, categoryName]);
+    console.log("useEffect: Main Section");
+    filterMainSectionList(toDisplayFormat(location.pathname.replace("/", "")));
+  }, [location.pathname]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.root}>

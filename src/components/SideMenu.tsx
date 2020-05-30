@@ -58,15 +58,15 @@ export default function SideMenu() {
   const location = useLocation();
   const { toUrlFormat } = useHelperFunctions();
 
-  console.log("Side Menu");
-
   const { state: appState } = React.useContext(AppContext);
   const { state: navState } = React.useContext(NavContext);
   const { closeSideManu, updateCategories } = useNavActions();
 
+  console.log("Component: Side Menu");
   useEffect(() => {
+    console.log("useEffect: Side Menu");
     updateCategories(appState.dummyData);
-  }, [appState.dummyData]);
+  }, [appState.dummyData.length]);
 
   const [open, setOpen] = React.useState(true);
   const handleClick = () => {
