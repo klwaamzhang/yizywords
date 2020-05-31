@@ -16,10 +16,12 @@ import CategoryIcon from "@material-ui/icons/Category";
 import SettingsIcon from "@material-ui/icons/Settings";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { AppContext, filterMainSectionData } from "../context";
-import { useAppActions } from "../actions";
+import { AppContext, NavContext } from "../context";
+import { useNavActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
+import { Link, useLocation } from "react-router-dom";
+import useHelperFunctions from "../utilities/helper";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,6 +44,10 @@ const useStyles = makeStyles((theme: Theme) =>
     firstList: {
       flexGrow: 1,
     },
+    routerLink: {
+      color: "black",
+      textDecoration: "none",
+    },
   })
 );
 
@@ -49,34 +55,22 @@ export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { state } = React.useContext(AppContext);
-  const {
-    closeSideManu,
-    updateCategories,
-    switchMainSectionContent,
-    setCurrentTab,
-  } = useAppActions();
+  const location = useLocation();
+  const { toUrlFormat } = useHelperFunctions();
 
+  const { state: appState } = React.useContext(AppContext);
+  const { state: navState } = React.useContext(NavContext);
+  const { closeSideManu, updateCategories } = useNavActions();
+
+  console.log("Component: Side Menu");
   useEffect(() => {
-    updateCategories();
-  }, [state.dummyData]);
+    console.log("useEffect: Side Menu");
+    updateCategories(appState.dummyData);
+  }, [appState.dummyData.length]);
 
   const [open, setOpen] = React.useState(true);
   const handleClick = () => {
     setOpen(!open);
-  };
-
-  const switchCategories = (currTab: string) => {
-    setCurrentTab(currTab);
-    switchMainSectionContent(filterMainSectionData(currTab, state.dummyData));
-    closeSideManu();
-  };
-
-  const showRecycleBin = () => {
-    setCurrentTab("Recycle Bin");
-    switchMainSectionContent(
-      state.dummyData.filter((item) => item.status === "deleted")
-    );
   };
 
   const drawer = (
@@ -86,16 +80,18 @@ export default function SideMenu() {
       </div>
       <Divider />
       <List className={classes.firstList}>
-        <ListItem
-          selected={state.currTab === "Inbox"}
-          button
-          onClick={() => switchCategories("Inbox")}
-        >
-          <ListItemIcon>
-            <MoveToInbox />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
-        </ListItem>
+        <Link className={classes.routerLink} to="/Inbox">
+          <ListItem
+            selected={location.pathname === "/Inbox"}
+            button
+            onClick={closeSideManu}
+          >
+            <ListItemIcon>
+              <MoveToInbox />
+            </ListItemIcon>
+            <ListItemText primary="Inbox" />
+          </ListItem>
+        </Link>
 
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
@@ -106,32 +102,39 @@ export default function SideMenu() {
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {state.categories.map((text, index) => (
-              <ListItem
-                selected={state.currTab === text}
-                button
-                key={text}
-                className={classes.nestedListItem}
-                onClick={() => switchCategories(text)}
+            {navState.categories.map((text, index) => (
+              <Link
+                className={classes.routerLink}
+                key={index}
+                to={`/${toUrlFormat(text)}`}
               >
-                <ListItemIcon>
-                  <BookmarkBorderIcon />
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
+                <ListItem
+                  selected={location.pathname === `/${toUrlFormat(text)}`}
+                  button
+                  className={classes.nestedListItem}
+                  onClick={closeSideManu}
+                >
+                  <ListItemIcon>
+                    <BookmarkBorderIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItem>
+              </Link>
             ))}
           </List>
         </Collapse>
-        <ListItem
-          selected={state.currTab === "Recycle Bin"}
-          onClick={showRecycleBin}
-          button
-        >
-          <ListItemIcon>
-            <DeleteIcon />
-          </ListItemIcon>
-          <ListItemText primary="Recycle Bin" />
-        </ListItem>
+        <Link className={classes.routerLink} to="/Recycle-Bin">
+          <ListItem
+            selected={location.pathname === "/Recycle-Bin"}
+            onClick={closeSideManu}
+            button
+          >
+            <ListItemIcon>
+              <DeleteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Recycle Bin" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>
@@ -145,12 +148,12 @@ export default function SideMenu() {
     </React.Fragment>
   );
   return (
-    <>
+    <React.Fragment>
       <Hidden smUp implementation="js">
         <Drawer
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
-          open={state.isSideMenuOpen}
+          open={navState.isSideMenuOpen}
           onClose={closeSideManu}
           className={classes.root}
           classes={{
@@ -168,6 +171,6 @@ export default function SideMenu() {
           {drawer}
         </Grid>
       </Hidden>
-    </>
+    </React.Fragment>
   );
 }

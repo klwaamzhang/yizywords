@@ -7,7 +7,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-import { useAppActions } from "../actions";
+import { useAppActions, useNavActions, useDialogActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
 
@@ -32,7 +32,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Topbar() {
   const classes = useStyles();
-  const { openSideManu, setNewWordDialog } = useAppActions();
+  const { openNewWordDialog } = useDialogActions();
+  const { openSideManu } = useNavActions();
+
+  console.log("Component: Topbar");
 
   return (
     <AppBar position="fixed">
@@ -52,7 +55,7 @@ export default function Topbar() {
             <Menu />
           </IconButton>
           <LogoText />
-          <Button color="inherit" onClick={setNewWordDialog}>
+          <Button color="inherit" onClick={openNewWordDialog}>
             New
           </Button>
         </Container>

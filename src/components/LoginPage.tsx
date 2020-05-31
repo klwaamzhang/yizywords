@@ -1,31 +1,42 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import { AppContext, DummyDataType } from "../context";
-import { useAppActions } from "../actions";
 import {
   Avatar,
   Typography,
   Button,
   makeStyles,
-  Container,
+  Paper,
 } from "@material-ui/core";
 import { Bookmarks } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    height: "100vh",
+    width: "100vw",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+  },
   paper: {
-    marginTop: theme.spacing(30),
+    // marginTop: theme.spacing(30),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    padding: 30,
+    margin: 10,
   },
   avatar: {
-    marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(1),
+    // marginTop: theme.spacing(5),
+    // marginBottom: theme.spacing(1),
+    margin: 15,
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    maxWidth: 320,
+    // marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 3),
@@ -37,9 +48,11 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: any) => {};
 
+  console.log("Login Page Component");
+
   return (
-    <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
+    <div className={classes.root}>
+      <Paper className={classes.paper} elevation={3}>
         <Avatar className={classes.avatar}>
           <Bookmarks />
         </Avatar>
@@ -79,7 +92,7 @@ export default function LoginPage() {
             Login
           </Button>
         </form>
-      </div>
-    </Container>
+      </Paper>
+    </div>
   );
 }

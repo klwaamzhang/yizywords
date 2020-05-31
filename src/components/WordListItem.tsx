@@ -8,16 +8,12 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
-import { useAppActions } from "../actions";
-import { filterMainSectionData, AppContext } from "../context";
+import { useAppActions, useDialogActions } from "../actions";
 
 export default function WordListItem(props: any) {
-  const {
-    updateWordItem,
-    updateCategories,
-    setUpdateWordDialog,
-  } = useAppActions();
-  const { state } = React.useContext(AppContext);
+  const { updateWordItem } = useAppActions();
+  const { openUpdateWordDialog } = useDialogActions();
+
   const index = props.index;
   const item = props.item;
   const labelId = `checkbox-list-label-${index}`;
@@ -34,18 +30,19 @@ export default function WordListItem(props: any) {
 
   const deleteWord = () => {
     updateWordItem({ ...item, status: "deleted" });
-    updateCategories();
     handleClose();
   };
 
-  const openUpdateWordDialog = () => {
-    setUpdateWordDialog(item);
+  const updateWord = () => {
+    openUpdateWordDialog(item);
     handleClose();
   };
 
   const restoreWord = () => {
     updateWordItem({ ...item, status: "active" });
   };
+
+  console.log("Component: Word List Item");
 
   return (
     <ListItem key={index} role={undefined} button>
@@ -62,10 +59,11 @@ export default function WordListItem(props: any) {
           onClose={handleClose}
         >
           {item.status !== "deleted" ? (
-            <>
-              <MenuItem onClick={openUpdateWordDialog}>Update</MenuItem>
+            // consider to use an array???
+            <span>
+              <MenuItem onClick={updateWord}>Update</MenuItem>
               <MenuItem onClick={deleteWord}>Delete</MenuItem>
-            </>
+            </span>
           ) : (
             <MenuItem onClick={restoreWord}>Restore</MenuItem>
           )}

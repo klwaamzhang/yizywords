@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { Grid, List } from "@material-ui/core";
-import { AppContext, filterMainSectionData } from "../context";
+import { AppContext } from "../context";
 import WordListItem from "./WordListItem";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { useLocation } from "react-router-dom";
+import useHelperFunctions from "../utilities/helper";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,19 +20,17 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function MainSection() {
   const classes = useStyles();
   const { state } = React.useContext(AppContext);
-  const { switchMainSectionContent } = useAppActions();
+  const { filterMainSectionList } = useAppActions();
+  const { toDisplayFormat } = useHelperFunctions();
+
+  const location = useLocation();
+
+  console.log("Component: Main Section");
 
   useEffect(() => {
-    if (state.currTab !== "Recycle Bin") {
-      switchMainSectionContent(
-        filterMainSectionData(state.currTab, state.dummyData)
-      );
-    } else {
-      switchMainSectionContent(
-        state.dummyData.filter((item) => item.status === "deleted")
-      );
-    }
-  }, [state.dummyData]);
+    console.log("useEffect: Main Section");
+    filterMainSectionList(toDisplayFormat(location.pathname.replace("/", "")));
+  }, [location.pathname]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.root}>
