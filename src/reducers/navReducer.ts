@@ -16,6 +16,7 @@ export function navReducer(state = initialState, action: NavAction): NavState {
     case NavActionType.UPDATE_CATEGORIES:
       return { ...state, categories: populateCategories(action.payload) };
     default:
+      console.log("appReducer: " + JSON.stringify(action));
       throw new Error("error: nav reducer error!");
   }
 }

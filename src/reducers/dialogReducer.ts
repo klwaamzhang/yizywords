@@ -21,6 +21,7 @@ export function dialogReducer(
         currFormData: action.payload,
       };
     default:
+      console.log("appReducer: " + JSON.stringify(action));
       throw new Error("error: dialog reducer error!");
   }
 }

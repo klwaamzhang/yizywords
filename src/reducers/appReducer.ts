@@ -24,6 +24,7 @@ export function appReducer(state = initialState, action: AppAction): AppState {
     case AppActionType.UPDATE_MULTIPLE:
       return { ...state, ...action.payload };
     default:
+      console.log("appReducer: " + JSON.stringify(action));
       throw new Error("error: app reducer error!");
   }
 }
