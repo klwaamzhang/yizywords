@@ -1,4 +1,4 @@
-import { DialogState, DialogAction, DialogActionType } from "../@types/dialog";
+import { DialogState, DialogAction, DialogActions } from "../@types/dialog";
 
 const initialState: DialogState = {
   isWordDialogOpened: false,
@@ -10,11 +10,11 @@ export function dialogReducer(
   action: DialogAction
 ): DialogState {
   switch (action.type) {
-    case DialogActionType.CLOSE_WORD_DIALOG:
+    case DialogActions.CLOSE_WORD_DIALOG:
       return { ...state, isWordDialogOpened: false };
-    case DialogActionType.OPEN_NEW_WORD_DIALOG:
+    case DialogActions.OPEN_NEW_WORD_DIALOG:
       return { ...state, isWordDialogOpened: true, currFormData: null };
-    case DialogActionType.OPEN_UPDATE_WORD_DIALOG:
+    case DialogActions.OPEN_UPDATE_WORD_DIALOG:
       return {
         ...state,
         isWordDialogOpened: true,

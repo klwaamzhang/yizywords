@@ -10,7 +10,7 @@ type actionType = {
   UPDATE_CATEGORIES: UPDATE_CATEGORIES;
 };
 
-export const NavActionType: actionType = {
+export const NavActions: actionType = {
   OPEN_SIDE_MENU: "OPEN_SIDE_MENU",
   CLOSE_SIDE_MENU: "CLOSE_SIDE_MENU",
   UPDATE_CATEGORIES: "UPDATE_CATEGORIES",

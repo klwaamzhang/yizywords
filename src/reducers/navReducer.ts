@@ -1,4 +1,4 @@
-import { NavState, NavAction, NavActionType } from "../@types/nav";
+import { NavState, NavAction, NavActions } from "../@types/nav";
 import { populateCategories } from "../utilities/helper";
 import { dummyData } from "../sampleData/data";
 
@@ -9,11 +9,11 @@ const initialState: NavState = {
 
 export function navReducer(state = initialState, action: NavAction): NavState {
   switch (action.type) {
-    case NavActionType.OPEN_SIDE_MENU:
+    case NavActions.OPEN_SIDE_MENU:
       return { ...state, isSideMenuOpen: true };
-    case NavActionType.CLOSE_SIDE_MENU:
+    case NavActions.CLOSE_SIDE_MENU:
       return { ...state, isSideMenuOpen: false };
-    case NavActionType.UPDATE_CATEGORIES:
+    case NavActions.UPDATE_CATEGORIES:
       return { ...state, categories: populateCategories(action.payload) };
     default:
       return state;

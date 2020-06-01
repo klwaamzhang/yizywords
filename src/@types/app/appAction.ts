@@ -13,7 +13,7 @@ type actionType = {
   UPDATE_MULTIPLE: UPDATE_MULTIPLE;
 };
 
-export const AppActionType: actionType = {
+export const AppActions: actionType = {
   CREATE_NEW_WORD: "CREATE_NEW_WORD",
   UPDATE_WORD_ITEM: "UPDATE_WORD_ITEM",
   FILTER_MAIN_SECTION_LIST: "FILTER_MAIN_SECTION_LIST",

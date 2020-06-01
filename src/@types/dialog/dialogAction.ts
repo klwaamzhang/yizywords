@@ -10,7 +10,7 @@ type actionType = {
   OPEN_UPDATE_WORD_DIALOG: OPEN_UPDATE_WORD_DIALOG;
 };
 
-export const DialogActionType: actionType = {
+export const DialogActions: actionType = {
   CLOSE_WORD_DIALOG: "CLOSE_WORD_DIALOG",
   OPEN_NEW_WORD_DIALOG: "OPEN_NEW_WORD_DIALOG",
   OPEN_UPDATE_WORD_DIALOG: "OPEN_UPDATE_WORD_DIALOG",
