@@ -1,10 +1,10 @@
 import React from "react";
-import { DialogContext } from "../context";
 import { DialogActionType } from "../@types/dialog";
 import { Word } from "../@types";
+import { useDispatch } from "react-redux";
 
 export function useDialogActions() {
-  const { dispatch } = React.useContext(DialogContext);
+  const dispatch = useDispatch();
 
   function openNewWordDialog() {
     return dispatch({ type: DialogActionType.OPEN_NEW_WORD_DIALOG });

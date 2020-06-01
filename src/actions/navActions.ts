@@ -1,17 +1,21 @@
 import React from "react";
-import { NavContext } from "../context";
 import { NavActionType } from "../@types/nav";
 import { Word } from "../@types";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../App";
 
 export function useNavActions() {
-  const { state, dispatch } = React.useContext(NavContext);
+  const dispatch = useDispatch();
+  const isSideMenuOpen = useSelector(
+    (state: RootState) => state.nav.isSideMenuOpen
+  );
 
   function openSideMenu() {
     return dispatch({ type: NavActionType.OPEN_SIDE_MENU });
   }
 
   function closeSideMenu() {
-    if (state.isSideMenuOpen) {
+    if (isSideMenuOpen) {
       return dispatch({ type: NavActionType.CLOSE_SIDE_MENU });
     }
   }
