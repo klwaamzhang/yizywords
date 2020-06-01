@@ -1,4 +1,3 @@
-import React from "react";
 import { DialogActions } from "../@types/dialog";
 import { Word } from "../@types";
 import { useDispatch } from "react-redux";

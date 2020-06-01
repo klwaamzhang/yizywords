@@ -1,4 +1,3 @@
-import React from "react";
 import { AppActions } from "../@types/app";
 import { useDispatch } from "react-redux";
 import { Word } from "../@types";

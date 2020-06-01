@@ -1,4 +1,3 @@
-import React from "react";
 import { NavActions } from "../@types/nav";
 import { Word } from "../@types";
 import { useDispatch, useSelector } from "react-redux";
