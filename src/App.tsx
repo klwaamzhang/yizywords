@@ -1,4 +1,6 @@
 import React from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 import { Container, Grid } from "@material-ui/core";
 import Topbar from "./components/Topbar";
 import MainSection from "./components/MainSection";
@@ -35,40 +37,48 @@ const useStyles = makeStyles(() =>
   })
 );
 
+// combine root reducer
+import { combineReducers } from "redux";
+import { appReducer, navReducer, dialogReducer } from "./reducers";
+
+export const rootReducer = combineReducers({
+  app: appReducer,
+  nav: navReducer,
+  dialog: dialogReducer,
+});
+
+const store = createStore(rootReducer);
+
 export default function App() {
   const classes = useStyles();
 
   return (
-    <Router>
-      <AppContextProvider>
-        <NavContextProvider>
-          <DialogContextProvider>
-            <div className={classes.root}>
-              <Topbar />
-              <Switch>
-                <Route path="/login">
-                  <LoginPage />
-                </Route>
-                <Route path="/:filterName">
-                  <Container className={classes.container} maxWidth="md">
-                    <Grid className={classes.grid} container spacing={0}>
-                      <SideMenu />
-                      <MainSection />
-                    </Grid>
-                  </Container>
-                </Route>
-                <Route exact path="/">
-                  <Redirect to="/Inbox" />
-                </Route>
-                {/* <Route path="*">
+    <Provider store={store}>
+      <Router>
+        <div className={classes.root}>
+          <Topbar />
+          <Switch>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <Route path="/:filterName">
+              <Container className={classes.container} maxWidth="md">
+                <Grid className={classes.grid} container spacing={0}>
+                  <SideMenu />
+                  <MainSection />
+                </Grid>
+              </Container>
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/Inbox" />
+            </Route>
+            {/* <Route path="*">
               <Redirect to="/" />
             </Route> */}
-              </Switch>
-            </div>
-            <WordDialog />
-          </DialogContextProvider>
-        </NavContextProvider>
-      </AppContextProvider>
-    </Router>
+          </Switch>
+        </div>
+        <WordDialog />
+      </Router>
+    </Provider>
   );
 }
