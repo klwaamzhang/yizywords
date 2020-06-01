@@ -2,7 +2,7 @@ import React from "react";
 import { NavActionType } from "../@types/nav";
 import { Word } from "../@types";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../App";
+import { RootState } from "../reducers";
 
 export function useNavActions() {
   const dispatch = useDispatch();

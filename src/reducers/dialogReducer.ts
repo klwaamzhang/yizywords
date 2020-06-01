@@ -21,6 +21,6 @@ export function dialogReducer(
         currFormData: action.payload,
       };
     default:
-      throw new Error("error: DialogContext reducer error!");
+      throw new Error("error: dialog reducer error!");
   }
 }

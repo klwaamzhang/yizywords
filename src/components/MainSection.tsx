@@ -5,7 +5,7 @@ import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { useLocation } from "react-router-dom";
 import useHelperFunctions from "../utilities/helper";
-import { RootState } from "../App";
+import { RootState } from "../reducers";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>

@@ -22,7 +22,7 @@ import LogoText from "./logo/LogoText";
 import { Link, useLocation } from "react-router-dom";
 import useHelperFunctions from "../utilities/helper";
 import { useSelector } from "react-redux";
-import { RootState } from "../App";
+import { RootState } from "../reducers";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

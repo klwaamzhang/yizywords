@@ -16,7 +16,7 @@ import { Bookmarks } from "@material-ui/icons";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Word } from "../@types";
 import { useSelector } from "react-redux";
-import { RootState } from "../App";
+import { RootState } from "../reducers";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
