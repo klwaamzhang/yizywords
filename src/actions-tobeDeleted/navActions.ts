@@ -6,13 +6,13 @@ import { Word } from "../@types";
 export function useNavActions() {
   const { state, dispatch } = React.useContext(NavContext);
 
-  function openSideManu() {
-    return dispatch({ type: NavActionType.OPEN_SIDE_MANU });
+  function openSideMenu() {
+    return dispatch({ type: NavActionType.OPEN_SIDE_MENU });
   }
 
-  function closeSideManu() {
+  function closeSideMenu() {
     if (state.isSideMenuOpen) {
-      return dispatch({ type: NavActionType.CLOSE_SIDE_MANU });
+      return dispatch({ type: NavActionType.CLOSE_SIDE_MENU });
     }
   }
 
@@ -24,8 +24,8 @@ export function useNavActions() {
   }
 
   return {
-    openSideManu,
-    closeSideManu,
+    openSideMenu,
+    closeSideMenu,
     updateCategories,
   };
 }

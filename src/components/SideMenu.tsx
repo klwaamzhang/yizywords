@@ -60,7 +60,7 @@ export default function SideMenu() {
 
   const { state: appState } = React.useContext(AppContext);
   const { state: navState } = React.useContext(NavContext);
-  const { closeSideManu, updateCategories } = useNavActions();
+  const { closeSideMenu, updateCategories } = useNavActions();
 
   console.log("Component: Side Menu");
   useEffect(() => {
@@ -84,7 +84,7 @@ export default function SideMenu() {
           <ListItem
             selected={location.pathname === "/Inbox"}
             button
-            onClick={closeSideManu}
+            onClick={closeSideMenu}
           >
             <ListItemIcon>
               <MoveToInbox />
@@ -112,7 +112,7 @@ export default function SideMenu() {
                   selected={location.pathname === `/${toUrlFormat(text)}`}
                   button
                   className={classes.nestedListItem}
-                  onClick={closeSideManu}
+                  onClick={closeSideMenu}
                 >
                   <ListItemIcon>
                     <BookmarkBorderIcon />
@@ -126,7 +126,7 @@ export default function SideMenu() {
         <Link className={classes.routerLink} to="/Recycle-Bin">
           <ListItem
             selected={location.pathname === "/Recycle-Bin"}
-            onClick={closeSideManu}
+            onClick={closeSideMenu}
             button
           >
             <ListItemIcon>
@@ -154,7 +154,7 @@ export default function SideMenu() {
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
           open={navState.isSideMenuOpen}
-          onClose={closeSideManu}
+          onClose={closeSideMenu}
           className={classes.root}
           classes={{
             paper: classes.drawerPaper,
