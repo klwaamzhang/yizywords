@@ -5,11 +5,6 @@ import { Container, Grid } from "@material-ui/core";
 import Topbar from "./components/Topbar";
 import MainSection from "./components/MainSection";
 import SideMenu from "./components/SideMenu";
-import {
-  AppContextProvider,
-  NavContextProvider,
-  DialogContextProvider,
-} from "./context";
 import WordDialog from "./components/WordDialog";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import LoginPage from "./components/LoginPage";
@@ -40,12 +35,17 @@ const useStyles = makeStyles(() =>
 // combine root reducer
 import { combineReducers } from "redux";
 import { appReducer, navReducer, dialogReducer } from "./reducers";
+import { AppState } from "./@types/app";
+import { NavState } from "./@types/nav";
+import { DialogState } from "./@types/dialog";
 
 export const rootReducer = combineReducers({
   app: appReducer,
   nav: navReducer,
   dialog: dialogReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 const store = createStore(rootReducer);
 

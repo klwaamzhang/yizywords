@@ -1,7 +1,13 @@
 import { filterMainSectionData } from "../utilities/helper";
 import { AppState, AppAction, AppActionType } from "../@types/app";
+import { dummyData } from "../sampleData/data";
 
-export function appReducer(state: AppState, action: AppAction): AppState {
+const initialState: AppState = {
+  dummyData: dummyData,
+  mainSectionData: filterMainSectionData("Inbox", dummyData),
+};
+
+export function appReducer(state = initialState, action: AppAction): AppState {
   switch (action.type) {
     case AppActionType.CREATE_NEW_WORD:
       return { ...state, dummyData: [...state.dummyData, action.payload] };
@@ -18,6 +24,6 @@ export function appReducer(state: AppState, action: AppAction): AppState {
     case AppActionType.UPDATE_MULTIPLE:
       return { ...state, ...action.payload };
     default:
-      throw new Error("error: AppContext reducer error!");
+      throw new Error("error: app reducer error!");
   }
 }

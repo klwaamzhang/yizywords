@@ -1,7 +1,12 @@
 import { DialogState, DialogAction, DialogActionType } from "../@types/dialog";
 
+const initialState: DialogState = {
+  isWordDialogOpened: false,
+  currFormData: null,
+};
+
 export function dialogReducer(
-  state: DialogState,
+  state = initialState,
   action: DialogAction
 ): DialogState {
   switch (action.type) {
