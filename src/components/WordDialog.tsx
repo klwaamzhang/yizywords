@@ -2,7 +2,6 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import { AppContext, NavContext, DialogContext } from "../context";
 import { useAppActions, useDialogActions } from "../actions";
 import {
   Container,
@@ -16,6 +15,8 @@ import {
 import { Bookmarks } from "@material-ui/icons";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { Word } from "../@types";
+import { useSelector } from "react-redux";
+import { RootState } from "../App";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -59,12 +60,13 @@ interface CateOptionType {
 export default function WordDialog() {
   const classes = useStyles();
 
-  const { state: appState } = React.useContext(AppContext);
-  // const { state: navState } = React.useContext(NavContext);
-  const { categories } = React.useContext(NavContext).state;
-  const { state: dialogState } = React.useContext(DialogContext);
   const { createNewWord, updateWordItem } = useAppActions();
   const { closeWordDialog } = useDialogActions();
+
+  const categories = useSelector((state: RootState) => state.nav.categories);
+  const { isWordDialogOpened, currFormData } = useSelector(
+    (state: RootState) => state.dialog
+  );
 
   const categoriesForCmp: CateOptionType[] = categories.map((item) => {
     return { title: item };
@@ -84,7 +86,7 @@ export default function WordDialog() {
       alert("Please select at least one category!");
       return;
     }
-    if (!dialogState.currFormData) {
+    if (!currFormData) {
       createNewWord(formData);
     } else {
       updateWordItem(formData);
@@ -104,14 +106,14 @@ export default function WordDialog() {
   };
 
   const handleDialogEntering = () => {
-    if (dialogState.currFormData) setFormData({ ...dialogState.currFormData });
+    if (currFormData) setFormData({ ...currFormData });
   };
 
   console.log("Component: Word Dialog");
 
   return (
     <Dialog
-      open={dialogState.isWordDialogOpened}
+      open={isWordDialogOpened}
       onEntering={handleDialogEntering}
       onClose={handleDialogClose}
       aria-labelledby="customized-dialog-title"
@@ -123,7 +125,7 @@ export default function WordDialog() {
             <Avatar className={classes.avatar}>
               <Bookmarks />
             </Avatar>
-            {!dialogState.currFormData ? (
+            {!currFormData ? (
               <Typography component="h1" variant="h5">
                 New Word or Phrase
               </Typography>
@@ -203,7 +205,7 @@ export default function WordDialog() {
                   />
                 )}
               />
-              {!dialogState.currFormData ? (
+              {!currFormData ? (
                 <Button
                   type="submit"
                   fullWidth

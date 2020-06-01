@@ -16,12 +16,13 @@ import CategoryIcon from "@material-ui/icons/Category";
 import SettingsIcon from "@material-ui/icons/Settings";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { AppContext, NavContext } from "../context";
 import { useNavActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
 import { Link, useLocation } from "react-router-dom";
 import useHelperFunctions from "../utilities/helper";
+import { useSelector } from "react-redux";
+import { RootState } from "../App";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -58,15 +59,18 @@ export default function SideMenu() {
   const location = useLocation();
   const { toUrlFormat } = useHelperFunctions();
 
-  const { state: appState } = React.useContext(AppContext);
-  const { state: navState } = React.useContext(NavContext);
   const { closeSideMenu, updateCategories } = useNavActions();
+
+  const dummyData = useSelector((state: RootState) => state.app.dummyData);
+  const { isSideMenuOpen, categories } = useSelector(
+    (state: RootState) => state.nav
+  );
 
   console.log("Component: Side Menu");
   useEffect(() => {
     console.log("useEffect: Side Menu");
-    updateCategories(appState.dummyData);
-  }, [appState.dummyData.length]);
+    updateCategories(dummyData);
+  }, [dummyData.length]);
 
   const [open, setOpen] = React.useState(true);
   const handleClick = () => {
@@ -102,7 +106,7 @@ export default function SideMenu() {
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            {navState.categories.map((text, index) => (
+            {categories.map((text, index) => (
               <Link
                 className={classes.routerLink}
                 key={index}
@@ -153,7 +157,7 @@ export default function SideMenu() {
         <Drawer
           variant="temporary"
           anchor={theme.direction === "rtl" ? "right" : "left"}
-          open={navState.isSideMenuOpen}
+          open={isSideMenuOpen}
           onClose={closeSideMenu}
           className={classes.root}
           classes={{
