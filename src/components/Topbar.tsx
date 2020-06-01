@@ -7,7 +7,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-// import { useAppActions, useNavActions, useDialogActions } from "../actions";
+import { useNavActions, useDialogActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
 
@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Topbar() {
   const classes = useStyles();
-  // const { openNewWordDialog } = useDialogActions();
-  // const { openSideMenu } = useNavActions();
+  const { openNewWordDialog } = useDialogActions();
+  const { openSideMenu } = useNavActions();
 
   console.log("Component: Topbar");
 
