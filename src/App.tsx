@@ -1,5 +1,4 @@
 import React from "react";
-import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { Container, Grid } from "@material-ui/core";
 import Topbar from "./components/Topbar";
@@ -14,7 +13,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { rootReducer } from "./reducers";
+import { store } from "./store/reduxStore";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -32,8 +31,6 @@ const useStyles = makeStyles(() =>
     },
   })
 );
-
-const store = createStore(rootReducer);
 
 export default function App() {
   const classes = useStyles();
