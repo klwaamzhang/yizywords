@@ -20,7 +20,6 @@ import { useNavActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
 import { Link } from "react-router-dom";
-import useHelperFunctions from "../utilities/helper";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducers";
 
@@ -55,8 +54,6 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
-
-  const { toUrlFormat } = useHelperFunctions();
 
   const {
     closeSideMenu,
@@ -118,13 +115,13 @@ export default function SideMenu() {
               <Link
                 className={classes.routerLink}
                 key={index}
-                to={`/${toUrlFormat(text)}`}
+                to={`/${text.split(" ").join("-")}`}
               >
                 <ListItem
-                  selected={currCat === toUrlFormat(text)}
+                  selected={currCat === text}
                   button
                   className={classes.nestedListItem}
-                  onClick={() => changeCat(toUrlFormat(text))}
+                  onClick={() => changeCat(text)}
                 >
                   <ListItemIcon>
                     <BookmarkBorderIcon />

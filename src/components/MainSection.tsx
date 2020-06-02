@@ -3,7 +3,6 @@ import { Grid, List } from "@material-ui/core";
 import WordListItem from "./WordListItem";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import useHelperFunctions from "../utilities/helper";
 import { RootState } from "../reducers";
 import { useSelector } from "react-redux";
 
@@ -20,7 +19,6 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function MainSection() {
   const classes = useStyles();
   const { filterMainSectionList } = useAppActions();
-  const { toDisplayFormat } = useHelperFunctions();
 
   const { mainSectionData, dummyData } = useSelector(
     (state: RootState) => state.app
@@ -32,7 +30,7 @@ export default function MainSection() {
 
   useEffect(() => {
     console.log("useEffect: Main Section");
-    filterMainSectionList(toDisplayFormat(currCat));
+    filterMainSectionList(currCat);
   }, [currCat, dummyData]);
 
   return (

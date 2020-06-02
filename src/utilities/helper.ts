@@ -20,18 +20,3 @@ export const filterMainSectionData = (filterName: string, data: Word[]) => {
       item.status !== "deleted" && item.categories.find((e) => e === filterName)
   );
 };
-
-export default function useHelperFunctions() {
-  function toUrlFormat(text: string) {
-    return text.split(" ").join("-");
-  }
-
-  function toDisplayFormat(text: string) {
-    return text.split("-").join(" ");
-  }
-
-  return {
-    toUrlFormat,
-    toDisplayFormat,
-  };
-}
