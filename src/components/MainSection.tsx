@@ -23,8 +23,7 @@ export default function MainSection() {
   const { filterMainSectionList } = useAppActions();
   const { toDisplayFormat } = useHelperFunctions();
 
-  const location = useLocation();
-  const { dummyData, mainSectionData } = useSelector(
+  const { mainSectionData, urlLocationPathname } = useSelector(
     (state: RootState) => state.app
   );
 
@@ -32,8 +31,10 @@ export default function MainSection() {
 
   useEffect(() => {
     console.log("useEffect: Main Section");
-    filterMainSectionList(toDisplayFormat(location.pathname.replace("/", "")));
-  }, [dummyData, location.pathname]);
+    filterMainSectionList(
+      toDisplayFormat(urlLocationPathname.replace("/", ""))
+    );
+  }, [urlLocationPathname]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.root}>
