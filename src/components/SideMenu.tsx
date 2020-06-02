@@ -70,7 +70,7 @@ export default function SideMenu() {
   useEffect(() => {
     console.log("useEffect: Side Menu");
     updateCategories(dummyData);
-  }, [dummyData.length]);
+  }, [dummyData]);
 
   const [open, setOpen] = React.useState(true);
   const handleClick = () => {
