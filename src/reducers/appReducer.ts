@@ -5,6 +5,7 @@ import { dummyData } from "../sampleData/data";
 const initialState: AppState = {
   dummyData: dummyData,
   mainSectionData: filterMainSectionData("Inbox", dummyData),
+  urlLocationPathname: "/",
 };
 
 export function appReducer(state = initialState, action: AppAction): AppState {

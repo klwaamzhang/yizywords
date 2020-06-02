@@ -56,12 +56,14 @@ export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
 
-  const location = useLocation();
+  // const location = useLocation();
   const { toUrlFormat } = useHelperFunctions();
 
   const { closeSideMenu, updateCategories } = useNavActions();
 
-  const dummyData = useSelector((state: RootState) => state.app.dummyData);
+  const { dummyData, urlLocationPathname } = useSelector(
+    (state: RootState) => state.app
+  );
   const { isSideMenuOpen, categories } = useSelector(
     (state: RootState) => state.nav
   );
@@ -86,7 +88,7 @@ export default function SideMenu() {
       <List className={classes.firstList}>
         <Link className={classes.routerLink} to="/Inbox">
           <ListItem
-            selected={location.pathname === "/Inbox"}
+            selected={urlLocationPathname === "/Inbox"}
             button
             onClick={closeSideMenu}
           >
@@ -113,7 +115,7 @@ export default function SideMenu() {
                 to={`/${toUrlFormat(text)}`}
               >
                 <ListItem
-                  selected={location.pathname === `/${toUrlFormat(text)}`}
+                  selected={urlLocationPathname === `/${toUrlFormat(text)}`}
                   button
                   className={classes.nestedListItem}
                   onClick={closeSideMenu}
@@ -129,7 +131,7 @@ export default function SideMenu() {
         </Collapse>
         <Link className={classes.routerLink} to="/Recycle-Bin">
           <ListItem
-            selected={location.pathname === "/Recycle-Bin"}
+            selected={urlLocationPathname === "/Recycle-Bin"}
             onClick={closeSideMenu}
             button
           >
