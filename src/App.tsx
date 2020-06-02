@@ -14,7 +14,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import { store } from "./store/reduxStore";
-import UpdateLocationPathname from "./components/helper/UpdateLocationPathname";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -62,7 +61,6 @@ export default function App() {
           </Switch>
         </div>
         <WordDialog />
-        <UpdateLocationPathname />
       </Router>
     </Provider>
   );

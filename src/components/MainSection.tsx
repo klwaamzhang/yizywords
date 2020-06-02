@@ -3,7 +3,6 @@ import { Grid, List } from "@material-ui/core";
 import WordListItem from "./WordListItem";
 import { useAppActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { useLocation } from "react-router-dom";
 import useHelperFunctions from "../utilities/helper";
 import { RootState } from "../reducers";
 import { useSelector } from "react-redux";
@@ -23,18 +22,18 @@ export default function MainSection() {
   const { filterMainSectionList } = useAppActions();
   const { toDisplayFormat } = useHelperFunctions();
 
-  const { mainSectionData, urlLocationPathname } = useSelector(
+  const { mainSectionData, dummyData } = useSelector(
     (state: RootState) => state.app
   );
+
+  const currCat = useSelector((state: RootState) => state.nav.currCat);
 
   console.log("Component: Main Section");
 
   useEffect(() => {
     console.log("useEffect: Main Section");
-    filterMainSectionList(
-      toDisplayFormat(urlLocationPathname.replace("/", ""))
-    );
-  }, [urlLocationPathname]);
+    filterMainSectionList(toDisplayFormat(currCat));
+  }, [currCat, dummyData]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.root}>

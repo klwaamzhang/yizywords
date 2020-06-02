@@ -26,9 +26,17 @@ export function useNavActions() {
     });
   }
 
+  function setCurrentCategory(cat: string) {
+    return dispatch({
+      type: NavActions.SET_CURRENT_CATGORIE,
+      payload: cat,
+    });
+  }
+
   return {
     openSideMenu,
     closeSideMenu,
     updateCategories,
+    setCurrentCategory,
   };
 }

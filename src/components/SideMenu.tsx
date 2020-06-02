@@ -19,7 +19,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { useNavActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./logo/LogoText";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useHelperFunctions from "../utilities/helper";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducers";
@@ -56,15 +56,16 @@ export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
 
-  // const location = useLocation();
   const { toUrlFormat } = useHelperFunctions();
 
-  const { closeSideMenu, updateCategories } = useNavActions();
+  const {
+    closeSideMenu,
+    updateCategories,
+    setCurrentCategory,
+  } = useNavActions();
 
-  const { dummyData, urlLocationPathname } = useSelector(
-    (state: RootState) => state.app
-  );
-  const { isSideMenuOpen, categories } = useSelector(
+  const dummyData = useSelector((state: RootState) => state.app.dummyData);
+  const { isSideMenuOpen, categories, currCat } = useSelector(
     (state: RootState) => state.nav
   );
 
@@ -79,6 +80,11 @@ export default function SideMenu() {
     setOpen(!open);
   };
 
+  const changeCat = (cat: string) => {
+    closeSideMenu();
+    setCurrentCategory(cat);
+  };
+
   const drawer = (
     <React.Fragment>
       <div className={`${classes.toolbar} ${classes.sideMenuLogo}`}>
@@ -88,9 +94,9 @@ export default function SideMenu() {
       <List className={classes.firstList}>
         <Link className={classes.routerLink} to="/Inbox">
           <ListItem
-            selected={urlLocationPathname === "/Inbox"}
+            selected={currCat === "Inbox"}
             button
-            onClick={closeSideMenu}
+            onClick={() => changeCat("Inbox")}
           >
             <ListItemIcon>
               <MoveToInbox />
@@ -115,10 +121,10 @@ export default function SideMenu() {
                 to={`/${toUrlFormat(text)}`}
               >
                 <ListItem
-                  selected={urlLocationPathname === `/${toUrlFormat(text)}`}
+                  selected={currCat === toUrlFormat(text)}
                   button
                   className={classes.nestedListItem}
-                  onClick={closeSideMenu}
+                  onClick={() => changeCat(toUrlFormat(text))}
                 >
                   <ListItemIcon>
                     <BookmarkBorderIcon />
@@ -131,8 +137,8 @@ export default function SideMenu() {
         </Collapse>
         <Link className={classes.routerLink} to="/Recycle-Bin">
           <ListItem
-            selected={urlLocationPathname === "/Recycle-Bin"}
-            onClick={closeSideMenu}
+            selected={currCat === "Recycle-Bin"}
+            onClick={() => changeCat("Recycle-Bin")}
             button
           >
             <ListItemIcon>
@@ -153,6 +159,7 @@ export default function SideMenu() {
       </List>
     </React.Fragment>
   );
+
   return (
     <React.Fragment>
       <Hidden smUp implementation="js">

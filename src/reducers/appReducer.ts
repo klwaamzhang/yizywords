@@ -22,8 +22,6 @@ export function appReducer(state = initialState, action: AppAction): AppState {
         ...state,
         mainSectionData: filterMainSectionData(action.payload, state.dummyData),
       };
-    case AppActions.UPDATE_MULTIPLE:
-      return { ...state, ...action.payload };
     default:
       return state;
   }
