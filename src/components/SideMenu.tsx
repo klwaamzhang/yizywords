@@ -61,7 +61,7 @@ export default function SideMenu() {
     setCurrentCategory,
   } = useNavActions();
 
-  const dummyData = useSelector((state: RootState) => state.app.dummyData);
+  const wordData = useSelector((state: RootState) => state.app.wordData);
   const { isSideMenuOpen, categories, currCat } = useSelector(
     (state: RootState) => state.nav
   );
@@ -69,8 +69,8 @@ export default function SideMenu() {
   console.log("Component: Side Menu");
   useEffect(() => {
     console.log("useEffect: Side Menu");
-    updateCategories(dummyData);
-  }, [dummyData]);
+    updateCategories(wordData);
+  }, [wordData]);
 
   const [open, setOpen] = React.useState(true);
   const handleClick = () => {

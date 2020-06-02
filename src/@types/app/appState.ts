@@ -1,7 +1,7 @@
 import { Word } from "../word";
 
 export type AppState = {
-  dummyData: Array<Word>;
+  wordData: Array<Word>;
   mainSectionData: Array<Word>;
   urlLocationPathname: string;
 };

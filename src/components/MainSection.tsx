@@ -20,7 +20,7 @@ export default function MainSection() {
   const classes = useStyles();
   const { filterMainSectionList } = useAppActions();
 
-  const { mainSectionData, dummyData } = useSelector(
+  const { mainSectionData, wordData } = useSelector(
     (state: RootState) => state.app
   );
 
@@ -31,7 +31,7 @@ export default function MainSection() {
   useEffect(() => {
     console.log("useEffect: Main Section");
     filterMainSectionList(currCat);
-  }, [currCat, dummyData]);
+  }, [currCat, wordData]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.root}>

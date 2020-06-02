@@ -1,10 +1,11 @@
 import { NavState, NavAction, NavActions } from "../@types/nav";
 import { populateCategories } from "../utilities/helper";
-import { dummyData } from "../sampleData/data";
+// import { wordData } from "../sampleData/data";
 
 const initialState: NavState = {
   isSideMenuOpen: false,
-  categories: populateCategories(dummyData),
+  // categories: populateCategories(wordData),
+  categories: [],
   currCat: "Inbox",
 };
 
@@ -17,8 +18,10 @@ export function navReducer(state = initialState, action: NavAction): NavState {
     case NavActions.UPDATE_CATEGORIES:
       return { ...state, categories: populateCategories(action.payload) };
     case NavActions.SET_CURRENT_CATGORIE:
-      if (state.currCat !== action.payload)
+      if (state.currCat !== action.payload) {
         return { ...state, currCat: action.payload };
+      }
+      return state;
     default:
       return state;
   }
