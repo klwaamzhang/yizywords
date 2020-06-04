@@ -8,7 +8,7 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
-import { useAppActions, useDialogActions } from "../actions";
+import { useAppActions, useDialogActions } from "../../actions";
 
 export default function WordListItem(props: any) {
   const { updateWordItem } = useAppActions();

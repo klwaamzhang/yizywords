@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Grid, List } from "@material-ui/core";
 import WordListItem from "./WordListItem";
-import { useAppActions } from "../actions";
+import { useAppActions } from "../../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { RootState } from "../reducers";
+import { RootState } from "../../reducers";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>

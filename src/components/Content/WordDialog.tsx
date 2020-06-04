@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import { useAppActions, useDialogActions } from "../actions";
+import { useAppActions, useDialogActions } from "../../actions";
 import {
   Container,
   CssBaseline,
@@ -14,9 +14,9 @@ import {
 } from "@material-ui/core";
 import { Bookmarks } from "@material-ui/icons";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { Word } from "../@types";
+import { Word } from "../../@types";
 import { useSelector } from "react-redux";
-import { RootState } from "../reducers";
+import { RootState } from "../../reducers";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
