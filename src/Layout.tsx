@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, Grid } from "@material-ui/core";
 import Topbar from "./components/Topbar";
 import MainSection from "./components/MainSection";
@@ -11,6 +11,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { dataApi } from "./api/wordListData";
 import { AppActions } from "./@types/app";
 import { Word } from "./@types";
+import { RootState } from "./reducers";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -32,6 +33,8 @@ const useStyles = makeStyles(() =>
 export default function Layout() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const state = useSelector((state: RootState) => state);
+  console.log(state);
 
   useEffect(() => {
     dataApi.getWordListData.then((rt) => {
@@ -46,6 +49,7 @@ export default function Layout() {
   return (
     <div className={classes.root}>
       <Topbar />
+
       <Switch>
         <Route path="/login">
           <LoginPage />
@@ -59,12 +63,13 @@ export default function Layout() {
           </Container>
         </Route>
         <Route exact path="/">
-          <Redirect to="/Inbox" />
+          <Redirect to="/login" />
         </Route>
         {/* <Route path="*">
               <Redirect to="/" />
             </Route> */}
       </Switch>
+
       <WordDialog />
     </div>
   );

@@ -73,7 +73,7 @@ export default function SideMenu() {
   }, [wordData]);
 
   const [open, setOpen] = React.useState(true);
-  const handleClick = () => {
+  const handleCategoriesClick = () => {
     setOpen(!open);
   };
 
@@ -102,7 +102,7 @@ export default function SideMenu() {
           </ListItem>
         </Link>
 
-        <ListItem button onClick={handleClick}>
+        <ListItem button onClick={handleCategoriesClick}>
           <ListItemIcon>
             <CategoryIcon />
           </ListItemIcon>
