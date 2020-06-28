@@ -3,7 +3,7 @@
  */
 import _wordListData from "./wordListData.json";
 
-const TIMEOUT = 3000;
+const TIMEOUT = 5000;
 
 export const dataApi = {
   getWordListData: new Promise((resolve, reject) => {

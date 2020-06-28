@@ -23,9 +23,16 @@ export function useAppActions() {
     });
   }
 
+  function redirectToInbox() {
+    return dispatch({
+      type: AppActions.REDIRECT_TO_INBOX,
+    });
+  }
+
   return {
     createNewWord,
     updateWordItem,
     filterMainSectionList,
+    redirectToInbox,
   };
 }

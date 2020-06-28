@@ -8,6 +8,11 @@ import {
   Paper,
 } from "@material-ui/core";
 import { Bookmarks } from "@material-ui/icons";
+import { User, Word } from "../@types";
+import { dataApi } from "../api/wordListData";
+import { AppActions } from "../@types/app";
+import { useDispatch } from "react-redux";
+import { useAppActions } from "../actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,8 +50,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginPage() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { redirectToInbox } = useAppActions();
 
-  const handleSubmit = async (e: any) => {};
+  const [formData, setFormData] = React.useState<User>({
+    _id: 200 + Math.floor(Math.random() * 100000),
+    userName: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e: any) => {
+    dataApi.getWordListData.then((rt) => {
+      const data = rt as Array<Word>;
+      dispatch({
+        type: AppActions.UPDATE_WORD_DATA,
+        payload: data,
+      });
+      redirectToInbox();
+    });
+    console.log(formData);
+  };
 
   console.log("Login Page Component");
 
@@ -59,7 +82,7 @@ export default function LoginPage() {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit} method="POST">
           <TextField
             variant="outlined"
             margin="normal"
@@ -70,6 +93,13 @@ export default function LoginPage() {
             name="userName"
             autoComplete="userName"
             autoFocus
+            value={formData.userName}
+            onChange={(event: any) => {
+              setFormData({
+                ...formData,
+                userName: event.target.value,
+              });
+            }}
           />
           <TextField
             variant="outlined"
@@ -81,6 +111,13 @@ export default function LoginPage() {
             name="password"
             autoComplete="password"
             autoFocus
+            value={formData.password}
+            onChange={(event: any) => {
+              setFormData({
+                ...formData,
+                password: event.target.value,
+              });
+            }}
           />
           <Button
             type="submit"

@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import Topbar from "./components/Topbar";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import LoginPage from "./components/LoginPage";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { dataApi } from "./api/wordListData";
-import { AppActions } from "./@types/app";
-import { Word } from "./@types";
 import Content from "./components/Content/Content";
+import { useSelector } from "react-redux";
+import { RootState } from "./reducers";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -19,17 +17,10 @@ const useStyles = makeStyles(() =>
 
 export default function Layout() {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dataApi.getWordListData.then((rt) => {
-      const data = rt as Array<Word>;
-      dispatch({
-        type: AppActions.UPDATE_WORD_DATA,
-        payload: data,
-      });
-    });
-  }, []);
+  const redirectToInbox = useSelector(
+    (state: RootState) => state.app.redirectToInbox
+  );
 
   return (
     <div className={classes.root}>
@@ -37,14 +28,14 @@ export default function Layout() {
 
       <Switch>
         <Route path="/login">
-          <LoginPage />
+          {redirectToInbox ? <Redirect to="/Inbox" /> : <LoginPage />}
         </Route>
         <Route path="/:filterName">
           <Content />
         </Route>
 
         <Route exact path="/">
-          <Redirect to="/Inbox" />
+          <Redirect to="/login" />
         </Route>
         {/* <Route path="*">
               <Redirect to="/" />
