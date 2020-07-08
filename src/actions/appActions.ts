@@ -23,9 +23,9 @@ export function useAppActions() {
     });
   }
 
-  function redirectToInbox() {
+  function loggedIn() {
     return dispatch({
-      type: AppActions.REDIRECT_TO_INBOX,
+      type: AppActions.LOGIN,
     });
   }
 
@@ -33,6 +33,6 @@ export function useAppActions() {
     createNewWord,
     updateWordItem,
     filterMainSectionList,
-    redirectToInbox,
+    loggedIn,
   };
 }

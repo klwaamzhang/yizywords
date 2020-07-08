@@ -4,5 +4,5 @@ export type AppState = {
   wordData: Array<Word>;
   mainSectionData: Array<Word>;
   urlLocationPathname: string;
-  redirectToInbox: boolean;
+  loggedIn: boolean;
 };

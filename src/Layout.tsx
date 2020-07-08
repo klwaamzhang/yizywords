@@ -18,9 +18,7 @@ const useStyles = makeStyles(() =>
 export default function Layout() {
   const classes = useStyles();
 
-  const redirectToInbox = useSelector(
-    (state: RootState) => state.app.redirectToInbox
-  );
+  const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
 
   return (
     <div className={classes.root}>
@@ -28,7 +26,7 @@ export default function Layout() {
 
       <Switch>
         <Route path="/login">
-          {redirectToInbox ? <Redirect to="/Inbox" /> : <LoginPage />}
+          {loggedIn ? <Redirect to="/Inbox" /> : <LoginPage />}
         </Route>
         <Route path="/:filterName">
           <Content />

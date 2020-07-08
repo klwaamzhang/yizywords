@@ -37,9 +37,7 @@ export default function Topbar() {
   const { openNewWordDialog } = useDialogActions();
   const { openSideMenu } = useNavActions();
 
-  const redirectToInbox = useSelector(
-    (state: RootState) => state.app.redirectToInbox
-  );
+  const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
 
   console.log("Component: Topbar");
 
@@ -61,7 +59,7 @@ export default function Topbar() {
             <Menu />
           </IconButton>
           <LogoText />
-          {redirectToInbox ? (
+          {loggedIn ? (
             <>
               <Button color="inherit" onClick={openNewWordDialog}>
                 New

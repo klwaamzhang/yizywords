@@ -6,7 +6,7 @@ const initialState: AppState = {
   wordData: [],
   mainSectionData: [],
   urlLocationPathname: "/",
-  redirectToInbox: false,
+  loggedIn: false,
 };
 
 export function appReducer(state = initialState, action: AppAction): AppState {
@@ -26,8 +26,8 @@ export function appReducer(state = initialState, action: AppAction): AppState {
       };
     case AppActions.UPDATE_WORD_DATA:
       return { ...state, wordData: action.payload };
-    case AppActions.REDIRECT_TO_INBOX:
-      return { ...state, redirectToInbox: true };
+    case AppActions.LOGIN:
+      return { ...state, loggedIn: true };
     default:
       return state;
   }
