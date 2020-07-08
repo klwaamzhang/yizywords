@@ -134,9 +134,9 @@ export default function SideMenu() {
         </Collapse>
         <Link className={classes.routerLink} to="/Recycle-Bin">
           <ListItem
-            selected={currCat === "Recycle-Bin"}
-            onClick={() => changeCat("Recycle-Bin")}
+            selected={currCat === "Recycle Bin"}
             button
+            onClick={() => changeCat("Recycle Bin")}
           >
             <ListItemIcon>
               <DeleteIcon />
