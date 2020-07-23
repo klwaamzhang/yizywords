@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginPage() {
   const classes = useStyles();
-  const dispatch = useDispatch();
+  const { updateWordData } = useAppActions();
   const { logIn } = useAppActions();
 
   const [formData, setFormData] = React.useState<User>({
@@ -62,16 +62,13 @@ export default function LoginPage() {
   const handleSubmit = async (e: any) => {
     dataApi.getWordListData.then((rt) => {
       const data = rt as Array<Word>;
-      dispatch({
-        type: AppActions.UPDATE_WORD_DATA,
-        payload: data,
-      });
+      updateWordData(data);
       logIn();
     });
-    console.log(formData);
+    // console.log(formData);
   };
 
-  console.log("Login Page Component");
+  // console.log("Login Page Component");
 
   return (
     <div className={classes.root}>

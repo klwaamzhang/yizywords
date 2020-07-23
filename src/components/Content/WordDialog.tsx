@@ -109,7 +109,7 @@ export default function WordDialog() {
     if (currFormData) setFormData({ ...currFormData });
   };
 
-  console.log("Component: Word Dialog");
+  // console.log("Component: Word Dialog");
 
   return (
     <Dialog

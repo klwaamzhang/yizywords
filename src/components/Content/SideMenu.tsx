@@ -66,9 +66,9 @@ export default function SideMenu() {
     (state: RootState) => state.nav
   );
 
-  console.log("Component: Side Menu");
+  // console.log("Component: Side Menu");
   useEffect(() => {
-    console.log("useEffect: Side Menu");
+    // console.log("useEffect: Side Menu");
     updateCategories(wordData);
   }, [wordData]);
 

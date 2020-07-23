@@ -19,6 +19,7 @@ export default function App() {
   const classes = useStyles();
 
   const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
+  console.log(loggedIn);
 
   return (
     <div className={classes.root}>

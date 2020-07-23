@@ -29,10 +29,18 @@ export function useAppActions() {
     });
   }
 
+  function updateWordData(data: Array<Word>) {
+    dispatch({
+      type: AppActions.UPDATE_WORD_DATA,
+      payload: data,
+    });
+  }
+
   return {
     createNewWord,
     updateWordItem,
     filterMainSectionList,
     logIn,
+    updateWordData,
   };
 }
