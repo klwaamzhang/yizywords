@@ -23,7 +23,7 @@ export function useAppActions() {
     });
   }
 
-  function loggedIn() {
+  function logIn() {
     return dispatch({
       type: AppActions.LOGIN,
     });
@@ -33,6 +33,6 @@ export function useAppActions() {
     createNewWord,
     updateWordItem,
     filterMainSectionList,
-    loggedIn,
+    logIn,
   };
 }

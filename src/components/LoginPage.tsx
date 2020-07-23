@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { loggedIn } = useAppActions();
+  const { logIn } = useAppActions();
 
   const [formData, setFormData] = React.useState<User>({
     _id: 200 + Math.floor(Math.random() * 100000),
@@ -66,7 +66,7 @@ export default function LoginPage() {
         type: AppActions.UPDATE_WORD_DATA,
         payload: data,
       });
-      loggedIn();
+      logIn();
     });
     console.log(formData);
   };
