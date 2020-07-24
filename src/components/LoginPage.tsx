@@ -10,8 +10,6 @@ import {
 import { Bookmarks } from "@material-ui/icons";
 import { User, Word } from "../@types";
 import { dataApi } from "../api/wordListData";
-import { AppActions } from "../@types/app";
-import { useDispatch } from "react-redux";
 import { useAppActions } from "../actions";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#fff",
   },
   paper: {
-    // marginTop: theme.spacing(30),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -33,15 +30,12 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
   },
   avatar: {
-    // marginTop: theme.spacing(5),
-    // marginBottom: theme.spacing(1),
     margin: 15,
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
     maxWidth: 320,
-    // marginTop: theme.spacing(1),
   },
   submit: {
     margin: theme.spacing(3, 0, 3),
@@ -65,10 +59,7 @@ export default function LoginPage() {
       updateWordData(data);
       logIn();
     });
-    // console.log(formData);
   };
-
-  // console.log("Login Page Component");
 
   return (
     <div className={classes.root}>

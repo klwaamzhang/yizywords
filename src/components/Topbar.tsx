@@ -39,8 +39,6 @@ export default function Topbar() {
 
   const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
 
-  // console.log("Component: Topbar");
-
   return (
     <AppBar position="fixed">
       <Toolbar>

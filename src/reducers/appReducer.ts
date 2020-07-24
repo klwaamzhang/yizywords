@@ -1,6 +1,5 @@
 import { filterMainSectionData } from "../utilities/helper";
 import { AppState, AppAction, AppActions } from "../@types/app";
-// import { wordData } from "../sampleData/data";
 
 const initialState: AppState = {
   wordData: [],
@@ -19,7 +18,6 @@ export function appReducer(state = initialState, action: AppAction): AppState {
       );
       return { ...state, wordData: newDataUpdate };
     case AppActions.FILTER_MAIN_SECTION_LIST:
-      // console.log(state.wordData);
       return {
         ...state,
         mainSectionData: filterMainSectionData(action.payload, state.wordData),

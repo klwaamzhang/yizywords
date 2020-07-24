@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Grid } from "@material-ui/core";
 import MainSection from "./MainSection";
 import SideMenu from "./SideMenu";
 import WordDialog from "./WordDialog";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { useDispatch } from "react-redux";
-import { dataApi } from "../../api/wordListData";
-import { Word } from "../../@types";
-import { AppActions } from "../../@types/app";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -25,17 +21,6 @@ const useStyles = makeStyles(() =>
 
 export default function Content() {
   const classes = useStyles();
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dataApi.getWordListData.then((rt) => {
-  //     const data = rt as Array<Word>;
-  //     dispatch({
-  //       type: AppActions.UPDATE_WORD_DATA,
-  //       payload: data,
-  //     });
-  //   });
-  // }, []);
 
   return (
     <>

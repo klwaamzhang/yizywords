@@ -26,10 +26,7 @@ export default function MainSection() {
 
   const currCat = useSelector((state: RootState) => state.nav.currCat);
 
-  // console.log("Component: Main Section");
-
   useEffect(() => {
-    // console.log("useEffect: Main Section");
     filterMainSectionList(currCat);
   }, [currCat, wordData]);
 

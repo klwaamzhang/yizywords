@@ -69,9 +69,7 @@ export default function SideMenu() {
     (state: RootState) => state.nav
   );
 
-  // console.log("Component: Side Menu");
   useEffect(() => {
-    // console.log("useEffect: Side Menu");
     updateCategories(wordData);
   }, [wordData]);
 
@@ -81,7 +79,6 @@ export default function SideMenu() {
   };
 
   const changeCat = (cat: string) => {
-    // add the width condition
     closeSideMenu();
     setCurrentCategory(cat);
   };

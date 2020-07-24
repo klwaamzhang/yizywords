@@ -31,15 +31,11 @@ export default function App() {
         </Route>
         <Route path="/:filterName">
           {loggedIn ? <Content /> : <Redirect to="/login" />}
-          {/* <Content /> */}
         </Route>
 
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>
-        {/* <Route path="*">
-              <Redirect to="/" />
-            </Route> */}
       </Switch>
     </div>
   );

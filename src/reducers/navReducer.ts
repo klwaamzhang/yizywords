@@ -1,10 +1,8 @@
 import { NavState, NavAction, NavActions } from "../@types/nav";
 import { populateCategories } from "../utilities/helper";
-// import { wordData } from "../sampleData/data";
 
 const initialState: NavState = {
   isSideMenuOpen: false,
-  // categories: populateCategories(wordData),
   categories: [],
   currCat: "Inbox",
 };
