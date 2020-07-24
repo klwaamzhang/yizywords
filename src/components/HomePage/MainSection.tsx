@@ -5,6 +5,7 @@ import { useAppActions } from "../../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { RootState } from "../../reducers";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,17 +19,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function MainSection() {
   const classes = useStyles();
-  const { filterMainSectionList } = useAppActions();
 
+  const { filterName } = useParams();
+  const fName = filterName.split("-").join(" ");
+  const { filterMainSectionList } = useAppActions();
   const { mainSectionData, wordData } = useSelector(
     (state: RootState) => state.app
   );
 
-  const currCat = useSelector((state: RootState) => state.nav.currCat);
-
   useEffect(() => {
-    filterMainSectionList(currCat);
-  }, [currCat, wordData]);
+    filterMainSectionList(fName);
+  }, [fName, wordData]);
 
   return (
     <Grid item xs={12} sm={8} className={classes.root}>

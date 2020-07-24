@@ -19,7 +19,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-export default function Content() {
+export default function HomePage() {
   const classes = useStyles();
 
   return (

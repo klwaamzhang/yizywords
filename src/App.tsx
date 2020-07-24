@@ -3,7 +3,7 @@ import Topbar from "./components/Topbar";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import LoginPage from "./components/LoginPage";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Content from "./components/Content/Content";
+import HomePage from "./components/HomePage/HomePage";
 import { useSelector } from "react-redux";
 import { RootState } from "./reducers";
 
@@ -19,7 +19,6 @@ export default function App() {
   const classes = useStyles();
 
   const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
-  console.log(loggedIn);
 
   return (
     <div className={classes.root}>
@@ -30,7 +29,7 @@ export default function App() {
           {loggedIn ? <Redirect to="/Inbox" /> : <LoginPage />}
         </Route>
         <Route path="/:filterName">
-          {loggedIn ? <Content /> : <Redirect to="/login" />}
+          {loggedIn ? <HomePage /> : <Redirect to="/login" />}
         </Route>
 
         <Route exact path="/">

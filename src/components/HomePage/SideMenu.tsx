@@ -19,7 +19,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { useNavActions } from "../../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "../0_logo/LogoText";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
 
@@ -55,33 +55,33 @@ export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
 
-  let location = useLocation();
-  console.log(location);
-
-  const {
-    closeSideMenu,
-    updateCategories,
-    setCurrentCategory,
-  } = useNavActions();
-
+  const { closeSideMenu, updateCategories } = useNavActions();
   const wordData = useSelector((state: RootState) => state.app.wordData);
-  const { isSideMenuOpen, categories, currCat } = useSelector(
+  const { filterName } = useParams();
+  const fName = filterName.split("-").join(" ");
+  const { isSideMenuOpen, categories } = useSelector(
     (state: RootState) => state.nav
   );
 
-  useEffect(() => {
-    updateCategories(wordData);
-  }, [wordData]);
-
+  const [cat, setCat] = React.useState("Inbox");
   const [open, setOpen] = React.useState(true);
+
   const handleCategoriesClick = () => {
     setOpen(!open);
   };
 
   const changeCat = (cat: string) => {
     closeSideMenu();
-    setCurrentCategory(cat);
+    setCat(cat);
   };
+
+  useEffect(() => {
+    updateCategories(wordData);
+  }, [wordData]);
+
+  useEffect(() => {
+    setCat(fName);
+  }, [fName]);
 
   const drawer = (
     <React.Fragment>
@@ -90,9 +90,9 @@ export default function SideMenu() {
       </div>
       <Divider />
       <List className={classes.firstList}>
-        <Link className={classes.routerLink} to="/Inbox">
+        <Link className={classes.routerLink} to={`/Inbox`}>
           <ListItem
-            selected={currCat === "Inbox"}
+            selected={cat === "Inbox"}
             button
             onClick={() => changeCat("Inbox")}
           >
@@ -116,10 +116,10 @@ export default function SideMenu() {
               <Link
                 className={classes.routerLink}
                 key={index}
-                to={`/${text.split(" ").join("-")}`}
+                to={`${text.split(" ").join("-")}`}
               >
                 <ListItem
-                  selected={currCat === text}
+                  selected={cat === text}
                   button
                   className={classes.nestedListItem}
                   onClick={() => changeCat(text)}
@@ -133,9 +133,9 @@ export default function SideMenu() {
             ))}
           </List>
         </Collapse>
-        <Link className={classes.routerLink} to="/Recycle-Bin">
+        <Link className={classes.routerLink} to={`/Recycle-Bin`}>
           <ListItem
-            selected={currCat === "Recycle Bin"}
+            selected={cat === "Recycle Bin"}
             button
             onClick={() => changeCat("Recycle Bin")}
           >
