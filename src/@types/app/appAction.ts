@@ -1,5 +1,4 @@
 import { Word } from "../word";
-import { AppState } from "./appState";
 
 type CREATE_NEW_WORD = "CREATE_NEW_WORD";
 type UPDATE_WORD_ITEM = "UPDATE_WORD_ITEM";
