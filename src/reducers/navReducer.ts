@@ -4,7 +4,6 @@ import { populateCategories } from "../utilities/helper";
 const initialState: NavState = {
   isSideMenuOpen: false,
   categories: [],
-  currCat: "Inbox",
 };
 
 export function navReducer(state = initialState, action: NavAction): NavState {
@@ -15,11 +14,6 @@ export function navReducer(state = initialState, action: NavAction): NavState {
       return { ...state, isSideMenuOpen: false };
     case NavActions.UPDATE_CATEGORIES:
       return { ...state, categories: populateCategories(action.payload) };
-    case NavActions.SET_CURRENT_CATGORIE:
-      if (state.currCat !== action.payload) {
-        return { ...state, currCat: action.payload };
-      }
-      return state;
     default:
       return state;
   }
