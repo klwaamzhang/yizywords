@@ -19,7 +19,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { useNavActions } from "../../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "../0_logo/LogoText";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../reducers";
 
@@ -55,6 +55,9 @@ export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
 
+  let location = useLocation();
+  console.log(location);
+
   const {
     closeSideMenu,
     updateCategories,
@@ -78,6 +81,7 @@ export default function SideMenu() {
   };
 
   const changeCat = (cat: string) => {
+    // add the width condition
     closeSideMenu();
     setCurrentCategory(cat);
   };

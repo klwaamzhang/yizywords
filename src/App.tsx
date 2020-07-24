@@ -30,7 +30,8 @@ export default function App() {
           {loggedIn ? <Redirect to="/Inbox" /> : <LoginPage />}
         </Route>
         <Route path="/:filterName">
-          <Content />
+          {loggedIn ? <Content /> : <Redirect to="/login" />}
+          {/* <Content /> */}
         </Route>
 
         <Route exact path="/">
