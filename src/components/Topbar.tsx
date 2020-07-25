@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Topbar() {
   const classes = useStyles();
-  const { openNewWordDialog } = useDialogActions();
+  const { openNewWordPage } = useDialogActions();
   const { openSideMenu } = useNavActions();
 
   const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
@@ -59,7 +59,7 @@ export default function Topbar() {
           <LogoText />
           {loggedIn ? (
             <>
-              <Button color="inherit" onClick={openNewWordDialog}>
+              <Button color="inherit" onClick={openNewWordPage}>
                 New
               </Button>
             </>

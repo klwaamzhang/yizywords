@@ -25,7 +25,7 @@ export default function WordListItem(props: any) {
   const classes = useStyles();
 
   const { updateWordItem } = useAppActions();
-  const { openUpdateWordDialog } = useDialogActions();
+  const { openUpdateWordPage, openConfirmationPage } = useDialogActions();
 
   const index = props.index;
   const item = props.item;
@@ -37,26 +37,27 @@ export default function WordListItem(props: any) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const closeMenu = () => {
     setAnchorEl(null);
   };
 
   const deleteWord = () => {
     updateWordItem({ ...item, status: "deleted" });
-    handleClose();
+    closeMenu();
   };
 
   const updateWord = () => {
-    openUpdateWordDialog(item);
-    handleClose();
+    openUpdateWordPage(item);
+    closeMenu();
   };
 
   const restoreWord = () => {
     updateWordItem({ ...item, status: "active" });
   };
 
-  const deleteWordPermanently = () => {
-    handleClose();
+  const openConfirmationDialog = () => {
+    openConfirmationPage();
+    closeMenu();
   };
 
   return (
@@ -76,7 +77,7 @@ export default function WordListItem(props: any) {
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
-          onClose={handleClose}
+          onClose={closeMenu}
         >
           {item.status !== "deleted" ? (
             // consider to use an array???
@@ -87,7 +88,7 @@ export default function WordListItem(props: any) {
           ) : (
             <span>
               <MenuItem onClick={restoreWord}>Restore</MenuItem>
-              <MenuItem onClick={deleteWordPermanently}>
+              <MenuItem onClick={openConfirmationDialog}>
                 Delete Permanently
               </MenuItem>
             </span>

@@ -5,13 +5,13 @@ import { useDispatch } from "react-redux";
 export function useDialogActions() {
   const dispatch = useDispatch();
 
-  function openNewWordDialog() {
-    return dispatch({ type: DialogActions.OPEN_NEW_WORD_DIALOG });
+  function openNewWordPage() {
+    return dispatch({ type: DialogActions.OPEN_NEW_WORD_PAGE });
   }
 
-  function openUpdateWordDialog(formData: Word) {
+  function openUpdateWordPage(formData: Word) {
     return dispatch({
-      type: DialogActions.OPEN_UPDATE_WORD_DIALOG,
+      type: DialogActions.OPEN_UPDATE_WORD_PAGE,
       payload: formData,
     });
   }
@@ -20,9 +20,14 @@ export function useDialogActions() {
     return dispatch({ type: DialogActions.CLOSE_DIALOG });
   }
 
+  function openConfirmationPage() {
+    return dispatch({ type: DialogActions.OPEN_CONFIRMATION_PAGE });
+  }
+
   return {
     closeDialog,
-    openNewWordDialog,
-    openUpdateWordDialog,
+    openNewWordPage,
+    openUpdateWordPage,
+    openConfirmationPage,
   };
 }
