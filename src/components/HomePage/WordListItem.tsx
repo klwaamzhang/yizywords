@@ -16,6 +16,7 @@ const useStyles = makeStyles(() =>
   createStyles({
     secondary: {
       overflow: "hidden",
+      textOverflow: "ellipsis",
     },
   })
 );
@@ -61,7 +62,7 @@ export default function WordListItem(props: any) {
   return (
     <ListItem key={index} role={undefined} button>
       <ListItemText
-        className={classes.secondary}
+        classes={{ secondary: classes.secondary }}
         id={labelId}
         primary={item.text}
         secondary={item.notes}
