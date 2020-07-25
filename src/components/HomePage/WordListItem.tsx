@@ -6,11 +6,23 @@ import {
   ListItemSecondaryAction,
   Menu,
   MenuItem,
+  makeStyles,
+  createStyles,
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
 import { useAppActions, useDialogActions } from "../../actions";
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    secondary: {
+      overflow: "hidden",
+    },
+  })
+);
+
 export default function WordListItem(props: any) {
+  const classes = useStyles();
+
   const { updateWordItem } = useAppActions();
   const { openUpdateWordDialog } = useDialogActions();
 
@@ -42,9 +54,18 @@ export default function WordListItem(props: any) {
     updateWordItem({ ...item, status: "active" });
   };
 
+  const deleteWordPermanently = () => {
+    handleClose();
+  };
+
   return (
     <ListItem key={index} role={undefined} button>
-      <ListItemText id={labelId} primary={item.text} secondary={item.notes} />
+      <ListItemText
+        className={classes.secondary}
+        id={labelId}
+        primary={item.text}
+        secondary={item.notes}
+      />
       <ListItemSecondaryAction>
         <IconButton edge="end" aria-label="menu" onClick={handleClick}>
           <MoreVert />
@@ -63,7 +84,12 @@ export default function WordListItem(props: any) {
               <MenuItem onClick={deleteWord}>Delete</MenuItem>
             </span>
           ) : (
-            <MenuItem onClick={restoreWord}>Restore</MenuItem>
+            <span>
+              <MenuItem onClick={restoreWord}>Restore</MenuItem>
+              <MenuItem onClick={deleteWordPermanently}>
+                Delete Permanently
+              </MenuItem>
+            </span>
           )}
         </Menu>
       </ListItemSecondaryAction>
