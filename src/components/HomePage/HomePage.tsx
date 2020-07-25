@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Grid } from "@material-ui/core";
 import MainSection from "./MainSection";
 import SideMenu from "./SideMenu";
-import WordDialog from "./WordDialog";
+import AppDialog from "./AppDialog";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() =>
@@ -31,7 +31,7 @@ export default function HomePage() {
         </Grid>
       </Container>
 
-      <WordDialog />
+      <AppDialog />
     </>
   );
 }

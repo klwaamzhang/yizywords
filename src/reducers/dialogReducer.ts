@@ -1,7 +1,7 @@
 import { DialogState, DialogAction, DialogActions } from "../@types/dialog";
 
 const initialState: DialogState = {
-  isWordDialogOpened: false,
+  isDialogOpened: false,
   currFormData: null,
 };
 
@@ -10,14 +10,14 @@ export function dialogReducer(
   action: DialogAction
 ): DialogState {
   switch (action.type) {
-    case DialogActions.CLOSE_WORD_DIALOG:
-      return { ...state, isWordDialogOpened: false };
+    case DialogActions.CLOSE_DIALOG:
+      return { ...state, isDialogOpened: false };
     case DialogActions.OPEN_NEW_WORD_DIALOG:
-      return { ...state, isWordDialogOpened: true, currFormData: null };
+      return { ...state, isDialogOpened: true, currFormData: null };
     case DialogActions.OPEN_UPDATE_WORD_DIALOG:
       return {
         ...state,
-        isWordDialogOpened: true,
+        isDialogOpened: true,
         currFormData: action.payload,
       };
     default:

@@ -1,6 +1,6 @@
 import { Word } from "../word";
 
 export type DialogState = {
-  isWordDialogOpened: boolean;
+  isDialogOpened: boolean;
   currFormData: Word | null;
 };

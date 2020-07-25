@@ -16,12 +16,12 @@ export function useDialogActions() {
     });
   }
 
-  function closeWordDialog() {
-    return dispatch({ type: DialogActions.CLOSE_WORD_DIALOG });
+  function closeDialog() {
+    return dispatch({ type: DialogActions.CLOSE_DIALOG });
   }
 
   return {
-    closeWordDialog,
+    closeDialog,
     openNewWordDialog,
     openUpdateWordDialog,
   };
