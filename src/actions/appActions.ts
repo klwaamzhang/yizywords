@@ -36,11 +36,19 @@ export function useAppActions() {
     });
   }
 
+  function deleteWordItemPermanently(item: Word | null) {
+    dispatch({
+      type: AppActions.DELETE_WORD_ITEM,
+      payload: item,
+    });
+  }
+
   return {
     createNewWord,
     updateWordItem,
     filterMainSectionList,
     logIn,
     updateWordData,
+    deleteWordItemPermanently,
   };
 }

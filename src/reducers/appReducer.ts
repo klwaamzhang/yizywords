@@ -26,6 +26,11 @@ export function appReducer(state = initialState, action: AppAction): AppState {
       return { ...state, wordData: action.payload };
     case AppActions.LOGIN:
       return { ...state, loggedIn: true };
+    case AppActions.DELETE_WORD_ITEM:
+      const deletedDataArrUpdate = state.wordData.filter(
+        (item) => item._id !== action.payload._id
+      );
+      return { ...state, wordData: deletedDataArrUpdate };
     default:
       return state;
   }

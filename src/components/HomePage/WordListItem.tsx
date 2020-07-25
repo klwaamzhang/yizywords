@@ -56,7 +56,7 @@ export default function WordListItem(props: any) {
   };
 
   const openConfirmationDialog = () => {
-    openConfirmationPage();
+    openConfirmationPage(item);
     closeMenu();
   };
 

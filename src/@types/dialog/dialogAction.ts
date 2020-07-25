@@ -23,4 +23,4 @@ export type DialogAction =
   | { type: OPEN_NEW_WORD_PAGE }
   | { type: OPEN_UPDATE_WORD_PAGE; payload: Word }
   | { type: CLOSE_DIALOG }
-  | { type: OPEN_CONFIRMATION_PAGE };
+  | { type: OPEN_CONFIRMATION_PAGE; payload: Word };

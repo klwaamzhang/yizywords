@@ -20,8 +20,11 @@ export function useDialogActions() {
     return dispatch({ type: DialogActions.CLOSE_DIALOG });
   }
 
-  function openConfirmationPage() {
-    return dispatch({ type: DialogActions.OPEN_CONFIRMATION_PAGE });
+  function openConfirmationPage(formData: Word) {
+    return dispatch({
+      type: DialogActions.OPEN_CONFIRMATION_PAGE,
+      payload: formData,
+    });
   }
 
   return {

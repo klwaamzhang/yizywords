@@ -2,6 +2,6 @@ import { Word } from "../word";
 
 export type DialogState = {
   isDialogOpened: boolean;
-  currFormData: Word | null;
+  currWordItem: Word | null;
   dialogPage: string;
 };

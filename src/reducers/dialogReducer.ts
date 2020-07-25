@@ -2,7 +2,7 @@ import { DialogState, DialogAction, DialogActions } from "../@types/dialog";
 
 const initialState: DialogState = {
   isDialogOpened: false,
-  currFormData: null,
+  currWordItem: null,
   dialogPage: "",
 };
 
@@ -17,14 +17,14 @@ export function dialogReducer(
       return {
         ...state,
         isDialogOpened: true,
-        currFormData: null,
+        currWordItem: null,
         dialogPage: "NewWordPage",
       };
     case DialogActions.OPEN_UPDATE_WORD_PAGE:
       return {
         ...state,
         isDialogOpened: true,
-        currFormData: action.payload,
+        currWordItem: action.payload,
         dialogPage: "UpdateWordPage",
       };
     case DialogActions.OPEN_CONFIRMATION_PAGE:
@@ -32,6 +32,7 @@ export function dialogReducer(
         ...state,
         isDialogOpened: true,
         dialogPage: "ConfirmationPage",
+        currWordItem: action.payload,
       };
     default:
       return state;

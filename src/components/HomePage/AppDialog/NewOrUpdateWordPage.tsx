@@ -64,7 +64,7 @@ export default function NewOrUpdateWordPage() {
   const { closeDialog } = useDialogActions();
 
   const categories = useSelector((state: RootState) => state.nav.categories);
-  const { currFormData } = useSelector((state: RootState) => state.dialog);
+  const { currWordItem } = useSelector((state: RootState) => state.dialog);
 
   const categoriesForCmp: CateOptionType[] = categories.map((item) => {
     return { title: item };
@@ -84,7 +84,7 @@ export default function NewOrUpdateWordPage() {
       alert("Please select at least one category!");
       return;
     }
-    if (!currFormData) {
+    if (!currWordItem) {
       createNewWord(formData);
     } else {
       updateWordItem(formData);
@@ -100,7 +100,7 @@ export default function NewOrUpdateWordPage() {
   };
 
   useEffect(() => {
-    if (currFormData) setFormData({ ...currFormData });
+    if (currWordItem) setFormData({ ...currWordItem });
   }, []);
 
   return (
@@ -111,7 +111,7 @@ export default function NewOrUpdateWordPage() {
           <Avatar className={classes.avatar}>
             <Bookmarks />
           </Avatar>
-          {!currFormData ? (
+          {!currWordItem ? (
             <Typography component="h1" variant="h5">
               New Word or Phrase
             </Typography>
@@ -191,7 +191,7 @@ export default function NewOrUpdateWordPage() {
                 />
               )}
             />
-            {!currFormData ? (
+            {!currWordItem ? (
               <Button
                 type="submit"
                 fullWidth
