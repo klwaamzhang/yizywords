@@ -6,6 +6,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import { useSelector } from "react-redux";
 import { RootState } from "./reducers";
+import RegisterPage from "./components/RegisterPage";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -27,6 +28,9 @@ export default function App() {
       <Switch>
         <Route path="/login">
           {loggedIn ? <Redirect to="/Inbox" /> : <LoginPage />}
+        </Route>
+        <Route path="/register">
+          {loggedIn ? <Redirect to="/Inbox" /> : <RegisterPage />}
         </Route>
         <Route path="/:filterName">
           {loggedIn ? <HomePage /> : <Redirect to="/login" />}

@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const classes = useStyles();
   const { updateWordData } = useAppActions();
   const { logIn } = useAppActions();
@@ -74,7 +74,7 @@ export default function LoginPage() {
           <Bookmarks />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          Register
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit} method="POST">
           <TextField
@@ -120,13 +120,13 @@ export default function LoginPage() {
             color="primary"
             className={classes.submit}
           >
-            Login
+            Register
           </Button>
           <Grid container>
             <Grid item xs></Grid>
             <Grid item>
-              <RouteLink className={classes.routerLink} to={`/register`}>
-                {"Don't have an account? Register"}
+              <RouteLink className={classes.routerLink} to={`/login`}>
+                {"Already have an account? Login"}
               </RouteLink>
             </Grid>
           </Grid>
