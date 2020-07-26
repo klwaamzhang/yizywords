@@ -63,16 +63,11 @@ export default function SideMenu() {
     (state: RootState) => state.nav
   );
 
-  const [cat, setCat] = React.useState("Inbox");
+  const [sideMenuItem, setSideMenuItem] = React.useState("Inbox");
   const [open, setOpen] = React.useState(true);
 
   const handleCategoriesClick = () => {
     setOpen(!open);
-  };
-
-  const changeCat = (cat: string) => {
-    closeSideMenu();
-    setCat(cat);
   };
 
   useEffect(() => {
@@ -80,7 +75,7 @@ export default function SideMenu() {
   }, [wordData]);
 
   useEffect(() => {
-    setCat(fName);
+    setSideMenuItem(fName);
   }, [fName]);
 
   const drawer = (
@@ -92,9 +87,9 @@ export default function SideMenu() {
       <List className={classes.firstList}>
         <Link className={classes.routerLink} to={`/Inbox`}>
           <ListItem
-            selected={cat === "Inbox"}
+            selected={sideMenuItem === "Inbox"}
             button
-            onClick={() => changeCat("Inbox")}
+            onClick={() => closeSideMenu}
           >
             <ListItemIcon>
               <MoveToInbox />
@@ -119,10 +114,10 @@ export default function SideMenu() {
                 to={`${text.split(" ").join("-")}`}
               >
                 <ListItem
-                  selected={cat === text}
+                  selected={sideMenuItem === text}
                   button
                   className={classes.nestedListItem}
-                  onClick={() => changeCat(text)}
+                  onClick={() => closeSideMenu}
                 >
                   <ListItemIcon>
                     <BookmarkBorderIcon />
@@ -135,9 +130,9 @@ export default function SideMenu() {
         </Collapse>
         <Link className={classes.routerLink} to={`/Recycle-Bin`}>
           <ListItem
-            selected={cat === "Recycle Bin"}
+            selected={sideMenuItem === "Recycle Bin"}
+            onClick={() => closeSideMenu}
             button
-            onClick={() => changeCat("Recycle Bin")}
           >
             <ListItemIcon>
               <DeleteIcon />
@@ -148,12 +143,18 @@ export default function SideMenu() {
       </List>
       <Divider />
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <SettingsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Settings" />
-        </ListItem>
+        <Link className={classes.routerLink} to={`/Settings`}>
+          <ListItem
+            button
+            selected={sideMenuItem === "Settings"}
+            onClick={() => closeSideMenu}
+          >
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Settings" />
+          </ListItem>
+        </Link>
       </List>
     </React.Fragment>
   );
