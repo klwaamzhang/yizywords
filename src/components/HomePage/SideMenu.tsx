@@ -89,7 +89,7 @@ export default function SideMenu() {
           <ListItem
             selected={sideMenuItem === "Inbox"}
             button
-            onClick={() => closeSideMenu}
+            onClick={closeSideMenu}
           >
             <ListItemIcon>
               <MoveToInbox />
@@ -117,7 +117,7 @@ export default function SideMenu() {
                   selected={sideMenuItem === text}
                   button
                   className={classes.nestedListItem}
-                  onClick={() => closeSideMenu}
+                  onClick={closeSideMenu}
                 >
                   <ListItemIcon>
                     <BookmarkBorderIcon />
@@ -131,7 +131,7 @@ export default function SideMenu() {
         <Link className={classes.routerLink} to={`/Recycle-Bin`}>
           <ListItem
             selected={sideMenuItem === "Recycle Bin"}
-            onClick={() => closeSideMenu}
+            onClick={closeSideMenu}
             button
           >
             <ListItemIcon>
@@ -147,7 +147,7 @@ export default function SideMenu() {
           <ListItem
             button
             selected={sideMenuItem === "Settings"}
-            onClick={() => closeSideMenu}
+            onClick={closeSideMenu}
           >
             <ListItemIcon>
               <SettingsIcon />
