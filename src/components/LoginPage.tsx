@@ -8,7 +8,7 @@ import {
   Paper,
   Grid,
 } from "@material-ui/core";
-import { Bookmarks } from "@material-ui/icons";
+import { LockOpen } from "@material-ui/icons";
 import { User, Word } from "../@types";
 import { dataApi } from "../api/wordListData";
 import { useAppActions } from "../actions";
@@ -71,7 +71,7 @@ export default function LoginPage() {
     <div className={classes.root}>
       <Paper className={classes.paper} elevation={3}>
         <Avatar className={classes.avatar}>
-          <Bookmarks />
+          <LockOpen />
         </Avatar>
         <Typography component="h1" variant="h5">
           Login

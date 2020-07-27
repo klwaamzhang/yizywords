@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "center",
     },
+    h5: {
+      fontStyle: "italic",
+    },
   })
 );
 
@@ -65,7 +68,9 @@ export default function Topbar() {
           </Container>
         ) : (
           <Container className={classes.container} maxWidth="md">
-            <Typography variant="h5">YizyWords</Typography>
+            <Typography variant="h5" classes={{ h5: classes.h5 }}>
+              YizyWords
+            </Typography>
           </Container>
         )}
       </Toolbar>

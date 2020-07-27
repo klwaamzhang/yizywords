@@ -5,15 +5,13 @@ import {
   Typography,
   Button,
   makeStyles,
-  Paper,
   DialogContent,
   Container,
   CssBaseline,
 } from "@material-ui/core";
-import { Bookmarks } from "@material-ui/icons";
-import { User, Word } from "../../../@types";
-import { dataApi } from "../../../api/wordListData";
-import { useAppActions, useDialogActions } from "../../../actions";
+import { Lock } from "@material-ui/icons";
+import { User } from "../../../@types";
+import { useDialogActions } from "../../../actions";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -57,7 +55,7 @@ export default function AccountPage() {
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <Bookmarks />
+            <Lock />
           </Avatar>
           <Typography component="h1" variant="h5">
             Update User Infomation

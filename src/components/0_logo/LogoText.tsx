@@ -8,6 +8,9 @@ const useStyles = makeStyles(() =>
       flexGrow: 1,
       alignSelf: "center",
     },
+    h6: {
+      fontStyle: "italic",
+    },
   })
 );
 
@@ -15,7 +18,11 @@ export default function LogoText() {
   const classes = useStyles();
 
   return (
-    <Typography variant="h6" className={classes.topbarTitle}>
+    <Typography
+      variant="h6"
+      classes={{ h6: classes.h6 }}
+      className={classes.topbarTitle}
+    >
       YizyWords
     </Typography>
   );
