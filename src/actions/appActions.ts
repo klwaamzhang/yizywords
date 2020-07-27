@@ -43,6 +43,12 @@ export function useAppActions() {
     });
   }
 
+  function logOut() {
+    return dispatch({
+      type: AppActions.LOGOUT,
+    });
+  }
+
   return {
     createNewWord,
     updateWordItem,
@@ -50,5 +56,6 @@ export function useAppActions() {
     logIn,
     updateWordData,
     deleteWordItemPermanently,
+    logOut,
   };
 }

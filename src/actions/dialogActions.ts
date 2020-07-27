@@ -27,10 +27,17 @@ export function useDialogActions() {
     });
   }
 
+  function openUserInfoPage() {
+    return dispatch({
+      type: DialogActions.OPEN_UPDATE_USER_INFO_PAGE,
+    });
+  }
+
   return {
     closeDialog,
     openNewWordPage,
     openUpdateWordPage,
     openConfirmationPage,
+    openUserInfoPage,
   };
 }

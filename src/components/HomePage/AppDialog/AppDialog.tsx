@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
 import NewOrUpdateWordPage from "./NewOrUpdateWordPage";
 import ConfirmationPage from "./ConfirmationPage";
+import AccountPage from "./AccountPage";
 
 export default function AppDialog() {
   const { closeDialog } = useDialogActions();
@@ -26,6 +27,8 @@ export default function AppDialog() {
             return <NewOrUpdateWordPage />;
           case "ConfirmationPage":
             return <ConfirmationPage />;
+          case "UpdateUserInfoPage":
+            return <AccountPage />;
           default:
             return <></>;
         }

@@ -6,6 +6,7 @@ type FILTER_MAIN_SECTION_LIST = "FILTER_MAIN_SECTION_LIST";
 type UPDATE_WORD_DATA = "UPDATE_WORD_DATA";
 type LOGIN = "LOGIN";
 type DELETE_WORD_ITEM = "DELETE_WORD_ITEM";
+type LOGOUT = "LOGOUT";
 
 type actionType = {
   CREATE_NEW_WORD: CREATE_NEW_WORD;
@@ -14,6 +15,7 @@ type actionType = {
   UPDATE_WORD_DATA: UPDATE_WORD_DATA;
   LOGIN: LOGIN;
   DELETE_WORD_ITEM: DELETE_WORD_ITEM;
+  LOGOUT: LOGOUT;
 };
 
 export const AppActions: actionType = {
@@ -23,6 +25,7 @@ export const AppActions: actionType = {
   UPDATE_WORD_DATA: "UPDATE_WORD_DATA",
   LOGIN: "LOGIN",
   DELETE_WORD_ITEM: "DELETE_WORD_ITEM",
+  LOGOUT: "LOGOUT",
 };
 
 export type AppAction =
@@ -31,4 +34,5 @@ export type AppAction =
   | { type: FILTER_MAIN_SECTION_LIST; payload: string }
   | { type: UPDATE_WORD_DATA; payload: Word[] }
   | { type: LOGIN }
-  | { type: DELETE_WORD_ITEM; payload: Word };
+  | { type: DELETE_WORD_ITEM; payload: Word }
+  | { type: LOGOUT };

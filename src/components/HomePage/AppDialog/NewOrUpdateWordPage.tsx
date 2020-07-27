@@ -36,17 +36,6 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-  chip: {
-    margin: theme.spacing(0.5),
-  },
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    listStyle: "none",
-    padding: theme.spacing(0.5),
-    margin: 0,
-  },
   autocmp: {
     marginTop: theme.spacing(2),
   },

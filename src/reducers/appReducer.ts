@@ -31,6 +31,8 @@ export function appReducer(state = initialState, action: AppAction): AppState {
         (item) => item._id !== action.payload._id
       );
       return { ...state, wordData: deletedDataArrUpdate };
+    case AppActions.LOGOUT:
+      return { ...state, loggedIn: false };
     default:
       return state;
   }

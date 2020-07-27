@@ -8,7 +8,7 @@ import {
   ListItemIcon,
 } from "@material-ui/core";
 import WordListItem from "./WordListItem";
-import { useAppActions } from "../../actions";
+import { useAppActions, useDialogActions } from "../../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { RootState } from "../../reducers";
 import { useSelector } from "react-redux";
@@ -37,7 +37,8 @@ export default function MainSection() {
 
   const { filterName } = useParams();
   const fName = filterName.split("-").join(" ");
-  const { filterMainSectionList } = useAppActions();
+  const { filterMainSectionList, logOut } = useAppActions();
+  const { openUserInfoPage } = useDialogActions();
   const { mainSectionData, wordData } = useSelector(
     (state: RootState) => state.app
   );
@@ -57,14 +58,14 @@ export default function MainSection() {
         </List>
       ) : (
         <List>
-          <ListItem button>
+          <ListItem button onClick={openUserInfoPage}>
             <ListItemIcon>
               <Lock />
             </ListItemIcon>
             <ListItemText primary="Update User Information" />
           </ListItem>
           <Divider />
-          <ListItem button>
+          <ListItem button onClick={logOut}>
             <ListItemIcon classes={{ root: classes.iconRoot }}>
               <ExitToApp />
             </ListItemIcon>
