@@ -61,7 +61,7 @@ export default function WordListItem(props: any) {
   };
 
   return (
-    <ListItem key={index} role={undefined} button>
+    <ListItem key={index} role={undefined}>
       <ListItemText
         classes={{ secondary: classes.secondary }}
         id={labelId}
