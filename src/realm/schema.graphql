@@ -1,0 +1,200 @@
+type DeleteManyPayload {
+  deletedCount: Int!
+}
+
+type InsertManyPayload {
+  insertedIds: [ObjectId]!
+}
+
+type Mutation {
+  deleteManyUsers(query: UserQueryInput): DeleteManyPayload
+  deleteManyWords(query: WordQueryInput): DeleteManyPayload
+  deleteOneUser(query: UserQueryInput!): User
+  deleteOneWord(query: WordQueryInput!): Word
+  insertManyUsers(data: [UserInsertInput!]!): InsertManyPayload
+  insertManyWords(data: [WordInsertInput!]!): InsertManyPayload
+  insertOneUser(data: UserInsertInput!): User
+  insertOneWord(data: WordInsertInput!): Word
+  replaceOneUser(query: UserQueryInput, data: UserInsertInput!): User
+  replaceOneWord(query: WordQueryInput, data: WordInsertInput!): Word
+  updateManyUsers(query: UserQueryInput, set: UserUpdateInput!): UpdateManyPayload
+  updateManyWords(set: WordUpdateInput!, query: WordQueryInput): UpdateManyPayload
+  updateOneUser(query: UserQueryInput, set: UserUpdateInput!): User
+  updateOneWord(query: WordQueryInput, set: WordUpdateInput!): Word
+  upsertOneUser(data: UserInsertInput!, query: UserQueryInput): User
+  upsertOneWord(query: WordQueryInput, data: WordInsertInput!): Word
+}
+
+scalar ObjectId
+
+type Query {
+  user(query: UserQueryInput): User
+  users(query: UserQueryInput, limit: Int = 100, sortBy: UserSortByInput): [User]!
+  word(query: WordQueryInput): Word
+  words(query: WordQueryInput, limit: Int = 100, sortBy: WordSortByInput): [Word]!
+}
+
+type UpdateManyPayload {
+  matchedCount: Int!
+  modifiedCount: Int!
+}
+
+type User {
+  _id: ObjectId!
+  email: String!
+  user_id: String!
+}
+
+input UserInsertInput {
+  email: String!
+  _id: ObjectId
+  user_id: String!
+}
+
+input UserQueryInput {
+  user_id_nin: [String]
+  user_id_lte: String
+  _id_lt: ObjectId
+  email_nin: [String]
+  email_ne: String
+  _id_ne: ObjectId
+  user_id_exists: Boolean
+  _id: ObjectId
+  _id_exists: Boolean
+  email_in: [String]
+  _id_gte: ObjectId
+  AND: [UserQueryInput!]
+  _id_in: [ObjectId]
+  _id_lte: ObjectId
+  user_id_gte: String
+  email_exists: Boolean
+  OR: [UserQueryInput!]
+  email_lte: String
+  email_gte: String
+  user_id_lt: String
+  user_id_gt: String
+  user_id_in: [String]
+  email: String
+  _id_nin: [ObjectId]
+  user_id: String
+  email_lt: String
+  user_id_ne: String
+  _id_gt: ObjectId
+  email_gt: String
+}
+
+enum UserSortByInput {
+  _ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+  _ID_ASC
+}
+
+input UserUpdateInput {
+  user_id: String
+  user_id_unset: Boolean
+  email: String
+  email_unset: Boolean
+  _id: ObjectId
+  _id_unset: Boolean
+}
+
+type Word {
+  _id: ObjectId!
+  categories: [String]
+  notes: String
+  status: String!
+  text: String!
+  user: User!
+}
+
+input WordInsertInput {
+  user: WordUserRelationInput!
+  text: String!
+  notes: String
+  categories: [String]
+  status: String!
+  _id: ObjectId
+}
+
+input WordQueryInput {
+  text_lte: String
+  text_nin: [String]
+  text_in: [String]
+  status_nin: [String]
+  _id_gte: ObjectId
+  _id_ne: ObjectId
+  notes_gte: String
+  status_gt: String
+  _id_lte: ObjectId
+  status_in: [String]
+  text_exists: Boolean
+  notes_lte: String
+  _id_lt: ObjectId
+  _id_in: [ObjectId]
+  notes_gt: String
+  status_gte: String
+  status_exists: Boolean
+  notes_lt: String
+  categories_exists: Boolean
+  status_ne: String
+  _id_nin: [ObjectId]
+  notes_in: [String]
+  text_gte: String
+  notes_ne: String
+  OR: [WordQueryInput!]
+  user_exists: Boolean
+  notes: String
+  categories_nin: [String]
+  user: UserQueryInput
+  text_ne: String
+  notes_nin: [String]
+  _id_gt: ObjectId
+  text_gt: String
+  text_lt: String
+  status_lt: String
+  _id_exists: Boolean
+  AND: [WordQueryInput!]
+  _id: ObjectId
+  text: String
+  status_lte: String
+  notes_exists: Boolean
+  categories_in: [String]
+  status: String
+  categories: [String]
+}
+
+enum WordSortByInput {
+  STATUS_ASC
+  _ID_ASC
+  _ID_DESC
+  USER_ASC
+  USER_DESC
+  TEXT_ASC
+  TEXT_DESC
+  NOTES_DESC
+  STATUS_DESC
+  NOTES_ASC
+}
+
+input WordUpdateInput {
+  _id_unset: Boolean
+  notes_unset: Boolean
+  status_unset: Boolean
+  categories: [String]
+  user: WordUserRelationInput
+  user_unset: Boolean
+  notes: String
+  status: String
+  text: String
+  text_unset: Boolean
+  categories_unset: Boolean
+  _id: ObjectId
+}
+
+input WordUserRelationInput {
+  create: UserInsertInput
+  link: String
+}

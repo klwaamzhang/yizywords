@@ -5,7 +5,8 @@ import LoginPage from "./components/LoginPage";
 import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import RegisterPage from "./components/RegisterPage";
-import { useRealmApp } from "./realm/RealmApp";
+import RealmApp, { useRealmApp } from "./realm/RealmApp";
+import RealmApolloProvider from "./realm/RealmApolloProvider";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -33,7 +34,13 @@ export default function App() {
           {app.user ? <Redirect to="/Inbox" /> : <RegisterPage />}
         </Route>
         <Route path="/:filterName">
-          {app.user ? <HomePage /> : <Redirect to="/login" />}
+          {app.user ? (
+            <RealmApolloProvider>
+              <HomePage />
+            </RealmApolloProvider>
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
 
         <Route exact path="/">
