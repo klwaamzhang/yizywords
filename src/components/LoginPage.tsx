@@ -1,71 +1,20 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import {
-  Avatar,
-  Typography,
-  Button,
-  makeStyles,
-  Paper,
-  Grid,
-} from "@material-ui/core";
+import { Avatar, Typography, Button, Paper, Grid } from "@material-ui/core";
 import { LockOpen } from "@material-ui/icons";
-import { User, Word } from "../@types";
-import { dataApi } from "../api/wordListData";
-import { useAppActions } from "../actions";
 import { Link as RouteLink } from "react-router-dom";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: "100vh",
-    width: "100vw",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-  },
-  paper: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: 30,
-    margin: 10,
-  },
-  avatar: {
-    margin: 15,
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    maxWidth: 320,
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 3),
-  },
-  routerLink: {
-    color: "#3f51b5",
-    fontSize: 12,
-  },
-}));
+import { useRealmApp } from "../realm/RealmApp";
+import { handleLogin } from "../utilities/authHelper";
+import { useStyles } from "../styles/authPagesStyle";
 
 export default function LoginPage() {
   const classes = useStyles();
-  const { updateWordData } = useAppActions();
-  const { logIn } = useAppActions();
 
-  const [formData, setFormData] = React.useState<User>({
-    _id: 200 + Math.floor(Math.random() * 100000),
-    userName: "",
-    password: "",
-  });
+  const app = useRealmApp();
 
-  const handleSubmit = async (e: any) => {
-    dataApi.getWordListData.then((rt) => {
-      const data = rt as Array<Word>;
-      updateWordData(data);
-      logIn();
-    });
-  };
+  // Keep track of form input state
+  const [email, setEmail] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
 
   return (
     <div className={classes.root}>
@@ -76,49 +25,44 @@ export default function LoginPage() {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit} method="POST">
+        <form className={classes.form}>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="userName"
-            label="User Name"
-            name="userName"
-            autoComplete="userName"
+            id="email"
+            label="Email"
+            name="email"
+            autoComplete="email"
             autoFocus
-            value={formData.userName}
+            value={email}
             onChange={(event: any) => {
-              setFormData({
-                ...formData,
-                userName: event.target.value,
-              });
+              setEmail(event.target.value);
             }}
           />
           <TextField
             variant="outlined"
             margin="normal"
+            type="password"
             required
             fullWidth
             id="password"
             label="Password"
             name="password"
             autoComplete="password"
-            autoFocus
-            value={formData.password}
+            value={password}
             onChange={(event: any) => {
-              setFormData({
-                ...formData,
-                password: event.target.value,
-              });
+              setPassword(event.target.value);
             }}
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => handleLogin(app, email, password)}
           >
             Login
           </Button>

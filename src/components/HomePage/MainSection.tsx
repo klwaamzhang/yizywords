@@ -14,6 +14,7 @@ import { RootState } from "../../reducers";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ExitToApp, Lock } from "@material-ui/icons";
+import { useRealmApp } from "../../realm/RealmApp";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,7 +38,7 @@ export default function MainSection() {
 
   const { filterName } = useParams();
   const fName = filterName.split("-").join(" ");
-  const { filterMainSectionList, logOut } = useAppActions();
+  const { filterMainSectionList } = useAppActions();
   const { openUserInfoPage } = useDialogActions();
   const { mainSectionData, wordData } = useSelector(
     (state: RootState) => state.app
@@ -46,6 +47,8 @@ export default function MainSection() {
   useEffect(() => {
     if (fName !== "Setting") filterMainSectionList(fName);
   }, [fName, wordData]);
+
+  const app = useRealmApp();
 
   return (
     <Grid item xs={12} sm={8} className={classes.root}>
@@ -65,7 +68,7 @@ export default function MainSection() {
             <ListItemText primary="Update User Information" />
           </ListItem>
           <Divider />
-          <ListItem button onClick={logOut}>
+          <ListItem button onClick={app.logOut}>
             <ListItemIcon classes={{ root: classes.iconRoot }}>
               <ExitToApp />
             </ListItemIcon>

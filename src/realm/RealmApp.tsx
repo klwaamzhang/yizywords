@@ -6,7 +6,7 @@ const app = new RealmWeb.App({ id: REALM_APP_ID });
 
 const RealmAppContext = React.createContext<IRealmApp | void>(undefined);
 
-interface IRealmApp {
+export interface IRealmApp {
   id: string;
   user: Realm.User | null;
   logIn: (email: string, password: string) => Promise<void>;

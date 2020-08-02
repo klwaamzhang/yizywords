@@ -5,14 +5,17 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { store } from "./store/reduxStore";
+import RealmApp from "./realm/RealmApp";
 
 ReactDOM.render(
   // <React.StrictMode>
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
+  <RealmApp>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
+  </RealmApp>,
   // </React.StrictMode>,
   document.getElementById("root")
 );

@@ -4,9 +4,8 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import LoginPage from "./components/LoginPage";
 import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
-import { useSelector } from "react-redux";
-import { RootState } from "./reducers";
 import RegisterPage from "./components/RegisterPage";
+import { useRealmApp } from "./realm/RealmApp";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -19,7 +18,8 @@ const useStyles = makeStyles(() =>
 export default function App() {
   const classes = useStyles();
 
-  const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
+  // const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
+  const app = useRealmApp();
 
   return (
     <div className={classes.root}>
@@ -27,13 +27,13 @@ export default function App() {
 
       <Switch>
         <Route path="/login">
-          {loggedIn ? <Redirect to="/Inbox" /> : <LoginPage />}
+          {app.user ? <Redirect to="/Inbox" /> : <LoginPage />}
         </Route>
         <Route path="/register">
-          {loggedIn ? <Redirect to="/Inbox" /> : <RegisterPage />}
+          {app.user ? <Redirect to="/Inbox" /> : <RegisterPage />}
         </Route>
         <Route path="/:filterName">
-          {loggedIn ? <HomePage /> : <Redirect to="/login" />}
+          {app.user ? <HomePage /> : <Redirect to="/login" />}
         </Route>
 
         <Route exact path="/">
