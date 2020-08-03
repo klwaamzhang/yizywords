@@ -100,8 +100,8 @@ export type MutationUpdateManyUsersArgs = {
 
 
 export type MutationUpdateManyWordsArgs = {
-  set: WordUpdateInput;
   query?: Maybe<WordQueryInput>;
+  set: WordUpdateInput;
 };
 
 
@@ -118,8 +118,8 @@ export type MutationUpdateOneWordArgs = {
 
 
 export type MutationUpsertOneUserArgs = {
-  data: UserInsertInput;
   query?: Maybe<UserQueryInput>;
+  data: UserInsertInput;
 };
 
 
@@ -156,9 +156,9 @@ export type QueryWordArgs = {
 
 
 export type QueryWordsArgs = {
-  query?: Maybe<WordQueryInput>;
   limit?: Maybe<Scalars['Int']>;
   sortBy?: Maybe<WordSortByInput>;
+  query?: Maybe<WordQueryInput>;
 };
 
 export type UpdateManyPayload = {
@@ -181,59 +181,59 @@ export type UserInsertInput = {
 };
 
 export type UserQueryInput = {
-  user_id_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
   user_id_lte?: Maybe<Scalars['String']>;
-  _id_lt?: Maybe<Scalars['ObjectId']>;
-  email_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
-  email_ne?: Maybe<Scalars['String']>;
-  _id_ne?: Maybe<Scalars['ObjectId']>;
-  user_id_exists?: Maybe<Scalars['Boolean']>;
-  _id?: Maybe<Scalars['ObjectId']>;
-  _id_exists?: Maybe<Scalars['Boolean']>;
-  email_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  _id_gte?: Maybe<Scalars['ObjectId']>;
-  AND?: Maybe<Array<UserQueryInput>>;
-  _id_in?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
-  _id_lte?: Maybe<Scalars['ObjectId']>;
-  user_id_gte?: Maybe<Scalars['String']>;
-  email_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<UserQueryInput>>;
-  email_lte?: Maybe<Scalars['String']>;
-  email_gte?: Maybe<Scalars['String']>;
-  user_id_lt?: Maybe<Scalars['String']>;
-  user_id_gt?: Maybe<Scalars['String']>;
-  user_id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  email?: Maybe<Scalars['String']>;
-  _id_nin?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
   user_id?: Maybe<Scalars['String']>;
+  email_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _id_nin?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
+  email_exists?: Maybe<Scalars['Boolean']>;
+  user_id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  OR?: Maybe<Array<UserQueryInput>>;
+  _id_exists?: Maybe<Scalars['Boolean']>;
+  AND?: Maybe<Array<UserQueryInput>>;
+  _id_gte?: Maybe<Scalars['ObjectId']>;
+  _id_lte?: Maybe<Scalars['ObjectId']>;
+  email?: Maybe<Scalars['String']>;
+  _id_ne?: Maybe<Scalars['ObjectId']>;
+  _id?: Maybe<Scalars['ObjectId']>;
   email_lt?: Maybe<Scalars['String']>;
   user_id_ne?: Maybe<Scalars['String']>;
-  _id_gt?: Maybe<Scalars['ObjectId']>;
+  user_id_gte?: Maybe<Scalars['String']>;
   email_gt?: Maybe<Scalars['String']>;
+  user_id_lt?: Maybe<Scalars['String']>;
+  email_ne?: Maybe<Scalars['String']>;
+  user_id_exists?: Maybe<Scalars['Boolean']>;
+  _id_lt?: Maybe<Scalars['ObjectId']>;
+  _id_gt?: Maybe<Scalars['ObjectId']>;
+  user_id_gt?: Maybe<Scalars['String']>;
+  email_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _id_in?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
+  email_lte?: Maybe<Scalars['String']>;
+  user_id_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  email_gte?: Maybe<Scalars['String']>;
 };
 
 export enum UserSortByInput {
-  IdDesc = '_ID_DESC',
-  UserIdAsc = 'USER_ID_ASC',
-  UserIdDesc = 'USER_ID_DESC',
   EmailAsc = 'EMAIL_ASC',
   EmailDesc = 'EMAIL_DESC',
-  IdAsc = '_ID_ASC'
+  IdAsc = '_ID_ASC',
+  IdDesc = '_ID_DESC',
+  UserIdAsc = 'USER_ID_ASC',
+  UserIdDesc = 'USER_ID_DESC'
 }
 
 export type UserUpdateInput = {
-  user_id?: Maybe<Scalars['String']>;
-  user_id_unset?: Maybe<Scalars['Boolean']>;
-  email?: Maybe<Scalars['String']>;
   email_unset?: Maybe<Scalars['Boolean']>;
   _id?: Maybe<Scalars['ObjectId']>;
   _id_unset?: Maybe<Scalars['Boolean']>;
+  user_id?: Maybe<Scalars['String']>;
+  user_id_unset?: Maybe<Scalars['Boolean']>;
+  email?: Maybe<Scalars['String']>;
 };
 
 export type Word = {
   __typename?: 'Word';
   _id: Scalars['ObjectId'];
-  categories?: Maybe<Array<Maybe<Scalars['String']>>>;
+  categories: Array<Maybe<Scalars['String']>>;
   notes?: Maybe<Scalars['String']>;
   status: Scalars['String'];
   text: Scalars['String'];
@@ -241,92 +241,92 @@ export type Word = {
 };
 
 export type WordInsertInput = {
-  user: WordUserRelationInput;
   text: Scalars['String'];
   notes?: Maybe<Scalars['String']>;
-  categories?: Maybe<Array<Maybe<Scalars['String']>>>;
+  categories: Array<Maybe<Scalars['String']>>;
   status: Scalars['String'];
   _id?: Maybe<Scalars['ObjectId']>;
+  user: WordUserRelationInput;
 };
 
 export type WordQueryInput = {
-  text_lte?: Maybe<Scalars['String']>;
-  text_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
-  text_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  status_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
-  _id_gte?: Maybe<Scalars['ObjectId']>;
-  _id_ne?: Maybe<Scalars['ObjectId']>;
-  notes_gte?: Maybe<Scalars['String']>;
-  status_gt?: Maybe<Scalars['String']>;
-  _id_lte?: Maybe<Scalars['ObjectId']>;
-  status_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  text_exists?: Maybe<Scalars['Boolean']>;
-  notes_lte?: Maybe<Scalars['String']>;
-  _id_lt?: Maybe<Scalars['ObjectId']>;
-  _id_in?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
-  notes_gt?: Maybe<Scalars['String']>;
-  status_gte?: Maybe<Scalars['String']>;
-  status_exists?: Maybe<Scalars['Boolean']>;
-  notes_lt?: Maybe<Scalars['String']>;
-  categories_exists?: Maybe<Scalars['Boolean']>;
-  status_ne?: Maybe<Scalars['String']>;
-  _id_nin?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
-  notes_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  text_gte?: Maybe<Scalars['String']>;
-  notes_ne?: Maybe<Scalars['String']>;
-  OR?: Maybe<Array<WordQueryInput>>;
-  user_exists?: Maybe<Scalars['Boolean']>;
-  notes?: Maybe<Scalars['String']>;
-  categories_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
-  user?: Maybe<UserQueryInput>;
-  text_ne?: Maybe<Scalars['String']>;
-  notes_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
-  _id_gt?: Maybe<Scalars['ObjectId']>;
-  text_gt?: Maybe<Scalars['String']>;
-  text_lt?: Maybe<Scalars['String']>;
-  status_lt?: Maybe<Scalars['String']>;
   _id_exists?: Maybe<Scalars['Boolean']>;
-  AND?: Maybe<Array<WordQueryInput>>;
-  _id?: Maybe<Scalars['ObjectId']>;
-  text?: Maybe<Scalars['String']>;
-  status_lte?: Maybe<Scalars['String']>;
-  notes_exists?: Maybe<Scalars['Boolean']>;
+  text_gte?: Maybe<Scalars['String']>;
+  status_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  notes_gte?: Maybe<Scalars['String']>;
+  categories_exists?: Maybe<Scalars['Boolean']>;
+  _id_lte?: Maybe<Scalars['ObjectId']>;
+  text_lte?: Maybe<Scalars['String']>;
+  status_exists?: Maybe<Scalars['Boolean']>;
+  status_gte?: Maybe<Scalars['String']>;
+  text_in?: Maybe<Array<Maybe<Scalars['String']>>>;
   categories_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _id_in?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
+  OR?: Maybe<Array<WordQueryInput>>;
+  notes_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _id_gte?: Maybe<Scalars['ObjectId']>;
+  _id_gt?: Maybe<Scalars['ObjectId']>;
+  notes_gt?: Maybe<Scalars['String']>;
+  status_gt?: Maybe<Scalars['String']>;
+  text_lt?: Maybe<Scalars['String']>;
+  notes_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  notes_lt?: Maybe<Scalars['String']>;
+  AND?: Maybe<Array<WordQueryInput>>;
+  text_gt?: Maybe<Scalars['String']>;
+  text_exists?: Maybe<Scalars['Boolean']>;
   status?: Maybe<Scalars['String']>;
+  notes_lte?: Maybe<Scalars['String']>;
+  notes_exists?: Maybe<Scalars['Boolean']>;
+  status_lte?: Maybe<Scalars['String']>;
+  user_exists?: Maybe<Scalars['Boolean']>;
+  text_ne?: Maybe<Scalars['String']>;
+  _id?: Maybe<Scalars['ObjectId']>;
+  user?: Maybe<UserQueryInput>;
+  notes?: Maybe<Scalars['String']>;
+  status_lt?: Maybe<Scalars['String']>;
+  text_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  categories_nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  status_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  notes_ne?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+  status_ne?: Maybe<Scalars['String']>;
+  _id_lt?: Maybe<Scalars['ObjectId']>;
+  _id_nin?: Maybe<Array<Maybe<Scalars['ObjectId']>>>;
+  _id_ne?: Maybe<Scalars['ObjectId']>;
   categories?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export enum WordSortByInput {
-  StatusAsc = 'STATUS_ASC',
-  IdAsc = '_ID_ASC',
-  IdDesc = '_ID_DESC',
   UserAsc = 'USER_ASC',
-  UserDesc = 'USER_DESC',
+  NotesAsc = 'NOTES_ASC',
+  NotesDesc = 'NOTES_DESC',
   TextAsc = 'TEXT_ASC',
   TextDesc = 'TEXT_DESC',
-  NotesDesc = 'NOTES_DESC',
+  StatusAsc = 'STATUS_ASC',
   StatusDesc = 'STATUS_DESC',
-  NotesAsc = 'NOTES_ASC'
+  IdAsc = '_ID_ASC',
+  IdDesc = '_ID_DESC',
+  UserDesc = 'USER_DESC'
 }
 
 export type WordUpdateInput = {
   _id_unset?: Maybe<Scalars['Boolean']>;
-  notes_unset?: Maybe<Scalars['Boolean']>;
-  status_unset?: Maybe<Scalars['Boolean']>;
-  categories?: Maybe<Array<Maybe<Scalars['String']>>>;
   user?: Maybe<WordUserRelationInput>;
-  user_unset?: Maybe<Scalars['Boolean']>;
-  notes?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  text?: Maybe<Scalars['String']>;
-  text_unset?: Maybe<Scalars['Boolean']>;
   categories_unset?: Maybe<Scalars['Boolean']>;
   _id?: Maybe<Scalars['ObjectId']>;
+  text_unset?: Maybe<Scalars['Boolean']>;
+  notes?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+  user_unset?: Maybe<Scalars['Boolean']>;
+  status_unset?: Maybe<Scalars['Boolean']>;
+  notes_unset?: Maybe<Scalars['Boolean']>;
+  categories?: Maybe<Array<Maybe<Scalars['String']>>>;
+  status?: Maybe<Scalars['String']>;
 };
 
 export type WordUserRelationInput = {
-  create?: Maybe<UserInsertInput>;
   link?: Maybe<Scalars['String']>;
+  create?: Maybe<UserInsertInput>;
 };
 
 export type GetUserQueryVariables = Exact<{
@@ -342,7 +342,9 @@ export type GetUserQuery = (
   )> }
 );
 
-export type GetAllWordsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetAllWordsQueryVariables = Exact<{
+  user?: Maybe<UserQueryInput>;
+}>;
 
 
 export type GetAllWordsQuery = (

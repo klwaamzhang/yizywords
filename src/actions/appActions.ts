@@ -1,6 +1,6 @@
 import { AppActions } from "../@types/app";
 import { useDispatch } from "react-redux";
-import { Word } from "../@types";
+import { Word } from "../types";
 
 export function useAppActions() {
   const dispatch = useDispatch();
@@ -49,6 +49,12 @@ export function useAppActions() {
     });
   }
 
+  function storeWords(words: Word[]) {
+    return dispatch({
+      type: AppActions.STORE_WORDS,
+    });
+  }
+
   return {
     createNewWord,
     updateWordItem,
@@ -57,5 +63,6 @@ export function useAppActions() {
     updateWordData,
     deleteWordItemPermanently,
     logOut,
+    storeWords,
   };
 }

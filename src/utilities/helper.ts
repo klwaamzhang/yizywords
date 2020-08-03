@@ -1,10 +1,10 @@
-import { Word } from "../@types";
+import { Word } from "../types";
 
 export const populateCategories = (data: Word[]) => {
   return data
     .flatMap((item) => item.categories)
     .reduce((acc, cur) => {
-      if (cur !== "Inbox" && acc.indexOf(cur) === -1) {
+      if (cur && cur !== "Inbox" && acc.indexOf(cur) === -1) {
         acc.push(cur);
       }
       return acc;
@@ -17,6 +17,7 @@ export const filterMainSectionData = (filterName: string, data: Word[]) => {
   }
   return data.filter(
     (item) =>
-      item.status !== "deleted" && item.categories.find((e) => e === filterName)
+      item.status !== "deleted" &&
+      item.categories?.find((e) => e === filterName)
   );
 };

@@ -2,8 +2,8 @@ import { filterMainSectionData } from "../utilities/helper";
 import { AppState, AppAction, AppActions } from "../@types/app";
 
 const initialState: AppState = {
-  wordData: [],
-  mainSectionData: [],
+  words: [],
+  filteredWords: [],
   urlLocationPathname: "/",
   loggedIn: false,
 };
@@ -11,28 +11,31 @@ const initialState: AppState = {
 export function appReducer(state = initialState, action: AppAction): AppState {
   switch (action.type) {
     case AppActions.CREATE_NEW_WORD:
-      return { ...state, wordData: [...state.wordData, action.payload] };
+      return { ...state, words: [...state.words, action.payload] };
     case AppActions.UPDATE_WORD_ITEM:
-      const newDataUpdate = state.wordData.map((item) =>
+      const newDataUpdate = state.words.map((item) =>
         item._id === action.payload._id ? action.payload : item
       );
-      return { ...state, wordData: newDataUpdate };
+      return { ...state, words: newDataUpdate };
     case AppActions.FILTER_MAIN_SECTION_LIST:
       return {
         ...state,
-        mainSectionData: filterMainSectionData(action.payload, state.wordData),
+        filteredWords: filterMainSectionData(action.payload, state.words),
       };
     case AppActions.UPDATE_WORD_DATA:
-      return { ...state, wordData: action.payload };
+      return { ...state, words: action.payload };
     case AppActions.LOGIN:
       return { ...state, loggedIn: true };
     case AppActions.DELETE_WORD_ITEM:
-      const deletedDataArrUpdate = state.wordData.filter(
+      const deletedDataArrUpdate = state.words.filter(
         (item) => item._id !== action.payload._id
       );
-      return { ...state, wordData: deletedDataArrUpdate };
+      return { ...state, words: deletedDataArrUpdate };
     case AppActions.LOGOUT:
       return { ...state, loggedIn: false };
+    case AppActions.STORE_WORDS:
+      console.log(action.payload);
+      return { ...state, words: action.payload };
     default:
       return state;
   }

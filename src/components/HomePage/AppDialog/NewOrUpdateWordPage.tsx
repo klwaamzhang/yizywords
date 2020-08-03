@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import { Bookmarks } from "@material-ui/icons";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { Word } from "../../../@types";
+import { Word } from "../../../@types/word";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
 
@@ -49,7 +49,7 @@ interface CateOptionType {
 export default function NewOrUpdateWordPage() {
   const classes = useStyles();
 
-  const { createNewWord, updateWordItem } = useAppActions();
+  // const { createNewWord, updateWordItem } = useAppActions();
   const { closeDialog } = useDialogActions();
 
   const categories = useSelector((state: RootState) => state.nav.categories);
@@ -73,11 +73,11 @@ export default function NewOrUpdateWordPage() {
       alert("Please select at least one category!");
       return;
     }
-    if (!currWordItem) {
-      createNewWord(formData);
-    } else {
-      updateWordItem(formData);
-    }
+    // if (!currWordItem) {
+    //   createNewWord(formData);
+    // } else {
+    //   updateWordItem(formData);
+    // }
     setFormData({
       _id: 10 + Math.floor(Math.random() * 100000),
       text: "",
@@ -89,7 +89,7 @@ export default function NewOrUpdateWordPage() {
   };
 
   useEffect(() => {
-    if (currWordItem) setFormData({ ...currWordItem });
+    // if (currWordItem) setFormData({ ...currWordItem });
   }, []);
 
   return (

@@ -13,6 +13,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { useSelector } from "react-redux";
 import { RootState } from "../reducers";
 import LogoText from "./0_logo/LogoText";
+import { useRealmApp } from "../realm/RealmApp";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,12 +42,13 @@ export default function Topbar() {
   const { openNewWordPage } = useDialogActions();
   const { openSideMenu } = useNavActions();
 
-  const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
+  // const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
+  const app = useRealmApp();
 
   return (
     <AppBar position="fixed">
       <Toolbar>
-        {loggedIn ? (
+        {app.user ? (
           <Container
             style={{ display: "flex" }}
             className={classes.noLeftRightPadding}

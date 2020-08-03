@@ -56,7 +56,7 @@ export default function SideMenu() {
   const theme = useTheme();
 
   const { closeSideMenu, updateCategories } = useNavActions();
-  const wordData = useSelector((state: RootState) => state.app.wordData);
+  const words = useSelector((state: RootState) => state.app.words);
   const { filterName } = useParams();
   const fName = filterName.split("-").join(" ");
   const { isSideMenuOpen, categories } = useSelector(
@@ -71,8 +71,8 @@ export default function SideMenu() {
   };
 
   useEffect(() => {
-    updateCategories(wordData);
-  }, [wordData]);
+    updateCategories(words);
+  }, [words]);
 
   useEffect(() => {
     setSideMenuItem(fName);

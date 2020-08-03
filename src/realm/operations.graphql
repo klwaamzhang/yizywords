@@ -6,8 +6,8 @@ query GetUser($userId: String!) {
   }
 }
 
-query GetAllWords {
-  words {
+query GetAllWords($user: UserQueryInput) {
+  words(query: { user: $user }) {
     _id
     text
     notes

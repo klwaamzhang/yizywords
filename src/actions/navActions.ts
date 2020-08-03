@@ -1,5 +1,5 @@
 import { NavActions } from "../@types/nav";
-import { Word } from "../@types";
+import { Word } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../reducers";
 

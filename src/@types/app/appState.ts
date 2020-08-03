@@ -1,8 +1,8 @@
-import { Word } from "../word";
+import { Word } from "../../types";
 
 export type AppState = {
-  wordData: Array<Word>;
-  mainSectionData: Array<Word>;
+  words: Word[];
+  filteredWords: Word[];
   urlLocationPathname: string;
   loggedIn: boolean;
 };

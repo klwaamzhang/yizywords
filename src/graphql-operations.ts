@@ -41,8 +41,8 @@ export type GetUserQueryHookResult = ReturnType<typeof useGetUserQuery>;
 export type GetUserLazyQueryHookResult = ReturnType<typeof useGetUserLazyQuery>;
 export type GetUserQueryResult = ApolloReactCommon.QueryResult<Types.GetUserQuery, Types.GetUserQueryVariables>;
 export const GetAllWordsDocument = gql`
-    query GetAllWords {
-  words {
+    query GetAllWords($user: UserQueryInput) {
+  words(query: {user: $user}) {
     _id
     text
     notes
@@ -69,6 +69,7 @@ export const GetAllWordsDocument = gql`
  * @example
  * const { data, loading, error } = useGetAllWordsQuery({
  *   variables: {
+ *      user: // value for 'user'
  *   },
  * });
  */
