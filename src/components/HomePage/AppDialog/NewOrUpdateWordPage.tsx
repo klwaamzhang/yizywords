@@ -54,6 +54,7 @@ export default function NewOrUpdateWordPage() {
 
   const categories = useSelector((state: RootState) => state.nav.categories);
   const { currWordItem } = useSelector((state: RootState) => state.dialog);
+  const user = useSelector((state: RootState) => state.app.user);
 
   const categoriesForCmp: CateOptionType[] = categories.map((item) => {
     return { title: item };
@@ -78,6 +79,9 @@ export default function NewOrUpdateWordPage() {
     // } else {
     //   updateWordItem(formData);
     // }
+
+    console.log("dialog", user);
+
     setFormData({
       _id: 10 + Math.floor(Math.random() * 100000),
       text: "",

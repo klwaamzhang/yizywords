@@ -1,4 +1,4 @@
-import { Word } from "../../types";
+import { Word, User } from "../../types";
 
 type CREATE_NEW_WORD = "CREATE_NEW_WORD";
 type UPDATE_WORD_ITEM = "UPDATE_WORD_ITEM";
@@ -9,7 +9,7 @@ type DELETE_WORD_ITEM = "DELETE_WORD_ITEM";
 type LOGOUT = "LOGOUT";
 
 type STORE_WORDS = "STORE_WORDS";
-type STORE_USER_ID = "STORE_USER_ID";
+type STORE_USER = "STORE_USER";
 
 type actionType = {
   CREATE_NEW_WORD: CREATE_NEW_WORD;
@@ -21,7 +21,7 @@ type actionType = {
   LOGOUT: LOGOUT;
 
   STORE_WORDS: STORE_WORDS;
-  STORE_USER_ID: STORE_USER_ID;
+  STORE_USER: STORE_USER;
 };
 
 export const AppActions: actionType = {
@@ -34,7 +34,7 @@ export const AppActions: actionType = {
   LOGOUT: "LOGOUT",
 
   STORE_WORDS: "STORE_WORDS",
-  STORE_USER_ID: "STORE_USER_ID",
+  STORE_USER: "STORE_USER",
 };
 
 export type AppAction =
@@ -46,4 +46,4 @@ export type AppAction =
   | { type: DELETE_WORD_ITEM; payload: Word }
   | { type: LOGOUT }
   | { type: STORE_WORDS; payload: Word[] }
-  | { type: STORE_USER_ID; payload: string };
+  | { type: STORE_USER; payload: User };

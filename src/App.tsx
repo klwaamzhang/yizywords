@@ -21,14 +21,6 @@ export default function App() {
   const classes = useStyles();
 
   const app = useRealmApp();
-  const userId = app.user?.id;
-
-  const { storeUserId } = useAppActions();
-
-  useEffect(() => {
-    if (userId) storeUserId(userId);
-    console.log("userId: " + userId);
-  }, [userId]);
 
   return (
     <div className={classes.root}>

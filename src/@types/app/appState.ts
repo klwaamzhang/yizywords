@@ -1,9 +1,9 @@
-import { Word } from "../../types";
+import { Word, User } from "../../types";
 
 export type AppState = {
   words: Word[];
   filteredWords: Word[];
   urlLocationPathname: string;
   loggedIn: boolean;
-  userId: string;
+  user: User | undefined;
 };

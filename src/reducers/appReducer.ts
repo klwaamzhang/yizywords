@@ -6,7 +6,7 @@ const initialState: AppState = {
   filteredWords: [],
   urlLocationPathname: "/",
   loggedIn: false,
-  userId: "",
+  user: undefined,
 };
 
 export function appReducer(state = initialState, action: AppAction): AppState {
@@ -36,8 +36,8 @@ export function appReducer(state = initialState, action: AppAction): AppState {
       return { ...state, loggedIn: false };
     case AppActions.STORE_WORDS:
       return { ...state, words: action.payload };
-    case AppActions.STORE_USER_ID:
-      return { ...state, userId: action.payload };
+    case AppActions.STORE_USER:
+      return { ...state, user: action.payload };
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import { AppActions } from "../@types/app";
 import { useDispatch } from "react-redux";
-import { Word } from "../types";
+import { Word, User } from "../types";
 
 export function useAppActions() {
   const dispatch = useDispatch();
@@ -56,10 +56,10 @@ export function useAppActions() {
     });
   }
 
-  function storeUserId(userId: string) {
+  function storeUser(user: User) {
     return dispatch({
-      type: AppActions.STORE_USER_ID,
-      payload: userId,
+      type: AppActions.STORE_USER,
+      payload: user,
     });
   }
 
@@ -72,6 +72,6 @@ export function useAppActions() {
     deleteWordItemPermanently,
     logOut,
     storeWords,
-    storeUserId,
+    storeUser,
   };
 }
