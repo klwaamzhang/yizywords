@@ -52,6 +52,14 @@ export function useAppActions() {
   function storeWords(words: Word[]) {
     return dispatch({
       type: AppActions.STORE_WORDS,
+      payload: words,
+    });
+  }
+
+  function storeUserId(userId: string) {
+    return dispatch({
+      type: AppActions.STORE_USER_ID,
+      payload: userId,
     });
   }
 
@@ -64,5 +72,6 @@ export function useAppActions() {
     deleteWordItemPermanently,
     logOut,
     storeWords,
+    storeUserId,
   };
 }

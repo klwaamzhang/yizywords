@@ -24,13 +24,7 @@ const useStyles = makeStyles(() =>
 export default function HomePage() {
   const classes = useStyles();
 
-  const { storeWords } = useAppActions();
-
-  const { words, loading, error } = useWords();
-  if (loading) console.log("...loading");
-  if (error) console.log(`Error! ${error.message}`);
-
-  if (!loading) console.log(words);
+  const { loading } = useWords();
 
   return (
     <>
@@ -38,7 +32,7 @@ export default function HomePage() {
         <Container className={classes.container} maxWidth="md">
           <Grid className={classes.grid} container spacing={0}>
             <SideMenu />
-            <MainSection words={words} />
+            <MainSection />
           </Grid>
         </Container>
       )}

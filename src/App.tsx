@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Topbar from "./components/Topbar";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import LoginPage from "./components/LoginPage";
 import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./components/HomePage/HomePage";
 import RegisterPage from "./components/RegisterPage";
-import RealmApp, { useRealmApp } from "./realm/RealmApp";
+import { useRealmApp } from "./realm/RealmApp";
 import RealmApolloProvider from "./realm/RealmApolloProvider";
+import { useAppActions } from "./actions";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -19,8 +20,15 @@ const useStyles = makeStyles(() =>
 export default function App() {
   const classes = useStyles();
 
-  // const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
   const app = useRealmApp();
+  const userId = app.user?.id;
+
+  const { storeUserId } = useAppActions();
+
+  useEffect(() => {
+    if (userId) storeUserId(userId);
+    console.log("userId: " + userId);
+  }, [userId]);
 
   return (
     <div className={classes.root}>

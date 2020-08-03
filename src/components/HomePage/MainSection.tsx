@@ -38,7 +38,7 @@ interface MainSectionProps {
   words: Word[];
 }
 
-export default function MainSection(props: MainSectionProps) {
+export default function MainSection() {
   const classes = useStyles();
 
   const { filterName } = useParams();
@@ -46,7 +46,6 @@ export default function MainSection(props: MainSectionProps) {
   const { filterMainSectionList } = useAppActions();
   const { openUserInfoPage } = useDialogActions();
   const { filteredWords, words } = useSelector((state: RootState) => state.app);
-  console.log(props.words);
 
   useEffect(() => {
     if (fName !== "Setting") filterMainSectionList(fName);

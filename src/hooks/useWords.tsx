@@ -9,6 +9,8 @@ import {
 } from "../graphql-operations";
 import { useAppActions } from "../actions";
 import { ApolloError } from "@apollo/react-hooks";
+import { RootState } from "../reducers";
+import { useSelector } from "react-redux";
 
 export enum WordStatus {
   Active = "active",
@@ -30,26 +32,21 @@ export interface WordActions {
 }
 
 export function useWords(): {
-  words: Word[];
   loading: boolean;
-  error: ApolloError | undefined;
   //   actions: WordActions;
 } {
   const { storeWords } = useAppActions();
-  const [words, setWords] = React.useState<Word[]>([]);
+  const { userId } = useSelector((state: RootState) => state.app);
 
-  const { loading, error } = useGetAllWordsQuery({
+  const { loading } = useGetAllWordsQuery({
     variables: {
       user: {
-        user_id: "5f25d09ac5c11965cadf30a1",
+        user_id: userId,
       },
     },
     onCompleted: (data: GetAllWordsQuery) => {
       if (data?.words) {
-        setWords(data.words as Word[]);
-        // const wwword = data.words as Word[];
-        // console.log(wwword);
-        // storeWords([]);
+        storeWords(data.words as Word[]);
       }
     },
   });
@@ -58,8 +55,6 @@ export function useWords(): {
   //   const [deleteWordMutation] = useDeleteWordMutation();
 
   return {
-    words,
     loading,
-    error,
   };
 }

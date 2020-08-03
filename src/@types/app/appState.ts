@@ -5,4 +5,5 @@ export type AppState = {
   filteredWords: Word[];
   urlLocationPathname: string;
   loggedIn: boolean;
+  userId: string;
 };
