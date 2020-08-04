@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Topbar from "./components/Topbar";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import LoginPage from "./components/LoginPage";
@@ -7,7 +7,6 @@ import HomePage from "./components/HomePage/HomePage";
 import RegisterPage from "./components/RegisterPage";
 import { useRealmApp } from "./realm/RealmApp";
 import RealmApolloProvider from "./realm/RealmApolloProvider";
-import { useAppActions } from "./actions";
 
 const useStyles = makeStyles(() =>
   createStyles({

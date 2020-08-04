@@ -10,7 +10,7 @@ import {
   createStyles,
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
-import { useAppActions, useDialogActions } from "../../actions";
+import { useDialogActions } from "../../actions";
 import { useWords } from "../../hooks/useWords";
 
 const useStyles = makeStyles(() =>
@@ -25,9 +25,8 @@ const useStyles = makeStyles(() =>
 export default function WordListItem(props: any) {
   const classes = useStyles();
 
-  // const { updateWordItem } = useAppActions();
   const { openUpdateWordPage, openConfirmationPage } = useDialogActions();
-  const { updateWord } = useWords();
+  // const { updateWord } = useWords();
 
   const index = props.index;
   const item = props.item;
@@ -49,12 +48,12 @@ export default function WordListItem(props: any) {
   };
 
   const deleteWord = async () => {
-    await updateWord(item._id, { status: "deleted" });
+    // await updateWord(item._id, { status: "deleted" });
     closeMenu();
   };
 
   const restoreWord = async () => {
-    await updateWord(item._id, { status: "active" });
+    // await updateWord(item._id, { status: "active" });
     closeMenu();
   };
 

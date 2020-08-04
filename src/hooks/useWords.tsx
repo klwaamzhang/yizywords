@@ -64,7 +64,7 @@ export function useWords(): {
 
   const addWord = async (word: Word) => {
     try {
-      const response = await addWordMutation({
+      await addWordMutation({
         variables: {
           word: {
             text: word.text,
@@ -74,9 +74,8 @@ export function useWords(): {
             user: { link: word.user.user_id },
           },
         },
-      });
+      }).then((response) => createNewWord(response.data?.word as Word));
       //update view
-      createNewWord(response.data?.word as Word);
     } catch (err) {
       throw new Error(`Unable to add word: ${err}`);
     }

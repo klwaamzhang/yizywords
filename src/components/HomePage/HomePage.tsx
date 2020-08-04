@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Grid } from "@material-ui/core";
 import MainSection from "./MainSection";
 import SideMenu from "./SideMenu";
 import AppDialog from "./AppDialog/AppDialog";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { useWords } from "../../hooks/useWords";
-import { useAppActions } from "../../actions";
 
 const useStyles = makeStyles(() =>
   createStyles({
