@@ -57,7 +57,6 @@ export type FormWord = {
 export default function NewOrUpdateWordPage() {
   const classes = useStyles();
 
-  // const { createNewWord, updateWordItem } = useAppActions();
   const { closeDialog } = useDialogActions();
   const categories = useSelector((state: RootState) => state.nav.categories);
   const { currWordItem } = useSelector((state: RootState) => state.dialog);

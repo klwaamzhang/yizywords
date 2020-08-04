@@ -2,6 +2,7 @@ import { Word } from "../types";
 
 export const populateCategories = (data: Word[]) => {
   return data
+    .filter((item) => item.status === "active")
     .flatMap((item) => item.categories)
     .reduce((acc, cur) => {
       if (cur && cur !== "Inbox" && acc.indexOf(cur) === -1) {
