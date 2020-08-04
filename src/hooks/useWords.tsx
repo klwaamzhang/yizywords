@@ -25,22 +25,15 @@ interface UpdateWord {
   user?: User;
 }
 
-export interface WordActions {
-  addWord: (word: Word) => Promise<void>;
-  //   updateWord: (wordId: string, updatedWord: UpdateWord) => Promise<void>;
-  //   deleteWord: (word: Word) => Promise<void>;
-}
-
 export function useWords(): {
   loading: boolean;
   addWord: (word: Word) => Promise<void>;
 } {
-  const { storeWords, storeUser } = useAppActions();
+  const { storeWords, storeUser, createNewWord } = useAppActions();
   const { user } = useRealmApp();
 
   const [getUserQuery] = useGetUserLazyQuery({
     onCompleted: ({ user }: GetUserQuery) => {
-      console.log("user", user);
       if (user) storeUser(user);
     },
   });
@@ -58,6 +51,7 @@ export function useWords(): {
       if (user?.id) getUserQuery({ variables: { userId: user?.id } });
     },
   });
+
   const [addWordMutation] = useAddWordMutation();
   //   const [updateWordMutation] = useUpdateWordMutation();
   //   const [deleteWordMutation] = useDeleteWordMutation();
@@ -76,6 +70,7 @@ export function useWords(): {
         },
       });
       console.log(response.data?.word);
+      createNewWord(response.data?.word as Word);
     } catch (err) {
       throw new Error(`Unable to add word: ${err}`);
     }

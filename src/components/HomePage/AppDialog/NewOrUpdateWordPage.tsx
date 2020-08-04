@@ -13,9 +13,10 @@ import {
 } from "@material-ui/core";
 import { Bookmarks } from "@material-ui/icons";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { Word } from "../../../@types/word";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
+import { useWords } from "../../../hooks/useWords";
+import BSON from "bson";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,22 +47,28 @@ interface CateOptionType {
   title: string;
 }
 
+export type FormWord = {
+  text: string;
+  notes: string;
+  categories: string[];
+  status: string;
+};
+
 export default function NewOrUpdateWordPage() {
   const classes = useStyles();
 
   // const { createNewWord, updateWordItem } = useAppActions();
   const { closeDialog } = useDialogActions();
-
   const categories = useSelector((state: RootState) => state.nav.categories);
   const { currWordItem } = useSelector((state: RootState) => state.dialog);
   const user = useSelector((state: RootState) => state.app.user);
+  const { addWord } = useWords();
 
   const categoriesForCmp: CateOptionType[] = categories.map((item) => {
     return { title: item };
   });
 
-  const [formData, setFormData] = React.useState<Word>({
-    _id: 10 + Math.floor(Math.random() * 100000),
+  const [formWord, setFormWord] = React.useState<FormWord>({
     text: "",
     notes: "",
     categories: ["Inbox"],
@@ -70,20 +77,21 @@ export default function NewOrUpdateWordPage() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (formData.categories.length === 0) {
+    if (formWord.categories.length === 0) {
       alert("Please select at least one category!");
       return;
     }
-    // if (!currWordItem) {
-    //   createNewWord(formData);
-    // } else {
-    //   updateWordItem(formData);
-    // }
+    if (!currWordItem && user) {
+      await addWord({
+        ...formWord,
+        _id: new BSON.ObjectId(),
+        user: user,
+      });
+    } else {
+      // updateWordItem(formWord);
+    }
 
-    console.log("dialog", user);
-
-    setFormData({
-      _id: 10 + Math.floor(Math.random() * 100000),
+    setFormWord({
       text: "",
       notes: "",
       categories: ["Inbox"],
@@ -93,7 +101,7 @@ export default function NewOrUpdateWordPage() {
   };
 
   useEffect(() => {
-    // if (currWordItem) setFormData({ ...currWordItem });
+    // if (currWordItem) setFormWord({ ...currWordItem });
   }, []);
 
   return (
@@ -124,10 +132,10 @@ export default function NewOrUpdateWordPage() {
               name="newWord"
               autoComplete="newWord"
               autoFocus
-              value={formData.text}
+              value={formWord.text}
               onChange={(event: any) => {
-                setFormData({
-                  ...formData,
+                setFormWord({
+                  ...formWord,
                   text: event.target.value,
                 });
               }}
@@ -143,10 +151,10 @@ export default function NewOrUpdateWordPage() {
               type="notes"
               id="notes"
               autoComplete="notes"
-              value={formData.notes}
+              value={formWord.notes}
               onChange={(event: any) => {
-                setFormData({
-                  ...formData,
+                setFormWord({
+                  ...formWord,
                   notes: event.target.value,
                 });
               }}
@@ -167,11 +175,11 @@ export default function NewOrUpdateWordPage() {
                   />
                 ))
               }
-              value={formData.categories}
+              value={formWord.categories}
               onChange={(_: any, value: any) => {
                 if (value)
-                  setFormData({
-                    ...formData,
+                  setFormWord({
+                    ...formWord,
                     categories: value as string[],
                   });
               }}
