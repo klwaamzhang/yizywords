@@ -62,7 +62,7 @@ export default function NewOrUpdateWordPage() {
   const categories = useSelector((state: RootState) => state.nav.categories);
   const { currWordItem } = useSelector((state: RootState) => state.dialog);
   const user = useSelector((state: RootState) => state.app.user);
-  const { addWord } = useWords();
+  const { addWord, updateWord } = useWords();
 
   const categoriesForCmp: CateOptionType[] = categories.map((item) => {
     return { title: item };
@@ -77,18 +77,21 @@ export default function NewOrUpdateWordPage() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
     if (formWord.categories.length === 0) {
       alert("Please select at least one category!");
       return;
     }
-    if (!currWordItem && user) {
-      await addWord({
-        ...formWord,
-        _id: new BSON.ObjectId(),
-        user: user,
-      });
+
+    if (!currWordItem) {
+      if (user)
+        await addWord({
+          ...formWord,
+          _id: new BSON.ObjectId(),
+          user: user,
+        });
     } else {
-      // updateWordItem(formWord);
+      await updateWord(currWordItem?._id, { ...formWord });
     }
 
     setFormWord({
@@ -97,11 +100,18 @@ export default function NewOrUpdateWordPage() {
       categories: ["Inbox"],
       status: "active",
     });
+
     closeDialog();
   };
 
   useEffect(() => {
-    // if (currWordItem) setFormWord({ ...currWordItem });
+    if (currWordItem)
+      setFormWord({
+        text: currWordItem.text,
+        notes: currWordItem?.notes || "",
+        categories: currWordItem?.categories as string[],
+        status: currWordItem.status,
+      });
   }, []);
 
   return (

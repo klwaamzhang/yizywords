@@ -4,7 +4,7 @@ import {
   useGetAllWordsQuery,
   useAddWordMutation,
   useGetUserLazyQuery,
-  //   useUpdateWordMutation,
+  useUpdateWordMutation,
   //   useDeleteWordMutation,
 } from "../graphql-operations";
 import { useAppActions } from "../actions";
@@ -28,8 +28,14 @@ interface UpdateWord {
 export function useWords(): {
   loading: boolean;
   addWord: (word: Word) => Promise<void>;
+  updateWord: (wordId: string, updatedWord: UpdateWord) => Promise<void>;
 } {
-  const { storeWords, storeUser, createNewWord } = useAppActions();
+  const {
+    storeWords,
+    storeUser,
+    createNewWord,
+    updateWordItem,
+  } = useAppActions();
   const { user } = useRealmApp();
 
   const [getUserQuery] = useGetUserLazyQuery({
@@ -53,7 +59,7 @@ export function useWords(): {
   });
 
   const [addWordMutation] = useAddWordMutation();
-  //   const [updateWordMutation] = useUpdateWordMutation();
+  const [updateWordMutation] = useUpdateWordMutation();
   //   const [deleteWordMutation] = useDeleteWordMutation();
 
   const addWord = async (word: Word) => {
@@ -69,15 +75,39 @@ export function useWords(): {
           },
         },
       });
-      console.log(response.data?.word);
+      //update view
       createNewWord(response.data?.word as Word);
     } catch (err) {
       throw new Error(`Unable to add word: ${err}`);
     }
   };
 
+  const updateWord = async (wordId: string, updatedWord: UpdateWord) => {
+    try {
+      const response = await updateWordMutation({
+        variables: {
+          wordId: wordId,
+          updates: {
+            text: updatedWord?.text ?? undefined,
+            notes: updatedWord?.notes ?? undefined,
+            categories: updatedWord?.categories ?? undefined,
+            status: updatedWord?.status ?? undefined,
+            user: updatedWord.user
+              ? { link: updatedWord.user.user_id }
+              : undefined,
+          },
+        },
+      });
+      //update view
+      updateWordItem(response.data?.word as Word);
+    } catch (err) {
+      throw new Error(`Unable to update word: ${err}`);
+    }
+  };
+
   return {
     loading,
     addWord,
+    updateWord,
   };
 }
