@@ -10,8 +10,6 @@ import {
 import { Menu } from "@material-ui/icons";
 import { useNavActions, useDialogActions } from "../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { useSelector } from "react-redux";
-import { RootState } from "../reducers";
 import LogoText from "./0_logo/LogoText";
 import { useRealmApp } from "../realm/RealmApp";
 
@@ -42,7 +40,6 @@ export default function Topbar() {
   const { openNewWordPage } = useDialogActions();
   const { openSideMenu } = useNavActions();
 
-  // const loggedIn = useSelector((state: RootState) => state.app.loggedIn);
   const app = useRealmApp();
 
   return (
