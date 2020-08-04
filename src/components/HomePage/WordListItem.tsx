@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
 import { useAppActions, useDialogActions } from "../../actions";
+import { useWords } from "../../hooks/useWords";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -24,8 +25,9 @@ const useStyles = makeStyles(() =>
 export default function WordListItem(props: any) {
   const classes = useStyles();
 
-  const { updateWordItem } = useAppActions();
+  // const { updateWordItem } = useAppActions();
   const { openUpdateWordPage, openConfirmationPage } = useDialogActions();
+  const { updateWord } = useWords();
 
   const index = props.index;
   const item = props.item;
@@ -41,18 +43,19 @@ export default function WordListItem(props: any) {
     setAnchorEl(null);
   };
 
-  const deleteWord = () => {
-    updateWordItem({ ...item, status: "deleted" });
-    closeMenu();
-  };
-
-  const updateWord = () => {
+  const updateWordPage = () => {
     openUpdateWordPage(item);
     closeMenu();
   };
 
-  const restoreWord = () => {
-    updateWordItem({ ...item, status: "active" });
+  const deleteWord = async () => {
+    await updateWord(item._id, { status: "deleted" });
+    closeMenu();
+  };
+
+  const restoreWord = async () => {
+    await updateWord(item._id, { status: "active" });
+    closeMenu();
   };
 
   const openConfirmationDialog = () => {
@@ -75,14 +78,13 @@ export default function WordListItem(props: any) {
         <Menu
           id={"simple-menu" + index}
           anchorEl={anchorEl}
-          keepMounted
           open={Boolean(anchorEl)}
           onClose={closeMenu}
         >
           {item.status !== "deleted" ? (
             // consider to use an array???
             <span>
-              <MenuItem onClick={updateWord}>Update</MenuItem>
+              <MenuItem onClick={updateWordPage}>Update</MenuItem>
               <MenuItem onClick={deleteWord}>Delete</MenuItem>
             </span>
           ) : (

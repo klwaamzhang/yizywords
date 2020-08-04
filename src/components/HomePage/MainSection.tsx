@@ -8,13 +8,14 @@ import {
   ListItemIcon,
 } from "@material-ui/core";
 import WordListItem from "./WordListItem";
-import { useAppActions } from "../../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { RootState } from "../../reducers";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ExitToApp } from "@material-ui/icons";
 import { useRealmApp } from "../../realm/RealmApp";
+import { filterMainSectionData } from "../../utilities/helper";
+import { Word } from "../../types";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -38,11 +39,14 @@ export default function MainSection() {
 
   const { filterName } = useParams();
   const fName = filterName.split("-").join(" ");
-  const { filterMainSectionList } = useAppActions();
-  const { filteredWords, words } = useSelector((state: RootState) => state.app);
+  const { words } = useSelector((state: RootState) => state.app);
+
+  const [filteredWords, setFilteredWords] = React.useState<Word[]>([]);
 
   useEffect(() => {
-    if (fName !== "Setting") filterMainSectionList(fName);
+    if (fName !== "Setting") {
+      setFilteredWords(filterMainSectionData(fName, words));
+    }
   }, [fName, words]);
 
   const app = useRealmApp();
