@@ -8,14 +8,13 @@ import {
   ListItemIcon,
 } from "@material-ui/core";
 import WordListItem from "./WordListItem";
-import { useAppActions, useDialogActions } from "../../actions";
+import { useAppActions } from "../../actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { RootState } from "../../reducers";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { ExitToApp, Lock } from "@material-ui/icons";
+import { ExitToApp } from "@material-ui/icons";
 import { useRealmApp } from "../../realm/RealmApp";
-import { Word } from "../../types";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,17 +33,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface MainSectionProps {
-  words: Word[];
-}
-
 export default function MainSection() {
   const classes = useStyles();
 
   const { filterName } = useParams();
   const fName = filterName.split("-").join(" ");
   const { filterMainSectionList } = useAppActions();
-  const { openUserInfoPage } = useDialogActions();
   const { filteredWords, words } = useSelector((state: RootState) => state.app);
 
   useEffect(() => {
@@ -64,13 +58,6 @@ export default function MainSection() {
         </List>
       ) : (
         <List>
-          <ListItem button onClick={openUserInfoPage}>
-            <ListItemIcon>
-              <Lock />
-            </ListItemIcon>
-            <ListItemText primary="Update User Information" />
-          </ListItem>
-          <Divider />
           <ListItem button onClick={app.logOut}>
             <ListItemIcon classes={{ root: classes.iconRoot }}>
               <ExitToApp />
