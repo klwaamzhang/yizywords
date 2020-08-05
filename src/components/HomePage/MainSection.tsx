@@ -14,7 +14,6 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ExitToApp } from "@material-ui/icons";
 import { useRealmApp } from "../../realm/RealmApp";
-import { filterMainSectionData } from "../../utilities/helper";
 import { Word } from "../../realm/types";
 import { WordActions } from "../../realm/hooks/useWords";
 
@@ -47,6 +46,17 @@ export default function MainSection(props: MainSectionProps) {
   const { words } = useSelector((state: RootState) => state.app);
 
   const [filteredWords, setFilteredWords] = React.useState<Word[]>([]);
+
+  const filterMainSectionData = (filterName: string, data: Word[]) => {
+    if (filterName === "Recycle Bin") {
+      return data.filter((item) => item.status === "deleted");
+    }
+    return data.filter(
+      (item) =>
+        item.status !== "deleted" &&
+        item.categories?.find((e) => e === filterName)
+    );
+  };
 
   useEffect(() => {
     if (fName !== "Setting") {

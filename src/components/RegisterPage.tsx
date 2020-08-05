@@ -3,9 +3,23 @@ import TextField from "@material-ui/core/TextField";
 import { Avatar, Typography, Button, Paper, Grid } from "@material-ui/core";
 import { LockOpen } from "@material-ui/icons";
 import { Link as RouteLink } from "react-router-dom";
-import { handleRegistration } from "../utilities/authHelper";
 import { useStyles } from "../styles/authPagesStyle";
-import { useRealmApp } from "../realm/RealmApp";
+import { useRealmApp, IRealmApp } from "../realm/RealmApp";
+import { handleLogin } from "./LoginPage";
+
+export const handleRegistration = async (
+  realmApp: IRealmApp,
+  email: string,
+  password: string
+) => {
+  try {
+    // Register the user and, if successful, log them in
+    await realmApp.registerUser(email, password);
+    return await handleLogin(realmApp, email, password);
+  } catch (err) {
+    window.alert(err);
+  }
+};
 
 export default function RegisterPage() {
   const classes = useStyles();

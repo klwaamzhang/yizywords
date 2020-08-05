@@ -3,9 +3,20 @@ import TextField from "@material-ui/core/TextField";
 import { Avatar, Typography, Button, Paper, Grid } from "@material-ui/core";
 import { LockOpen } from "@material-ui/icons";
 import { Link as RouteLink } from "react-router-dom";
-import { useRealmApp } from "../realm/RealmApp";
-import { handleLogin } from "../utilities/authHelper";
+import { useRealmApp, IRealmApp } from "../realm/RealmApp";
 import { useStyles } from "../styles/authPagesStyle";
+
+export const handleLogin = async (
+  realmApp: IRealmApp,
+  email: string,
+  password: string
+) => {
+  try {
+    return await realmApp.logIn(email, password);
+  } catch (err) {
+    window.alert(err);
+  }
+};
 
 export default function LoginPage() {
   const classes = useStyles();
