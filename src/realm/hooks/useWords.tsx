@@ -7,8 +7,8 @@ import {
   useUpdateWordMutation,
   useDeleteWordMutation,
 } from "../graphql-operations";
-import { useAppActions } from "../actions";
-import { useRealmApp } from "../realm/RealmApp";
+import { useAppActions } from "../../redux/actions";
+import { useRealmApp } from "../RealmApp";
 
 export enum WordStatus {
   Active = "active",

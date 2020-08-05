@@ -1,6 +1,6 @@
 import { AppActions } from "../@types/app";
 import { useDispatch } from "react-redux";
-import { Word, User } from "../types";
+import { Word, User } from "../../realm/types";
 
 export function useAppActions() {
   const dispatch = useDispatch();

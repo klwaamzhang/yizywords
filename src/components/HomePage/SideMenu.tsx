@@ -16,12 +16,12 @@ import CategoryIcon from "@material-ui/icons/Category";
 import SettingsIcon from "@material-ui/icons/Settings";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { useNavActions } from "../../actions";
+import { useNavActions } from "../../redux/actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "../0_logo/LogoText";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../../reducers";
+import { RootState } from "../../redux/reducers";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

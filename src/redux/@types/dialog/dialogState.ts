@@ -1,4 +1,4 @@
-import { Word } from "../../types";
+import { Word } from "../../../realm/types";
 
 export type DialogState = {
   isDialogOpened: boolean;

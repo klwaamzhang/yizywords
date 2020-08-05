@@ -1,5 +1,5 @@
 import { DialogActions } from "../@types/dialog";
-import { Word } from "../types";
+import { Word } from "../../realm/types";
 import { useDispatch } from "react-redux";
 
 export function useDialogActions() {

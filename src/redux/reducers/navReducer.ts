@@ -1,5 +1,5 @@
 import { NavState, NavAction, NavActions } from "../@types/nav";
-import { populateCategories } from "../utilities/helper";
+import { populateCategories } from "../../utilities/helper";
 
 const initialState: NavState = {
   isSideMenuOpen: false,

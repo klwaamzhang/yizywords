@@ -2,11 +2,11 @@ schema: src/realm/schema.graphql
 documents: src/**/operations.graphql
 overwrite: true
 generates:
-  src/types.ts:
+  src/realm/types.ts:
     plugins:
       - typescript
       - typescript-operations
-  src/graphql-operations.ts:
+  src/realm/graphql-operations.ts:
     preset: import-types
     presetConfig:
       typesPath: ./types

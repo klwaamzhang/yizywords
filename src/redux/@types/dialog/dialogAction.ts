@@ -1,4 +1,4 @@
-import { Word } from "../../types";
+import { Word } from "../../../realm/types";
 
 type CLOSE_DIALOG = "CLOSE_DIALOG";
 type OPEN_NEW_WORD_PAGE = "OPEN_NEW_WORD_PAGE";

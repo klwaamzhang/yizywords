@@ -5,9 +5,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../reducers";
-import { useDialogActions } from "../../../actions";
-import { WordActions } from "../../../hooks/useWords";
+import { RootState } from "../../../redux/reducers";
+import { useDialogActions } from "../../../redux/actions";
+import { WordActions } from "../../../realm/hooks/useWords";
 
 interface ConfirmationPageProps {
   wordActions: WordActions;

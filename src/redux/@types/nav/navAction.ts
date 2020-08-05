@@ -1,4 +1,4 @@
-import { Word } from "../../types";
+import { Word } from "../../../realm/types";
 
 type OPEN_SIDE_MENU = "OPEN_SIDE_MENU";
 type CLOSE_SIDE_MENU = "CLOSE_SIDE_MENU";

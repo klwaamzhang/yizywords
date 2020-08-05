@@ -1,4 +1,4 @@
-import { Word } from "../types";
+import { Word } from "../realm/types";
 
 export const populateCategories = (data: Word[]) => {
   return data

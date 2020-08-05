@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
-import { useDialogActions } from "../../../actions";
+import { useDialogActions } from "../../../redux/actions";
 import {
   Container,
   CssBaseline,
@@ -14,8 +14,8 @@ import {
 import { Bookmarks } from "@material-ui/icons";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../reducers";
-import { WordActions } from "../../../hooks/useWords";
+import { RootState } from "../../../redux/reducers";
+import { WordActions } from "../../../realm/hooks/useWords";
 import BSON from "bson";
 
 const useStyles = makeStyles((theme) => ({

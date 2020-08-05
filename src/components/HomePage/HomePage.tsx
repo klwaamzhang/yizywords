@@ -4,7 +4,7 @@ import MainSection from "./MainSection";
 import SideMenu from "./SideMenu";
 import AppDialog from "./AppDialog/AppDialog";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { useWords } from "../../hooks/useWords";
+import { useWords } from "../../realm/hooks/useWords";
 
 const useStyles = makeStyles(() =>
   createStyles({

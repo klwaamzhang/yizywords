@@ -9,14 +9,14 @@ import {
 } from "@material-ui/core";
 import WordListItem from "./WordListItem";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { RootState } from "../../reducers";
+import { RootState } from "../../redux/reducers";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ExitToApp } from "@material-ui/icons";
 import { useRealmApp } from "../../realm/RealmApp";
 import { filterMainSectionData } from "../../utilities/helper";
-import { Word } from "../../types";
-import { WordActions } from "../../hooks/useWords";
+import { Word } from "../../realm/types";
+import { WordActions } from "../../realm/hooks/useWords";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

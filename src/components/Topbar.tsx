@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-import { useNavActions, useDialogActions } from "../actions";
+import { useNavActions, useDialogActions } from "../redux/actions";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import LogoText from "./0_logo/LogoText";
 import { useRealmApp } from "../realm/RealmApp";

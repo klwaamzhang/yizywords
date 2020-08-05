@@ -1,11 +1,11 @@
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
-import { useDialogActions } from "../../../actions";
+import { useDialogActions } from "../../../redux/actions";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../reducers";
+import { RootState } from "../../../redux/reducers";
 import NewOrUpdateWordPage from "./NewOrUpdateWordPage";
 import ConfirmationPage from "./ConfirmationPage";
-import { WordActions } from "../../../hooks/useWords";
+import { WordActions } from "../../../realm/hooks/useWords";
 
 interface AppDialogProps {
   wordActions: WordActions;

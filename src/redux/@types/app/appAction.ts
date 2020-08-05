@@ -1,4 +1,4 @@
-import { Word, User } from "../../types";
+import { Word, User } from "../../../realm/types";
 
 type CREATE_NEW_WORD = "CREATE_NEW_WORD";
 type UPDATE_WORD_ITEM = "UPDATE_WORD_ITEM";

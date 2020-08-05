@@ -10,7 +10,7 @@ import {
   createStyles,
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
-import { useDialogActions } from "../../actions";
+import { useDialogActions } from "../../redux/actions";
 
 const useStyles = makeStyles(() =>
   createStyles({

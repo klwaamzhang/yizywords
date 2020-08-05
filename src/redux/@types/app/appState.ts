@@ -1,4 +1,4 @@
-import { Word, User } from "../../types";
+import { Word, User } from "../../../realm/types";
 
 export type AppState = {
   words: Word[];
