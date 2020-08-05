@@ -30,7 +30,7 @@ export default function AppDialog(props: AppDialogProps) {
           case "UpdateWordPage":
             return <NewOrUpdateWordPage wordActions={props.wordActions} />;
           case "ConfirmationPage":
-            return <ConfirmationPage />;
+            return <ConfirmationPage wordActions={props.wordActions} />;
           default:
             return <></>;
         }

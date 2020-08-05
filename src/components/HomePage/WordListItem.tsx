@@ -11,7 +11,6 @@ import {
 } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
 import { useDialogActions } from "../../actions";
-import { useWords } from "../../hooks/useWords";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -26,7 +25,6 @@ export default function WordListItem(props: any) {
   const classes = useStyles();
 
   const { openUpdateWordPage, openConfirmationPage } = useDialogActions();
-  // const { updateWord } = useWords();
 
   const { wordActions, index, item } = props;
   const labelId = `checkbox-list-label-${index}`;

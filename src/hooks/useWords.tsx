@@ -5,7 +5,7 @@ import {
   useAddWordMutation,
   useGetUserLazyQuery,
   useUpdateWordMutation,
-  //   useDeleteWordMutation,
+  useDeleteWordMutation,
 } from "../graphql-operations";
 import { useAppActions } from "../actions";
 // import { RootState } from "../reducers";
@@ -28,6 +28,7 @@ interface UpdateWord {
 export interface WordActions {
   addWord: (word: Word) => Promise<void>;
   updateWord: (wordId: string, updatedWord: UpdateWord) => Promise<void>;
+  deleteWord: (word: Word) => Promise<void>;
 }
 
 export function useWords(): {
@@ -39,6 +40,7 @@ export function useWords(): {
     storeUser,
     createNewWord,
     updateWordItem,
+    deleteWordItemPermanently,
   } = useAppActions();
   const { user } = useRealmApp();
 
@@ -64,7 +66,7 @@ export function useWords(): {
 
   const [addWordMutation] = useAddWordMutation();
   const [updateWordMutation] = useUpdateWordMutation();
-  //   const [deleteWordMutation] = useDeleteWordMutation();
+  const [deleteWordMutation] = useDeleteWordMutation();
 
   const addWord = async (word: Word) => {
     try {
@@ -79,7 +81,6 @@ export function useWords(): {
           },
         },
       }).then((response) => createNewWord(response.data?.word as Word));
-      //update view
     } catch (err) {
       throw new Error(`Unable to add word: ${err}`);
     }
@@ -87,7 +88,7 @@ export function useWords(): {
 
   const updateWord = async (wordId: string, updatedWord: UpdateWord) => {
     try {
-      const response = await updateWordMutation({
+      await updateWordMutation({
         variables: {
           wordId: wordId,
           updates: {
@@ -100,11 +101,23 @@ export function useWords(): {
               : undefined,
           },
         },
-      });
-      //update view
-      updateWordItem(response.data?.word as Word);
+      }).then((response) => updateWordItem(response.data?.word as Word));
     } catch (err) {
       throw new Error(`Unable to update word: ${err}`);
+    }
+  };
+
+  const deleteWord = async (word: Word) => {
+    try {
+      await deleteWordMutation({
+        variables: {
+          wordId: word._id,
+        },
+      }).then((response) =>
+        deleteWordItemPermanently(response.data?.deletedWord as Word)
+      );
+    } catch (err) {
+      throw new Error(`Unable to delete task: ${err}`);
     }
   };
 
@@ -113,6 +126,7 @@ export function useWords(): {
     actions: {
       addWord,
       updateWord,
+      deleteWord,
     },
   };
 }
