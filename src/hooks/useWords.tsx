@@ -8,8 +8,6 @@ import {
   useDeleteWordMutation,
 } from "../graphql-operations";
 import { useAppActions } from "../actions";
-// import { RootState } from "../reducers";
-// import { useSelector } from "react-redux";
 import { useRealmApp } from "../realm/RealmApp";
 
 export enum WordStatus {

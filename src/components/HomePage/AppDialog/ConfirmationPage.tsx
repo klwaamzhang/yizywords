@@ -6,7 +6,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
-import { useAppActions, useDialogActions } from "../../../actions";
+import { useDialogActions } from "../../../actions";
 import { WordActions } from "../../../hooks/useWords";
 
 interface ConfirmationPageProps {
@@ -15,7 +15,6 @@ interface ConfirmationPageProps {
 
 export default function ConfirmationPage(props: ConfirmationPageProps) {
   const { currWordItem } = useSelector((state: RootState) => state.dialog);
-  // const { deleteWordItemPermanently } = useAppActions();
   const { closeDialog } = useDialogActions();
   const { wordActions } = props;
 

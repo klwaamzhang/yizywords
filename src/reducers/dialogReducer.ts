@@ -34,12 +34,6 @@ export function dialogReducer(
         dialogPage: "ConfirmationPage",
         currWordItem: action.payload,
       };
-    case DialogActions.OPEN_UPDATE_USER_INFO_PAGE:
-      return {
-        ...state,
-        isDialogOpened: true,
-        dialogPage: "UpdateUserInfoPage",
-      };
     default:
       return state;
   }

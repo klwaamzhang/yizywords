@@ -15,7 +15,7 @@ import { Bookmarks } from "@material-ui/icons";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
-import { useWords, WordActions } from "../../../hooks/useWords";
+import { WordActions } from "../../../hooks/useWords";
 import BSON from "bson";
 
 const useStyles = makeStyles((theme) => ({
