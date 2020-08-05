@@ -15,7 +15,7 @@ import { Bookmarks } from "@material-ui/icons";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
-import { useWords } from "../../../hooks/useWords";
+import { useWords, WordActions } from "../../../hooks/useWords";
 import BSON from "bson";
 
 const useStyles = makeStyles((theme) => ({
@@ -54,14 +54,18 @@ export type FormWord = {
   status: string;
 };
 
-export default function NewOrUpdateWordPage() {
+interface NewOrUpdateWordPageProps {
+  wordActions: WordActions;
+}
+
+export default function NewOrUpdateWordPage(props: NewOrUpdateWordPageProps) {
   const classes = useStyles();
 
   const { closeDialog } = useDialogActions();
   const categories = useSelector((state: RootState) => state.nav.categories);
   const { currWordItem } = useSelector((state: RootState) => state.dialog);
   const user = useSelector((state: RootState) => state.app.user);
-  const { addWord, updateWord } = useWords();
+  const { wordActions } = props;
 
   const categoriesForCmp: CateOptionType[] = categories.map((item) => {
     return { title: item };
@@ -84,13 +88,13 @@ export default function NewOrUpdateWordPage() {
 
     if (!currWordItem) {
       if (user)
-        await addWord({
+        await wordActions.addWord({
           ...formWord,
           _id: new BSON.ObjectId(),
           user: user,
         });
     } else {
-      await updateWord(currWordItem?._id, { ...formWord });
+      await wordActions.updateWord(currWordItem?._id, { ...formWord });
     }
 
     setFormWord({

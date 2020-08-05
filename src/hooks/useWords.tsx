@@ -25,10 +25,14 @@ interface UpdateWord {
   user?: User;
 }
 
-export function useWords(): {
-  loading: boolean;
+export interface WordActions {
   addWord: (word: Word) => Promise<void>;
   updateWord: (wordId: string, updatedWord: UpdateWord) => Promise<void>;
+}
+
+export function useWords(): {
+  loading: boolean;
+  actions: WordActions;
 } {
   const {
     storeWords,
@@ -106,7 +110,9 @@ export function useWords(): {
 
   return {
     loading,
-    addWord,
-    updateWord,
+    actions: {
+      addWord,
+      updateWord,
+    },
   };
 }

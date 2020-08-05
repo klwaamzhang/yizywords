@@ -28,8 +28,7 @@ export default function WordListItem(props: any) {
   const { openUpdateWordPage, openConfirmationPage } = useDialogActions();
   // const { updateWord } = useWords();
 
-  const index = props.index;
-  const item = props.item;
+  const { wordActions, index, item } = props;
   const labelId = `checkbox-list-label-${index}`;
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -48,12 +47,12 @@ export default function WordListItem(props: any) {
   };
 
   const deleteWord = async () => {
-    // await updateWord(item._id, { status: "deleted" });
+    await wordActions.updateWord(item._id, { status: "deleted" });
     closeMenu();
   };
 
   const restoreWord = async () => {
-    // await updateWord(item._id, { status: "active" });
+    await wordActions.updateWord(item._id, { status: "active" });
     closeMenu();
   };
 

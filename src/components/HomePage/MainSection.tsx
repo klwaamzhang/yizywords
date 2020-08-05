@@ -16,6 +16,7 @@ import { ExitToApp } from "@material-ui/icons";
 import { useRealmApp } from "../../realm/RealmApp";
 import { filterMainSectionData } from "../../utilities/helper";
 import { Word } from "../../types";
+import { WordActions } from "../../hooks/useWords";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,7 +35,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function MainSection() {
+interface MainSectionProps {
+  wordActions: WordActions;
+}
+
+export default function MainSection(props: MainSectionProps) {
   const classes = useStyles();
 
   const { filterName } = useParams();
@@ -57,7 +62,14 @@ export default function MainSection() {
       {fName !== "Settings" ? (
         <List>
           {filteredWords.map((item, index) => {
-            return <WordListItem item={item} index={index} key={index} />;
+            return (
+              <WordListItem
+                wordActions={props.wordActions}
+                item={item}
+                index={index}
+                key={index}
+              />
+            );
           })}
         </List>
       ) : (

@@ -23,7 +23,7 @@ const useStyles = makeStyles(() =>
 export default function HomePage() {
   const classes = useStyles();
 
-  const { loading } = useWords();
+  const { loading, actions: wordActions } = useWords();
 
   return (
     <>
@@ -31,12 +31,12 @@ export default function HomePage() {
         <Container className={classes.container} maxWidth="md">
           <Grid className={classes.grid} container spacing={0}>
             <SideMenu />
-            <MainSection />
+            <MainSection wordActions={wordActions} />
           </Grid>
         </Container>
       )}
 
-      <AppDialog />
+      <AppDialog wordActions={wordActions} />
     </>
   );
 }

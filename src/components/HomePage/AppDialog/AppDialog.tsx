@@ -5,8 +5,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../reducers";
 import NewOrUpdateWordPage from "./NewOrUpdateWordPage";
 import ConfirmationPage from "./ConfirmationPage";
+import { WordActions } from "../../../hooks/useWords";
 
-export default function AppDialog() {
+interface AppDialogProps {
+  wordActions: WordActions;
+}
+
+export default function AppDialog(props: AppDialogProps) {
   const { closeDialog } = useDialogActions();
 
   const { isDialogOpened, dialogPage } = useSelector(
@@ -23,7 +28,7 @@ export default function AppDialog() {
         switch (dialogPage) {
           case "NewWordPage":
           case "UpdateWordPage":
-            return <NewOrUpdateWordPage />;
+            return <NewOrUpdateWordPage wordActions={props.wordActions} />;
           case "ConfirmationPage":
             return <ConfirmationPage />;
           default:
