@@ -3,22 +3,25 @@ import TextField from "@material-ui/core/TextField";
 import { Avatar, Typography, Button, Paper, Grid } from "@material-ui/core";
 import { LockOpen } from "@material-ui/icons";
 import { Link as RouteLink } from "react-router-dom";
-import { useRealmApp, IRealmApp } from "../realm/RealmApp";
 import { useStyles } from "../styles/authPagesStyle";
+import { useRealmApp, IRealmApp } from "../realm/RealmApp";
+import { handleLogin } from "./LoginPage";
 
-export const handleLogin = async (
+export const handleRegistration = async (
   realmApp: IRealmApp,
   email: string,
   password: string
 ) => {
   try {
-    return await realmApp.logIn(email, password);
+    // Register the user and, if successful, log them in
+    await realmApp.registerUser(email, password);
+    return await handleLogin(realmApp, email, password);
   } catch (err) {
     window.alert(err);
   }
 };
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const classes = useStyles();
 
   const app = useRealmApp();
@@ -34,7 +37,7 @@ export default function LoginPage() {
           <LockOpen />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login
+          Register
         </Typography>
         <form className={classes.form}>
           <TextField
@@ -73,15 +76,15 @@ export default function LoginPage() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => handleLogin(app, email, password)}
+            onClick={() => handleRegistration(app, email, password)}
           >
-            Login
+            Register
           </Button>
           <Grid container>
             <Grid item xs></Grid>
             <Grid item>
-              <RouteLink className={classes.routerLink} to={`/register`}>
-                {"Don't have an account? Register"}
+              <RouteLink className={classes.routerLink} to={`/login`}>
+                {"Already have an account? Login"}
               </RouteLink>
             </Grid>
           </Grid>
