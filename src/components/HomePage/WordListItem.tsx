@@ -81,14 +81,12 @@ export default function WordListItem(props: any) {
             // consider to use an array???
             <span>
               <MenuItem onClick={updateWordPage}>Update</MenuItem>
-              <MenuItem onClick={deleteWord}>Delete</MenuItem>
+              <MenuItem onClick={deleteWord}>Move To Recycle Bin</MenuItem>
             </span>
           ) : (
             <span>
               <MenuItem onClick={restoreWord}>Restore</MenuItem>
-              <MenuItem onClick={openConfirmationDialog}>
-                Delete Permanently
-              </MenuItem>
+              <MenuItem onClick={openConfirmationDialog}>Delete</MenuItem>
             </span>
           )}
         </Menu>
