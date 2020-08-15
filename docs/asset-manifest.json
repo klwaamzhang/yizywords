@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/yizywords/static/js/main.d81e4c26.chunk.js",
+    "main.js.map": "/yizywords/static/js/main.d81e4c26.chunk.js.map",
+    "runtime-main.js": "/yizywords/static/js/runtime-main.fee8e61b.js",
+    "runtime-main.js.map": "/yizywords/static/js/runtime-main.fee8e61b.js.map",
+    "static/js/2.7636b621.chunk.js": "/yizywords/static/js/2.7636b621.chunk.js",
+    "static/js/2.7636b621.chunk.js.map": "/yizywords/static/js/2.7636b621.chunk.js.map",
+    "index.html": "/yizywords/index.html",
+    "precache-manifest.547e1cd950a966e4b5a60ad716a47ed5.js": "/yizywords/precache-manifest.547e1cd950a966e4b5a60ad716a47ed5.js",
+    "service-worker.js": "/yizywords/service-worker.js",
+    "static/js/2.7636b621.chunk.js.LICENSE.txt": "/yizywords/static/js/2.7636b621.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fee8e61b.js",
+    "static/js/2.7636b621.chunk.js",
+    "static/js/main.d81e4c26.chunk.js"
+  ]
+}
