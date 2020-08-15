@@ -11,7 +11,7 @@ import RealmApolloProvider from "./realm/RealmApolloProvider";
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      backgroundColor: "#f1f1f1",
+      backgroundColor: "#fafafa",
     },
   })
 );

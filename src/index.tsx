@@ -6,13 +6,29 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { store } from "./redux/store/reduxStore";
 import RealmApp from "./realm/RealmApp";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#673ab7",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#8e24aa",
+      contrastText: "#000",
+    },
+  },
+});
 
 ReactDOM.render(
   // <React.StrictMode>
   <RealmApp>
     <Provider store={store}>
       <Router>
-        <App />
+        <MuiThemeProvider theme={theme}>
+          <App />
+        </MuiThemeProvider>
       </Router>
     </Provider>
   </RealmApp>,
