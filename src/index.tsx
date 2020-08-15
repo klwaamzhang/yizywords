@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { store } from "./redux/store/reduxStore";
 import RealmApp from "./realm/RealmApp";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
@@ -25,11 +25,11 @@ ReactDOM.render(
   // <React.StrictMode>
   <RealmApp>
     <Provider store={store}>
-      <Router>
+      <BrowserRouter basename="/yizywords">
         <MuiThemeProvider theme={theme}>
           <App />
         </MuiThemeProvider>
-      </Router>
+      </BrowserRouter>
     </Provider>
   </RealmApp>,
   // </React.StrictMode>,

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "10efec90a769a0f59170c9ee1b37b1f6",
+    "revision": "dc110f6d9026747ebf24de1f60e535d4",
     "url": "/yizywords/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/yizywords/static/js/2.7636b621.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e273c6f58e2694485eca",
-    "url": "/yizywords/static/js/main.d81e4c26.chunk.js"
+    "revision": "1f2287f1d87d1500a99e",
+    "url": "/yizywords/static/js/main.61be2fc3.chunk.js"
   },
   {
     "revision": "7660338df199fb04094c",
