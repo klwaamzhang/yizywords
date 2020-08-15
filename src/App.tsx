@@ -26,24 +26,32 @@ export default function App() {
       <Topbar />
 
       <Switch>
-        <Route path="/login">
-          {app.user ? <Redirect to="/Inbox" /> : <LoginPage />}
+        <Route path={`${process.env.PUBLIC_URL}/login`}>
+          {app.user ? (
+            <Redirect to={`${process.env.PUBLIC_URL}/Inbox`} />
+          ) : (
+            <LoginPage />
+          )}
         </Route>
-        <Route path="/register">
-          {app.user ? <Redirect to="/Inbox" /> : <RegisterPage />}
+        <Route path={`${process.env.PUBLIC_URL}/register`}>
+          {app.user ? (
+            <Redirect to={`${process.env.PUBLIC_URL}/Inbox`} />
+          ) : (
+            <RegisterPage />
+          )}
         </Route>
-        <Route path="/:filterName">
+        <Route path={`${process.env.PUBLIC_URL}/:filterName`}>
           {app.user ? (
             <RealmApolloProvider>
               <HomePage />
             </RealmApolloProvider>
           ) : (
-            <Redirect to="/login" />
+            <Redirect to={`${process.env.PUBLIC_URL}/login`} />
           )}
         </Route>
 
         <Route exact path="/">
-          <Redirect to="/login" />
+          <Redirect to={`${process.env.PUBLIC_URL}/login`} />
         </Route>
       </Switch>
     </div>
