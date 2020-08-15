@@ -23,15 +23,15 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   // <React.StrictMode>
-  <RealmApp>
-    <Provider store={store}>
-      <BrowserRouter basename="/yizywords">
+  <BrowserRouter basename="/yizywords">
+    <RealmApp>
+      <Provider store={store}>
         <MuiThemeProvider theme={theme}>
           <App />
         </MuiThemeProvider>
-      </BrowserRouter>
-    </Provider>
-  </RealmApp>,
+      </Provider>
+    </RealmApp>
+  </BrowserRouter>,
   // </React.StrictMode>,
   document.getElementById("root")
 );
