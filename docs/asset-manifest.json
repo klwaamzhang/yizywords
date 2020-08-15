@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/yizywords/static/js/main.61be2fc3.chunk.js",
-    "main.js.map": "/yizywords/static/js/main.61be2fc3.chunk.js.map",
+    "main.js": "/yizywords/static/js/main.6be5e856.chunk.js",
+    "main.js.map": "/yizywords/static/js/main.6be5e856.chunk.js.map",
     "runtime-main.js": "/yizywords/static/js/runtime-main.fee8e61b.js",
     "runtime-main.js.map": "/yizywords/static/js/runtime-main.fee8e61b.js.map",
     "static/js/2.7636b621.chunk.js": "/yizywords/static/js/2.7636b621.chunk.js",
     "static/js/2.7636b621.chunk.js.map": "/yizywords/static/js/2.7636b621.chunk.js.map",
     "index.html": "/yizywords/index.html",
-    "precache-manifest.44639f6b3b31acd3da0841c019d5b492.js": "/yizywords/precache-manifest.44639f6b3b31acd3da0841c019d5b492.js",
+    "precache-manifest.44ee8f9c6f5b52b8306b8fec3715eac9.js": "/yizywords/precache-manifest.44ee8f9c6f5b52b8306b8fec3715eac9.js",
     "service-worker.js": "/yizywords/service-worker.js",
     "static/js/2.7636b621.chunk.js.LICENSE.txt": "/yizywords/static/js/2.7636b621.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fee8e61b.js",
     "static/js/2.7636b621.chunk.js",
-    "static/js/main.61be2fc3.chunk.js"
+    "static/js/main.6be5e856.chunk.js"
   ]
 }
