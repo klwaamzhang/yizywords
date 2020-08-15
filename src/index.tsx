@@ -1,14 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+import { store } from "./redux/store/reduxStore";
+import RealmApp from "./realm/RealmApp";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#673ab7",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#8e24aa",
+      contrastText: "#000",
+    },
+  },
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  // <React.StrictMode>
+  <RealmApp>
+    <Provider store={store}>
+      <Router>
+        <MuiThemeProvider theme={theme}>
+          <App />
+        </MuiThemeProvider>
+      </Router>
+    </Provider>
+  </RealmApp>,
+  // </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

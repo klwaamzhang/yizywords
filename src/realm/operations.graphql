@@ -1,0 +1,67 @@
+query GetUser($userId: String!) {
+  user(query: { user_id: $userId }) {
+    _id
+    user_id
+    email
+  }
+}
+
+query GetAllWords($user: UserQueryInput) {
+  words(query: { user: $user }) {
+    _id
+    text
+    notes
+    categories
+    status
+    user {
+      _id
+      email
+      user_id
+    }
+  }
+}
+
+mutation AddWord($word: WordInsertInput!) {
+  word: insertOneWord(data: $word) {
+    _id
+    text
+    notes
+    categories
+    status
+    user {
+      _id
+      email
+      user_id
+    }
+  }
+}
+
+mutation UpdateWord($wordId: ObjectId!, $updates: WordUpdateInput!) {
+  word: updateOneWord(query: { _id: $wordId }, set: $updates) {
+    _id
+    text
+    notes
+    categories
+    status
+    user {
+      _id
+      email
+      user_id
+    }
+  }
+}
+
+mutation DeleteWord($wordId: ObjectId!) {
+  deletedWord: deleteOneWord(query: { _id: $wordId }) {
+    _id
+    text
+    notes
+    categories
+    status
+    user {
+      _id
+      email
+      user_id
+    }
+  }
+}
