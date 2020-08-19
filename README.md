@@ -14,7 +14,7 @@
 * Check out the word lists of different categories
 
 
-## Web techniques
+## Web technologies
  In this app, we use:
  * ReactJS to build the interfaces
  * Material UI for css
