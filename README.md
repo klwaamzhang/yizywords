@@ -23,3 +23,17 @@
  * Apollo client and GraphQL to query the word data
  * MongoDB Realm as serverless service
  * MongoDB Atlas as cloud database
+ 
+ ## Screenshots
+ 
+ * Login Page
+ 
+ ![yizywords-img1](https://user-images.githubusercontent.com/36008792/90681938-342fa000-e232-11ea-9bac-79a74fb3ae5c.PNG)
+ 
+ * Home Page
+ 
+ ![yizywords-img2](https://user-images.githubusercontent.com/36008792/90682069-6e00a680-e232-11ea-8795-04697615cf88.PNG)
+ 
+ * New Word Page
+ 
+ ![yizywords-img3](https://user-images.githubusercontent.com/36008792/90682193-9a1c2780-e232-11ea-8dbd-80472b3d41d0.PNG)
