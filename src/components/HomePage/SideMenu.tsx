@@ -57,7 +57,7 @@ export default function SideMenu() {
 
   const { closeSideMenu, updateCategories } = useNavActions();
   const words = useSelector((state: RootState) => state.app.words);
-  const { filterName } = useParams();
+  const { filterName }: any = useParams();
   const fName = filterName.split("-").join(" ");
   const { isSideMenuOpen, categories } = useSelector(
     (state: RootState) => state.nav

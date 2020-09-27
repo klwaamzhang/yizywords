@@ -41,7 +41,7 @@ interface MainSectionProps {
 export default function MainSection(props: MainSectionProps) {
   const classes = useStyles();
 
-  const { filterName } = useParams();
+  const { filterName }: any = useParams();
   const fName = filterName.split("-").join(" ");
   const { words } = useSelector((state: RootState) => state.app);
 
